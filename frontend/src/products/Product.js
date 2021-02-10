@@ -1,9 +1,7 @@
-import React from 'react'
 import {Link} from 'react-router-dom'
 import {Card} from 'react-bootstrap'
 import Rating from './Rating'
 import PropTypes from 'prop-types'
-
 
 const Product = ({product}) => {
   return (
@@ -12,7 +10,7 @@ const Product = ({product}) => {
         <Card.Img src={product.image} variant='top' />
       </Link>
       <Card.Body as='article'>
-        <Link to={`/product/${product._id}`} className='text-dark'>
+        <Link to={`/product/${product._id}`} className='text-secondary'>
           <Card.Title as='header'>
             <h6>
               {product.name}

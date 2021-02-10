@@ -4,7 +4,7 @@ import {Container} from 'react-bootstrap'
 import {Header, Footer} from './base'
 import {Products, ProductDetail} from './products'
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Fragment>
