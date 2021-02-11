@@ -28,9 +28,9 @@ const Product = ({product}) => {
   )
 }
 
-Rating.propTypes = {
-  rating: PropTypes.number.isRequired,
-  numReviews: PropTypes.number.isRequired
-}
+// Rating.propTypes = {
+//   rating: PropTypes.number.isRequired,
+//   numReviews: PropTypes.number.isRequired
+// }
 
 export default Product
