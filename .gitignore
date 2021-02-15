@@ -3,6 +3,7 @@
 # my ignores
 images
 .env
+/backend/data
 
 # dependencies
 node_modules
