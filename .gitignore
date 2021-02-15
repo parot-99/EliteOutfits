@@ -4,6 +4,7 @@
 images
 .env
 /backend/data
+seeder.js
 
 # dependencies
 node_modules
