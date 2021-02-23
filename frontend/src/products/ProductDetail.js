@@ -33,7 +33,7 @@ const ProductDetail = () => {
         <Col md={6}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h3 className='text-muted'>{product.name}</h3>
+              <h3 className='text-dark'>{product.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
               <Rating 
@@ -42,10 +42,10 @@ const ProductDetail = () => {
               ></Rating>
             </ListGroup.Item>
             <ListGroup.Item>
-              <h4 className='text-muted'>Price: ${product.price}</h4>
+              <h4 className='text-dark'>Price: ${product.price}</h4>
             </ListGroup.Item>
             <ListGroup.Item>
-              <h4 className='text-muted'>
+              <h4 className='text-dark'>
                 Status: {product.countInStock? 'In Stock': 'Not In Stock'}
               </h4>
             </ListGroup.Item>

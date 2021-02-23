@@ -40,17 +40,15 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        postalCode: {
-            type: String,
-            required: true
-        },
         country: {
             type: String,
             required: true
         }
     }, 
-    paidAt: {
-        type: Date
+    isPaid: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     isDelivered: {
         type: Boolean,

@@ -1,4 +1,4 @@
-import Products from './Products'
+import ProductList from './ProductList'
 import ProductDetail from './ProductDetail'
 
-export {Products, ProductDetail}
+export {ProductList, ProductDetail}

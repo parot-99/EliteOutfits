@@ -2,7 +2,7 @@ import {Fragment} from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
 import {Container} from 'react-bootstrap'
 import {Header, Footer} from './base'
-import {Products, ProductDetail} from './products'
+import {ProductList, ProductDetail} from './products'
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
         <main className='py-3'>
           <Container>
             <Route exact path='/'>
-              <Products />
+              <ProductList />
             </Route>
             <Route path='/product/:id'>
               <ProductDetail />
