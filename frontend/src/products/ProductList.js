@@ -2,6 +2,7 @@ import {Fragment, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col} from 'react-bootstrap'
 import Product from './Product'
+import {Loader, Message} from './../Handlers'
 import {productsListAction} from './../actions/productActions'
 
 const ProductList = () => {
@@ -16,8 +17,8 @@ const ProductList = () => {
   return (
     <Fragment>
       <h1 className='text-dark'>LATEST PRODUCTS</h1>
-      {loading && <h2>Loading</h2>}
-      {error && <h2>{error}</h2>}
+      {loading && <Loader />}
+      {error && <Message variant='danger'>{error}</Message>}
       <Row>
         {products.map(product => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
