@@ -2,7 +2,7 @@ import {Fragment, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col} from 'react-bootstrap'
 import Product from './Product'
-import {Loader, Message} from './../Handlers'
+import {Loader, Message} from './../handlers'
 import {productListAction} from './../actions/productActions'
 
 const ProductList = () => {

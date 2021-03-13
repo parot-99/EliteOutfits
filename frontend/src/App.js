@@ -3,6 +3,7 @@ import {BrowserRouter, Route} from 'react-router-dom'
 import {Container} from 'react-bootstrap'
 import {Header, Footer} from './base'
 import {ProductList, ProductDetail} from './products'
+import {Cart} from './cart'
 
 const App = () => {
   return (
@@ -16,6 +17,9 @@ const App = () => {
             </Route>
             <Route path='/product/:id'>
               <ProductDetail />
+            </Route>
+            <Route path='/cart/:id?'>
+              <Cart />
             </Route>
           </Container>
         </main>

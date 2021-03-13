@@ -1,12 +1,13 @@
-import {Fragment, useEffect} from 'react'
+import {Fragment, useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link, useParams} from 'react-router-dom'
-import {Row, Col, Image, ListGroup, Button} from 'react-bootstrap'
-import Rating from './Rating'
-import {Loader, Message} from './../Handlers'
+import {Row, Col, Image, ListGroup, Form} from 'react-bootstrap'
+import {Rating, CartButton} from '.'
+import {Loader, Message} from './../handlers'
 import {productDetailAction} from './../actions/productActions'
 
 const ProductDetail = () => {
+  const [quanity, setQuanity] = useState(1)
   const {id} = useParams()
   const dispatch = useDispatch()
   const productDetail = useSelector(state => state.productDetail)
@@ -48,14 +49,32 @@ const ProductDetail = () => {
                   Status: {product.countInStock? 'In Stock': 'Not In Stock'}
                 </h4>
               </ListGroup.Item>
+              {product.countInStock > 0 && (
+                <ListGroup.Item>
+                  <Row>
+                    <Col><h4 className='text-dark'>Quanity</h4></Col>
+                    <Col>
+                      <Form.Control 
+                        as='select' 
+                        value={quanity} 
+                        onChange={(e) => setQuanity(e.target.value)}
+                      >
+                        {[...Array(product.countInStock).keys()].map(x => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              )}
               <ListGroup.Item>
-                <Button 
-                  className='btn-block btn-dark' 
-                  type='button' 
-                  disabled={product.countInStock === 0}
-                >
-                  ADD TO CART
-                </Button>
+                <CartButton 
+                  countInStock={product.countInStock} 
+                  id={id} 
+                  quanity={quanity} 
+                />
               </ListGroup.Item>
             </ListGroup>
           </Col>
