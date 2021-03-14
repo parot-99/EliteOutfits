@@ -18,9 +18,9 @@ const productListAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PRODUCT_LIST_FAIL, 
-            payload: error.message && error.response.data.message 
-                ? error.response.data.message 
-                : error.message
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
         })
     }
 }
@@ -35,9 +35,9 @@ const productDetailAction = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAIL_FAIL,
-            payload: error.response && error.response.data.message
-                ? error.reponse.data.message
-                : error.message
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
         })
     }
 }
