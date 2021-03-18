@@ -36,4 +36,40 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 })
 
-export {authUser, getUserProfile}
+const registerUser = asyncHandler(async (req, res) => {
+    const {name, email, password} = req.body
+    const user = await User.findOne({email})
+
+    if (user) {
+        res.status(400)
+        throw new Error('User Already Exists')
+    }
+
+    const newUser = await User.create({
+        name,
+        email,
+        password
+    })
+
+    if (newUser) {
+        res.status(201).json({
+            _id: newUser._id,
+            name: newUser.name,
+            email: newUser.email,
+            isAdmin: newUser.isAdmin,
+            token: generateToken(newUser._id)
+        })
+    } else {
+        res.status(400)
+        throw new Error('Invalid User Data')
+    }
+})
+
+const updatePriceConstant = asyncHandler(async (req, res) => {
+    const {newPriceConstant} = req.body
+
+    req.app.locals.PRICE_CONSTANT = newPriceConstant
+    res.status(204).json({newConstant: newPriceConstant})
+})
+
+export {authUser, getUserProfile, registerUser, updatePriceConstant}

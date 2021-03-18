@@ -3,6 +3,9 @@ import Product  from './../models/productModel.js'
 
 const getProducts =asyncHandler (async (req, res) => {
     const products = await Product.find({})
+    products.map((product) => (
+        product.price *= req.app.locals.PRICE_CONSTANT
+    ))
     res.json(products)
 })
 

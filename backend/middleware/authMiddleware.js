@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler'
 import jwt from 'jsonwebtoken'
 import User from './../models/userModel.js'
 
-const protect = asyncHandler (async(req, res, next) => {
+const privateRoute = asyncHandler(async(req, res, next) => {
     let token
     const headers = req.headers
 
@@ -26,4 +26,13 @@ const protect = asyncHandler (async(req, res, next) => {
     }
 })
 
-export default protect
+const adminRoute = (req, res, next) => {
+    if (req.user && req.user.isAdmin) {
+        next()
+    } else {
+        res.status(403)
+        throw new Error('Not An Admin User')
+    }
+}
+
+export {privateRoute, adminRoute}

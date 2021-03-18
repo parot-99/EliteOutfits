@@ -11,6 +11,8 @@ connectDB()
 
 const app = express()
 
+app.locals.PRICE_CONSTANT = 0.5
+
 app.get('/', (req, res) => {
     res.send('API is running...')
 })
