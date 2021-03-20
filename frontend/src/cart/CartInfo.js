@@ -18,10 +18,9 @@ const CartInfo = ({cartItems}) => {
             ITEMS
           </h3>
           <h6>
-            $
             {cartItems.reduce((acc, item) => 
               acc + (item.quanity * item.price), 0).toFixed(2)
-            }
+            } SP
           </h6>
         </ListGroup.Item>
         <ListGroup.Item>

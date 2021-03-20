@@ -13,7 +13,7 @@ const CartItem = ({item, dispatch}) => {
           <h6>{item.name}</h6>
         </Link>
       </Col>
-      <Col md={2}><h6>${item.price}</h6></Col>
+      <Col md={2}><h6>{item.price} SP</h6></Col>
       <Col md={2}>
       <Form.Control 
         as='select' 

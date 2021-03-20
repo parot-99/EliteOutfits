@@ -1,16 +1,11 @@
-import {
-    CART_ADD_REQUEST,
-    CART_ADD_SUCCESS,
-    CART_ADD_FAIL,
-    CART_REMOVE
-} from './../constants/cartConstants'
+import * as actions from './../constants/cartConstants'
 
 const cartReducer = (state={cartItems: []}, action) => {
     switch(action.type) {
-        case CART_ADD_REQUEST:
+        case actions.CART_ADD_REQUEST:
             return {loading: true, cartItems: state.cartItems}
 
-        case CART_ADD_SUCCESS:
+        case actions.CART_ADD_SUCCESS:
             const item = action.payload
             const existItem = state.cartItems.find(
                 x => x.product === item.product
@@ -30,10 +25,10 @@ const cartReducer = (state={cartItems: []}, action) => {
                 }
             }
 
-        case CART_ADD_FAIL:
+        case actions.CART_ADD_FAIL:
             return {loading: false, error: action.payload}
 
-        case CART_REMOVE:
+        case actions.CART_REMOVE:
             return {
                 cartItems: state.cartItems.filter(x => (
                     x.product !== action.payload)

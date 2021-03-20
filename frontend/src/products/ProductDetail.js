@@ -42,7 +42,7 @@ const ProductDetail = () => {
                 ></Rating>
               </ListGroup.Item>
               <ListGroup.Item>
-                <h4>Price: ${product.price}</h4>
+                <h4>Price: {product.price} SP</h4>
               </ListGroup.Item>
               <ListGroup.Item>
                 <h4>

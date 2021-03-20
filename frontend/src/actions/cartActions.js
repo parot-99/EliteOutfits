@@ -1,19 +1,14 @@
 import axios from 'axios'
-import {
-    CART_ADD_REQUEST,
-    CART_ADD_SUCCESS,
-    CART_ADD_FAIL,
-    CART_REMOVE
-} from './../constants/cartConstants'
+import * as actions from './../constants/cartConstants'
 
 const addToCart = (id, quanity) => async (dispatch, getState) => {
     try {
-        dispatch({type: CART_ADD_REQUEST})
+        dispatch({type: actions.CART_ADD_REQUEST})
 
         const {data} = await axios.get(`/api/products/${id}`)
 
         dispatch({
-            type: CART_ADD_SUCCESS,
+            type: actions.CART_ADD_SUCCESS,
             payload: {
                 product: data._id,
                 name: data.name,
@@ -29,7 +24,7 @@ const addToCart = (id, quanity) => async (dispatch, getState) => {
         )
     } catch (error) {
         dispatch({
-            type: CART_ADD_FAIL, 
+            type: actions.CART_ADD_FAIL, 
             payload: error.response === undefined 
                         ? error.message 
                         : error.response.data.message
@@ -39,7 +34,7 @@ const addToCart = (id, quanity) => async (dispatch, getState) => {
 
 const removeFromCart = (id) => async (dispatch, getState) => {
     dispatch({
-        type: CART_REMOVE,
+        type: actions.CART_REMOVE,
         payload: id
     })
 
