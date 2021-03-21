@@ -9,9 +9,9 @@ import {productDetailAction} from './../actions/productActions'
 const ProductDetail = () => {
   const [quanity, setQuanity] = useState(1)
   const {id} = useParams()
-  const dispatch = useDispatch()
   const productDetail = useSelector(state => state.productDetail)
   const {loading, error, product} = productDetail
+  const dispatch = useDispatch()
   
 
   useEffect(() => {

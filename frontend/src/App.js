@@ -4,6 +4,7 @@ import {Container} from 'react-bootstrap'
 import {Header, Footer} from './base'
 import {ProductList, ProductDetail} from './products'
 import {Cart} from './cart'
+import {UserLogin, UserRegister} from './users'
 
 const App = () => {
   return (
@@ -20,6 +21,12 @@ const App = () => {
             </Route>
             <Route path='/cart/:id?'>
               <Cart />
+            </Route>
+            <Route path='/login'>
+              <UserLogin />
+            </Route>
+            <Route path='/register'>
+              <UserRegister />
             </Route>
           </Container>
         </main>

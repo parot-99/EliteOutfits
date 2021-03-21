@@ -26,7 +26,8 @@ const CartInfo = ({cartItems}) => {
         <ListGroup.Item>
           <Button 
             type='button'
-            className='btn-block btn-dark'
+            className='btn-block'
+            variant='dark'
             disabled={cartItems.length === 0}
             onClick={checkout}
           >

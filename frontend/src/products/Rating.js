@@ -61,8 +61,8 @@ const Rating = ({rating, numReviews}) => {
           }
         ></i>
       </span>
-      <span className='text-secondary'> 
-        {numReviews && numReviews} reviews
+      <span className='rating-text'> 
+        {' '}{numReviews && numReviews} reviews
       </span>  
     </div>
   )

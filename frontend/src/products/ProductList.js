@@ -6,9 +6,9 @@ import {Loader, Message} from './../handlers'
 import {productListAction} from './../actions/productActions'
 
 const ProductList = () => {
-  const dispatch = useDispatch()
   const productList = useSelector(state => state.productList)
   const {loading, error, products} = productList
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(productListAction())
@@ -16,7 +16,7 @@ const ProductList = () => {
 
   return (
     <Fragment>
-      <h1 className='text-dark'>LATEST PRODUCTS</h1>
+      <h1>LATEST PRODUCTS</h1>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
       {!loading && !error &&

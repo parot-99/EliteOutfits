@@ -8,9 +8,9 @@ import {CartList} from '.'
 const Cart = () => {
   const {id} = useParams()
   const location = useLocation()
-  const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
   const {loading, error, cartItems} = cart
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (id) {

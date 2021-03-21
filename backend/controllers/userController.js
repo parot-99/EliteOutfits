@@ -37,7 +37,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 })
 
 const registerUser = asyncHandler(async (req, res) => {
-    const {name, email, password} = req.body
+    const {name, email, password, password2} = req.body
     const user = await User.findOne({email})
 
     if (user) {
