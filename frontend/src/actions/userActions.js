@@ -45,6 +45,7 @@ const userRegisterAction = (name, email, password, password2) =>
                     'Content-Type': 'application/json'
                 }
             }
+
             const {data} = await axios.post(
                 '/api/users/register',
                 {name, email, password, password2},
@@ -52,7 +53,7 @@ const userRegisterAction = (name, email, password, password2) =>
             )
 
             dispatch({type: actions.USER_REGISTER_SUCCESS, payload: data})
-            dispatch({type: actions.USER_LOGIN_SUCCESS, pyaload: data})
+            dispatch({type: actions.USER_LOGIN_SUCCESS, payload: data})
 
             localStorage.setItem('user', JSON.stringify(data))
         } catch (error) {
@@ -65,4 +66,38 @@ const userRegisterAction = (name, email, password, password2) =>
         }
     }
 
-export {userLoginAction, userLogoutAction, userRegisterAction}
+const userDetailAction = () => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.USER_DETAIL_REQUEST})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.get(
+            '/api/users/profile',
+            config
+        )
+
+        dispatch({type: actions.USER_DETAIL_SUCCESS, payload: data})
+    } catch (error) {
+        dispatch({
+            type: actions.USER_DETAIL_FAIL, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+export {
+    userLoginAction,
+    userLogoutAction,
+    userRegisterAction, 
+    userDetailAction
+}

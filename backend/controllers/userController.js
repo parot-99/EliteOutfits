@@ -20,7 +20,7 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
-const getUserProfile = asyncHandler(async (req, res) => {
+const getUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id)
 
     if (user) {
@@ -65,6 +65,32 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 })
 
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id)
+
+    if (user) {
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+
+        if (req.body.password) {
+            user.password = req.body.password
+        }
+
+        const updatedUser = await user.save()
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+        })
+        
+    } else {
+        res.status(404)
+        throw new Error('User Not Found')
+    }
+})
+
 const updatePriceConstant = asyncHandler(async (req, res) => {
     const {newPriceConstant} = req.body
 
@@ -72,4 +98,4 @@ const updatePriceConstant = asyncHandler(async (req, res) => {
     res.status(204).json({newConstant: newPriceConstant})
 })
 
-export {authUser, getUserProfile, registerUser, updatePriceConstant}
+export {authUser, getUser, registerUser, updateUser, updatePriceConstant}

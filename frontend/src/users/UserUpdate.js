@@ -1,44 +1,48 @@
-import {useState, useEffect} from 'react'
-import {useLocation, useHistory, Link} from 'react-router-dom'
-import {Form, Button, Row, Col} from 'react-bootstrap'
+import {useState, useEffect,Fragment} from 'react'
+import {useHistory} from 'react-router-dom'
+import {Form, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
-import {FormContainer} from './../base'
-import {userRegisterAction} from './../actions/userActions'
+import {userDetailAction} from './../actions/userActions'
 
-const UserRegister = () => {
+const UserUpdate = () => {
+  const history = useHistory()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
-  const location = useLocation()
-  const history = useHistory()
-  const userRegister = useSelector(state => state.userRegister)
-  const {loading, error} = userRegister
+  const userUpdate = useSelector(state => state.userRegister)
+  const {loading, error} = userUpdate
+  const userDetail = useSelector(state => state.userDetail)
+  const {userInfo} = userDetail
   const userLogin = useSelector(state => state.userLogin)
   const {user} = userLogin
   const dispatch = useDispatch()
-  const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
-    if (user) {
-      history.push(redirect)
-    } 
+    if (!user) {
+      history.push('/login')
+    } else {
+      if (!userInfo) {
+        dispatch(userDetailAction())
+      } else {
+        setName(userInfo.name)
+        setEmail(userInfo.email)
+      }
+  
+    }
+ 
+  }, [history, user, userInfo, dispatch])
 
-  }, [history, user, redirect])
-
-  const handleLogin = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault()
-
-    dispatch(userRegisterAction(name, email, password, password2))
   }
 
   return (
-    <FormContainer>
-      <h1>Register</h1>
+    <Fragment>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={handleLogin}>
+      <Form onSubmit={handleUpdate}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control 
@@ -82,19 +86,11 @@ const UserRegister = () => {
           ></Form.Control>
         </Form.Group>
         <Button type='submit' variant='dark'>
-          Register
+          Update
         </Button>
       </Form>
-      <Row className='py-3'>
-        <Col>
-          Already a user?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-            Login
-          </Link>
-        </Col>
-      </Row> 
-    </FormContainer>
+    </Fragment>
   )
 }
 
-export default UserRegister
+export default UserUpdate

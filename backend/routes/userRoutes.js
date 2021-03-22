@@ -6,8 +6,13 @@ import checkPassword from './../middleware/passwordMiddleware.js'
 const router = express.Router()
 
 router.route('/login').post(userControllers.authUser)
+router.route('/profile').get(privateRoute, userControllers.getUser)
 router.route('/register').post(checkPassword, userControllers.registerUser)
-router.route('/profile').get(privateRoute, userControllers.getUserProfile)
+router.route('/update').put(
+    privateRoute,
+    checkPassword,
+    userControllers.updateUser
+)
 router.route('/admin/pconstant').post(
     privateRoute,
     adminRoute,

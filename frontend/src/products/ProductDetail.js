@@ -12,7 +12,6 @@ const ProductDetail = () => {
   const productDetail = useSelector(state => state.productDetail)
   const {loading, error, product} = productDetail
   const dispatch = useDispatch()
-  
 
   useEffect(() => {
     dispatch(productDetailAction(id))

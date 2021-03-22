@@ -5,7 +5,6 @@ import {userLogoutAction} from './../actions/userActions'
 const UserLogout = () => {
   const dispatch = useDispatch()
 
-
   const handleLogout = () => {
     dispatch(userLogoutAction())
   }
