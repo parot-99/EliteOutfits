@@ -7,17 +7,17 @@ import {userDetailAction, userUpdateAction} from './../actions/userActions'
 import {USER_UPDATE_RESET} from './../constants/userConstants'
 
 const UserUpdate = () => {
-  const history = useHistory()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [password2, setPassword2] = useState('')
   const userLogin = useSelector(state => state.userLogin)
   const {user} = userLogin
   const userDetail = useSelector(state => state.userDetail)
   const {userInfo, error: userError, loading: userLoading} = userDetail
   const userUpdate = useSelector(state => state.userUpdate)
   const {success, error: updateError, loading: updateLoading} = userUpdate
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {

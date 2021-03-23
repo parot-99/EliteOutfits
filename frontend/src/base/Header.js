@@ -1,4 +1,5 @@
-import {LinkContainer} from 'react-router-bootstrap'
+import {Fragment} from 'react'
+import {NavLink} from 'react-router-dom'
 import {Navbar, Nav, NavDropdown, Container} from 'react-bootstrap'
 import {useSelector} from 'react-redux'
 import {UserLogout} from './../users'
@@ -11,38 +12,32 @@ const Header = () => {
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
-          <LinkContainer exact to='/'>
+          
             <Navbar.Brand>EliteOutfits</Navbar.Brand>
-          </LinkContainer>
+          
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ml-auto'>
-              <LinkContainer exact to='/'>
-                <Nav.Link>
-                  <i className='fas fa-home'></i> Home
-                </Nav.Link>
-              </LinkContainer>
-              <LinkContainer exact to='/cart'>
-                <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Cart
-                </Nav.Link>
-              </LinkContainer>
+            <Nav className='ml-auto'>         
+              <Nav.Link as={NavLink} exact to='/'>
+                <i className='fas fa-home'></i> Home
+              </Nav.Link>                    
+              <Nav.Link as={NavLink} to='/cart'>
+                <i className='fas fa-shopping-cart'></i> Cart
+              </Nav.Link>         
               {user && 
-                <NavDropdown title={user.name} ud='username'>
-                  <LinkContainer to='/profile'>
-                    <NavDropdown.Item>
-                      Profile
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                  <UserLogout />
-                </NavDropdown>
+                <Fragment>
+                  <Nav.Link as={NavLink} to='/profile'>
+                    <i className='far fa-user-circle'></i> Profile
+                  </Nav.Link> 
+                  <NavDropdown title={user.name} id='username'>        
+                    <UserLogout />
+                  </NavDropdown>
+                </Fragment>
               }
-              {!user && 
-                <LinkContainer exact to='/login'>
-                  <Nav.Link>
-                    <i className='fas fa-user'></i> Sign In
-                  </Nav.Link>
-                </LinkContainer>
+              {!user &&               
+                <Nav.Link as={NavLink} to='/login'>
+                  <i className='fas fa-user'></i> Sign In
+                </Nav.Link>             
               }
             </Nav>
           </Navbar.Collapse>

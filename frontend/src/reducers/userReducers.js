@@ -51,7 +51,7 @@ const userDetailReducer = (state={user: {}}, action) => {
     }
 }
 
-const userUpdateReducer = (state={}, action) => {
+const userUpdateReducer = (state={userInfo: {}}, action) => {
     switch (action.type) {
         case actions.USER_UPDATE_REQUEST:
             return {loading: true}
