@@ -2,16 +2,19 @@ main {
   min-height: 88vh;
 }
 
+h1, h2, h3, h4, h5, h6, p, .text-prim {
+  color: #343a40;
+}
+
 .rating span {
   margin: 0.01rem;
 }
 
-h1, h2, h3, h4, h5, h6, .text-prim {
-  color: #343a40 !important;
-}
-
-.rating-text {
+.rating-text, .checkout-nav {
   color: #343a40;
   font-weight: 500;
 }
 
+.inline {
+  display: inline;
+}

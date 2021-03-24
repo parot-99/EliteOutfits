@@ -1,3 +1,5 @@
-import Shipping from './Shipping.js'
+import Shipping from './Shipping'
+import CheckoutNav from './CheckoutNav'
+import PlaceOrder from './PlaceOrder'
 
-export {Shipping}
+export {Shipping, CheckoutNav, PlaceOrder}

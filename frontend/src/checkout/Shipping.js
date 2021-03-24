@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {Form, Button} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
+import {CheckoutNav} from '.'
 import {FormContainer} from './../base'
 import {saveShippingAddress} from './../actions/checkoutActions'
 
@@ -21,16 +22,17 @@ const Shipping = () => {
     if (!user) {
       history.push('/login')
     }
-  }, [user])
+  }, [user, history])
 
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(saveShippingAddress({address, city, country}))
-    history.push('/payment')
+    history.push('/placeorder')
   }
 
   return (
     <FormContainer>
+      <CheckoutNav step1 />
       <h1>ADDRESS</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId='address'>
