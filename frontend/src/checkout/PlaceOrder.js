@@ -25,13 +25,15 @@ const PlaceOrder = () => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
 
-  cart.itemsPrice = addDecimals(cartItems.reduce(
+  cart.price = addDecimals(cartItems.reduce(
     (acc, item) => acc + item.price * item.quanity,
     0
   ))
-  cart.shipping = 0
-  cart.tax = 0
-  cart.total = Number(cart.itemsPrice)
+
+  cart.itemsCount = cartItems.reduce(
+    (acc, item) => acc + item.quanity,
+    0
+  )
 
   const placeOrder = () => {
     
@@ -95,25 +97,13 @@ const PlaceOrder = () => {
             <ListGroup.Item>
               <Row>
                 <Col><h6>Items</h6></Col>
-                <Col><h6>{cart.itemsPrice} SP</h6></Col>
+                <Col><h6>{cart.itemsCount}</h6></Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
               <Row>
-                <Col><h6>Shipping</h6></Col>
-                <Col><h6>{cart.shipping} SP</h6></Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col><h6>Tax</h6></Col>
-                <Col><h6>{cart.tax} SP</h6></Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col><h6>Total</h6></Col>
-                <Col><h6>{cart.total} SP</h6></Col>
+                <Col><h6>Price</h6></Col>
+                <Col><h6>{cart.price} SP</h6></Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>

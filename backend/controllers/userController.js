@@ -14,6 +14,7 @@ const authUser = asyncHandler(async (req, res) => {
             isAdmin: user.isAdmin,
             token: generateToken(user._id)
         })
+        
     } else {
         res.status(401)
         throw new Error('Invalid email or password')
@@ -30,6 +31,7 @@ const getUser = asyncHandler(async (req, res) => {
             email: user.email,
             isAdmin: user.isAdmin,
         })
+
     } else {
         res.status(404)
         throw new Error('User Not Found')
@@ -59,6 +61,7 @@ const registerUser = asyncHandler(async (req, res) => {
             isAdmin: newUser.isAdmin,
             token: generateToken(newUser._id)
         })
+
     } else {
         res.status(400)
         throw new Error('Invalid User Data')
