@@ -4,7 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import * as productReducers from './reducers/productReducers'
 import {cartReducer} from './reducers/cartReducers'
 import * as userReducers from './reducers/userReducers'
-import {checkoutReducer} from './reducers/checkoutReducers'
+import {orderReducer} from './reducers/orderReducers'
 
 const reducer = combineReducers({
     productList: productReducers.productListReducer,
@@ -14,7 +14,7 @@ const reducer = combineReducers({
     userRegister: userReducers.userRegisterReducer,
     userDetail: userReducers.userDetailReducer,
     userUpdate: userReducers.userUpdateReducer,
-    checkout: checkoutReducer
+    order: orderReducer
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -32,7 +32,7 @@ const addressFromStorage = localStorage.getItem('shippingAddress')
 const initialState = {
     cart: {cartItems: cartItemsFromStorage},
     userLogin: {user: userFromStorage},
-    checkout: {shippingAddress: addressFromStorage}
+    order: {shippingAddress: addressFromStorage, loading: true}
 }
 
 const middleware = [thunk]

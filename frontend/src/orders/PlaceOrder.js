@@ -1,25 +1,30 @@
 import {Fragment} from 'react'
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
-import {Button, Row, Col, ListGroup, Image, Card} from 'react-bootstrap' 
+import {Button, Row, Col, ListGroup, Image} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
 import {CheckoutNav} from '.'
 import {Message} from './../handlers'
+import {createOrder} from './../actions/orderActions'
 
 
 const PlaceOrder = () => {
-  const checkout = useSelector(state => state.checkout)
-  const {shippingAddress} = checkout
+  const order = useSelector(state => state.order)
   const cart = useSelector(state => state.cart)
   const {cartItems} = cart
   const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!shippingAddress) {
+    if (!order.shippingAddress) {
       history.push('/shipping')
-    } 
-  }, [history, shippingAddress])
+    }
+
+    if (order.success) {
+      history.push(`/order/${order.newOrder._id}`)
+    }
+
+  }, [history, order])
   
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2)
@@ -36,7 +41,11 @@ const PlaceOrder = () => {
   )
 
   const placeOrder = () => {
-    
+    dispatch(createOrder({
+      orderItems: cartItems,
+      shippingAddress: order.shippingAddress,
+      price: cart.price
+    }))
   }
   
   return (
@@ -49,9 +58,9 @@ const PlaceOrder = () => {
               <h2>Shipping</h2>
               <h6 className='inline'>Address: </h6>
               <p className='inline'>
-                {shippingAddress.address}, {' '}
-                {shippingAddress.city}, {' '}
-                {shippingAddress.country}
+                {order.shippingAddress.address}, {' '}
+                {order.shippingAddress.city}, {' '}
+                {order.shippingAddress.country}
               </p>
             </ListGroup.Item>
             <ListGroup.Item>
@@ -106,6 +115,11 @@ const PlaceOrder = () => {
                 <Col><h6>{cart.price} SP</h6></Col>
               </Row>
             </ListGroup.Item>
+              {order.error && 
+                <ListGroup.Item>
+                  <Message variant='danger'>{order.error}</Message>
+                </ListGroup.Item>
+              }
             <ListGroup.Item>
               <Button 
                 type='button'

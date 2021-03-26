@@ -4,12 +4,13 @@ import {Form, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {CheckoutNav} from '.'
 import {FormContainer} from './../base'
-import {saveShippingAddress} from './../actions/checkoutActions'
+import {saveShippingAddress} from './../actions/orderActions'
+import {ORDER_CREATE_RESET} from './../constants/orderConstatns'
 
 
 const Shipping = () => {
-  const checkout = useSelector(state => state.checkout)
-  const {shippingAddress} = checkout
+  const order = useSelector(state => state.order)
+  const {shippingAddress} = order
   const userLogin = useSelector(state => state.userLogin)
   const {user} = userLogin
   const [address, setAddress] = useState(shippingAddress.address || '')
@@ -27,6 +28,7 @@ const Shipping = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(saveShippingAddress({address, city, country}))
+    dispatch({type: ORDER_CREATE_RESET})
     history.push('/placeorder')
   }
 

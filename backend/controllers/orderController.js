@@ -21,7 +21,27 @@ const createOrder = asyncHandler(async (req, res) => {
         const createdOrder = await order.save()
 
         res.status(201)
+        res.json(createdOrder)
     }
 })
 
-export {createOrder}
+const getOrder = asyncHandler (async (req, res) => {
+    const order = await Order.findById(req.params.id).populate(
+        'user',
+        'name email'
+    )
+    
+    if (order) {
+        if (order.user._id != req.user.id) {
+            res.status(403)
+            throw new Error('Unauthorized')
+        }
+
+        res.json(order)
+    } else {
+        res.status(404)
+        throw new Error('Order Not Found')
+    }
+})
+
+export {createOrder, getOrder}

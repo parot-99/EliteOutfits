@@ -4,7 +4,7 @@ import colors from 'colors'
 import connectDB from './config/database.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-import checkoutRoutes from './routes/checkoutRoutes.js'
+import OrderRoutes from './routes/orderRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 
 dotenv.config()
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.use(express.json())
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
-app.use('/api/checkout', checkoutRoutes)
+app.use('/api/orders', OrderRoutes)
 app.use(notFound)
 app.use(errorHandler)
 

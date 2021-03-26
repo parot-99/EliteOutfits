@@ -5,7 +5,7 @@ import {Header, Footer} from './base'
 import {ProductList, ProductDetail} from './products'
 import {Cart} from './cart'
 import {UserLogin, UserRegister, Profile} from './users'
-import {Shipping, PlaceOrder} from './checkout'
+import {Shipping, PlaceOrder, OrderDetail} from './orders'
 
 const App = () => {
   return (
@@ -38,6 +38,9 @@ const App = () => {
               </Route>
               <Route exact path='/placeorder'>
                 <PlaceOrder />
+              </Route>
+              <Route exact path='/order/:id'>
+                <OrderDetail />
               </Route>
               <Route>
                 <h1>404 NOT FOUND</h1>
