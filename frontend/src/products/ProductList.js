@@ -6,8 +6,8 @@ import {Loader, Message} from './../handlers'
 import {productListAction} from './../actions/productActions'
 
 const ProductList = () => {
-  const productList = useSelector(state => state.productList)
-  const {loading, error, products} = productList
+  const product = useSelector(state => state.product)
+  const {loading, error, productsList} = product
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -19,9 +19,9 @@ const ProductList = () => {
       <h1>LATEST PRODUCTS</h1>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
-      {!loading && !error &&
+      {!loading && !error && productsList.length !== 0 &&
         <Row>
-          {products.map(product => (
+          {productsList.map(product => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
               <Product product={product} />
             </Col>

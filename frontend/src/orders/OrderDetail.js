@@ -1,5 +1,4 @@
-import {Fragment} from 'react'
-import {useEffect} from 'react'
+import {Fragment, useEffect} from 'react'
 import {useParams, Link} from 'react-router-dom'
 import {Row, Col, ListGroup, Image} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
@@ -8,18 +7,19 @@ import {getOrder} from './../actions/orderActions'
 
 
 const OrderDetail = () => {
-  const orderDetail = useSelector(state => state.order)
+  const order = useSelector(state => state.order)
+  const {loading, error, orderDetails} = order
   const {id} = useParams()
-  const {loading, error, order} = orderDetail
   const dispatch = useDispatch()
 
   
   useEffect(() => {
     dispatch(getOrder(id))
-  }, [dispatch, id])
 
-  if (order) {
-    order.itemsCount = order.orderItems.reduce(
+  }, [dispatch, id])
+  
+  if (Object.keys(orderDetails).length !== 0) {
+    orderDetails.itemsCount = orderDetails.orderItems.reduce(
       (acc, item) => acc + item.quanity,
       0
     )
@@ -29,7 +29,7 @@ const OrderDetail = () => {
     <Fragment>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
-      {!loading && !error && 
+      {!loading && !error && Object.keys(orderDetails).length !== 0 &&
         <Row>
           <Col md={8}>
             <ListGroup variant='flush'>
@@ -37,26 +37,26 @@ const OrderDetail = () => {
                 <h2>Shipping</h2>
                 <h6 className='inline'>Name: </h6>
                 <p className='inline'>
-                  {order.user.name}
+                  {orderDetails.user.name}
                 </p>
                 <br/>
                 <h6 className='inline'>Email: </h6>
                 <p className='inline'>
-                  {order.user.email}
+                  {orderDetails.user.email}
                 </p>
                 <br/>
                 <h6 className='inline'>Address: </h6>
                 <p className='inline'>
-                  {order.shippingAddress.address}, {' '}
-                  {order.shippingAddress.city}, {' '}
-                  {order.shippingAddress.country}
+                  {orderDetails.shippingAddress.address}, {' '}
+                  {orderDetails.shippingAddress.city}, {' '}
+                  {orderDetails.shippingAddress.country}
                 </p>
-                {order.isDelivered && 
+                {orderDetails.isDelivered && 
                   <Message variant='success' className='mt-3'>
                     Delivered
                   </Message>
                 }
-                {!order.isDelivered && 
+                {!orderDetails.isDelivered && 
                   <Message variant='danger' className='mt-3'>
                     Not Delivered
                   </Message>
@@ -65,7 +65,7 @@ const OrderDetail = () => {
               <ListGroup.Item>
                 <h2>Order Items</h2>    
                 <ListGroup variant='flush'>
-                  {order.orderItems.map((item, index) => (
+                  {orderDetails.orderItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
@@ -102,20 +102,20 @@ const OrderDetail = () => {
               <ListGroup.Item>
                 <Row>
                   <Col><h6>Items</h6></Col>
-                  <Col><h6>{order.itemsCount}</h6></Col>
+                  <Col><h6>{orderDetails.itemsCount}</h6></Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col><h6>Price</h6></Col>
-                  <Col><h6>{order.price} SP</h6></Col>
+                  <Col><h6>{orderDetails.price} SP</h6></Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                {order.isPaid &&
+                {orderDetails.isPaid &&
                   <Message variant='success' className='mb-0'>Paid</Message>
                 }          
-                {!order.isPaid &&
+                {!orderDetails.isPaid &&
                   <Message variant='danger' className='mb-0'>Not Paid</Message>
                 }          
               </ListGroup.Item>           

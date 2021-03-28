@@ -1,5 +1,5 @@
 import axios from 'axios'
-import * as actions from './../constants/orderConstatns'
+import * as actions from './../constants/orderConstants'
 
 const saveShippingAddress = (data) => (dispatch) => {
     dispatch({
@@ -41,6 +41,37 @@ const createOrder = (order) => async (dispatch, getState) => {
     }
 }
 
+const getOrders = () => async (dispatch, getState) => {
+    try {
+        dispatch({type: actions.USER_ORDER_LIST_REQUEST})
+
+        const {userLogin: {user}} = getState()
+            
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+    
+        const {data} = await axios.get(
+            '/api/orders',
+            config
+        )
+    
+        dispatch({type: actions.USER_ORDER_LIST_SUCCESS, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.USER_ORDER_LIST_FAIL, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
 const getOrder = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_DETAIL_REQUEST})
@@ -71,4 +102,4 @@ const getOrder = (id) => async (dispatch, getState) => {
     }
 }
 
-export {saveShippingAddress, createOrder, getOrder}
+export {saveShippingAddress, createOrder, getOrder, getOrders}

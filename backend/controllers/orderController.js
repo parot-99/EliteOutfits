@@ -25,6 +25,14 @@ const createOrder = asyncHandler(async (req, res) => {
     }
 })
 
+
+const getOrders = asyncHandler (async (req, res) => {
+    const orders = await Order.find({user: req.user._id})  
+
+    res.json(orders)
+})
+
+
 const getOrder = asyncHandler (async (req, res) => {
     const order = await Order.findById(req.params.id).populate(
         'user',
@@ -44,4 +52,24 @@ const getOrder = asyncHandler (async (req, res) => {
     }
 })
 
-export {createOrder, getOrder}
+
+const setIsPaid = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id) 
+
+    if (order) {
+        order.isPaid = true
+        order.paidAt = Date.now()
+
+        const updatedOrder = await order.save()
+
+        res.status(201)
+        res.json(updatedOrder)
+    } else {
+        res.status(404)
+        throw new Error('Order not found')
+    }
+
+})
+
+
+export {createOrder, getOrder, setIsPaid, getOrders}

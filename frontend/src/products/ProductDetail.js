@@ -9,8 +9,8 @@ import {productDetailAction} from './../actions/productActions'
 const ProductDetail = () => {
   const [quanity, setQuanity] = useState(1)
   const {id} = useParams()
-  const productDetail = useSelector(state => state.productDetail)
-  const {loading, error, product} = productDetail
+  const product = useSelector(state => state.product)
+  const {loading, error, productDetail} = product
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -24,31 +24,35 @@ const ProductDetail = () => {
       </Link>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
-      {!loading && !error && 
+      {!loading && !error && Object.keys(productDetail).length !== 0 &&
         <Row>
           <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid />
+            <Image src={productDetail.image} alt={productDetail.name} fluid />
           </Col>
           <Col md={6}>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <h3>{product.name}</h3>
+                <h3>{productDetail.name}</h3>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Rating 
-                  rating={product.rating} 
-                  numReviews={product.numReviews} 
+                  rating={productDetail.rating} 
+                  numReviews={productDetail.numReviews} 
                 ></Rating>
               </ListGroup.Item>
               <ListGroup.Item>
-                <h4>Price: {product.price} SP</h4>
+                <h4>Price: {productDetail.price} SP</h4>
               </ListGroup.Item>
               <ListGroup.Item>
                 <h4>
-                  Status: {product.countInStock? 'In Stock': 'Not In Stock'}
+                  Status: {
+                    productDetail.countInStock
+                    ? 'In Stock'
+                    : 'Not In Stock'
+                  }
                 </h4>
               </ListGroup.Item>
-              {product.countInStock > 0 && (
+              {productDetail.countInStock > 0 && (
                 <ListGroup.Item>
                   <Row>
                     <Col><h4>Quanity</h4></Col>
@@ -58,7 +62,7 @@ const ProductDetail = () => {
                         value={quanity} 
                         onChange={(e) => setQuanity(e.target.value)}
                       >
-                        {[...Array(product.countInStock).keys()].map(x => (
+                        {[...Array(productDetail.countInStock).keys()].map(x => (
                           <option key={x + 1} value={x + 1}>
                             {x + 1}
                           </option>
@@ -70,7 +74,7 @@ const ProductDetail = () => {
               )}
               <ListGroup.Item>
                 <CartButton 
-                  countInStock={product.countInStock} 
+                  countInStock={productDetail.countInStock} 
                   id={id} 
                   quanity={quanity} 
                 />

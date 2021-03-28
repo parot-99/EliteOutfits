@@ -5,7 +5,7 @@ const CartInfo = ({cartItems}) => {
   const history = useHistory()
 
   const checkout = () => {
-    history.push('/login?redirect=shipping')
+    history.push('/shipping')
   }
 
   return (

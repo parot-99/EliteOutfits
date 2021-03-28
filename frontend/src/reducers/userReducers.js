@@ -1,5 +1,6 @@
 import * as actions from './../constants/userConstants'
 
+
 const userLoginReducer = (state={user: {}}, action) => {
     switch (action.type) {
         case actions.USER_LOGIN_REQUEST:

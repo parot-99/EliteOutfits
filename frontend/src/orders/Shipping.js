@@ -1,29 +1,22 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {Form, Button} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
 import {CheckoutNav} from '.'
 import {FormContainer} from './../base'
 import {saveShippingAddress} from './../actions/orderActions'
-import {ORDER_CREATE_RESET} from './../constants/orderConstatns'
+import {ORDER_CREATE_RESET} from './../constants/orderConstants'
 
 
 const Shipping = () => {
   const order = useSelector(state => state.order)
   const {shippingAddress} = order
-  const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
   const [address, setAddress] = useState(shippingAddress.address || '')
   const [country, setCountry] = useState(shippingAddress.country || '')
   const [city, setCity] = useState(shippingAddress.city || '')
   const history = useHistory()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (!user) {
-      history.push('/login')
-    }
-  }, [user, history])
 
   const handleSubmit = (event) => {
     event.preventDefault()

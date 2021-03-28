@@ -1,4 +1,4 @@
-import * as actions from './../constants/orderConstatns'
+import * as actions from './../constants/orderConstants'
 
 const orderReducer = (state={}, action) => {
     switch (action.type) {
@@ -24,15 +24,26 @@ const orderReducer = (state={}, action) => {
         case actions.ORDER_CREATE_RESET:
             return {...state, success: false}
 
-        // order request
+        // order detail
 
         case actions.ORDER_DETAIL_REQUEST:
-            return {...state, loading: true}
+            return {...state, loading: true, orderDetails: {}}
 
         case actions.ORDER_DETAIL_SUCCESS:
-            return {...state, loading: false, order: action.payload}
+            return {...state, loading: false, orderDetails: action.payload}
 
         case actions.ORDER_DETAIL_FAIL:
+            return {...state, loading: false, error: action.payload}
+
+        // user order list
+
+        case actions.USER_ORDER_LIST_REQUEST:
+            return {...state, loading: true, myOrders: []}
+
+        case actions.USER_ORDER_LIST_SUCCESS:
+            return {...state, loading: false, myOrders: action.payload}
+
+        case actions.USER_ORDER_LIST_FAIL:
             return {...state, loading: false, error: action.payload}
 
         default:
@@ -40,4 +51,4 @@ const orderReducer = (state={}, action) => {
     }
 }
 
-export {orderReducer}
+export default orderReducer

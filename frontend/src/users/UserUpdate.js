@@ -1,5 +1,4 @@
 import {useState, useEffect,Fragment} from 'react'
-import {useHistory} from 'react-router-dom'
 import {Form, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
@@ -7,8 +6,6 @@ import {userDetailAction, userUpdateAction} from './../actions/userActions'
 import {USER_UPDATE_RESET} from './../constants/userConstants'
 
 const UserUpdate = () => {
-  const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
   const userDetail = useSelector(state => state.userDetail)
   const {userInfo, error: userError, loading: userLoading} = userDetail
   const userUpdate = useSelector(state => state.userUpdate)
@@ -17,24 +14,18 @@ const UserUpdate = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
-  const history = useHistory()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (!user) {
-      history.push('/login')
+  useEffect(() => {     
+    if (!userInfo || success) {
+      dispatch({type: USER_UPDATE_RESET})
+      dispatch(userDetailAction())
     } else {
-      if (!userInfo || success) {
-        dispatch({type: USER_UPDATE_RESET})
-        dispatch(userDetailAction())
-      } else {
-        setName(userInfo.name)
-        setEmail(userInfo.email)
-      }
-  
+      setName(userInfo.name)
+      setEmail(userInfo.email)
     }
- 
-  }, [history, user, userInfo, success, dispatch])
+   
+  }, [userInfo, success, dispatch])
 
   const handleUpdate = (event) => {
     event.preventDefault()
