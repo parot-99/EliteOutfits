@@ -3,16 +3,23 @@ import {Link} from 'react-router-dom'
 import {Table, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
-import {userListAction} from './../actions/adminActions'
+import {userListAction, userDeleteAction} from './../actions/adminActions'
 
 const UserList = () => {
   const admin = useSelector(state => state.admin)
-  const {loading, error, usersList} = admin
+  const {loading, error, usersList, success} = admin
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(userListAction())
-  }, [dispatch])
+
+  }, [success, dispatch])
+
+  const removeUser = (id) => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(userDeleteAction(id))
+    }
+  }
 
   return (
     <Fragment>
@@ -48,7 +55,12 @@ const UserList = () => {
                   </Link>  
                 </td>
                 <td>
-                  <Button variant='danger'>Delete</Button>
+                  <Button 
+                    variant='danger' 
+                    onClick={() => removeUser(user._id)}
+                  >
+                    Delete
+                  </Button>
                 </td>
               </tr>
             ))}

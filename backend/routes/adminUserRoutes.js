@@ -17,5 +17,23 @@ router.route('/users').get(
     adminUserController.getUsers
 )
 
+router.route('/users/:id').get(
+    privateRoute,
+    adminRoute,
+    adminUserController.getUser
+)
+
+router.route('/users/:id').delete(
+    privateRoute,
+    adminRoute,
+    adminUserController.deleteUser
+)
+
+router.route('/users/:id').put(
+    privateRoute,
+    adminRoute,
+    adminUserController.updateUser
+)
+
 
 export default router

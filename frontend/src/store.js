@@ -43,8 +43,16 @@ const initialState = {
 
 const middleware = [thunk]
 
+const rootReducer = (state, action) => {
+    if (action.type === 'USER_LOGOUT') {
+        state = initialState
+    }
+
+    return reducer(state, action)
+}
+
 const store = createStore(
-    reducer, 
+    rootReducer, 
     initialState, 
     composeWithDevTools(applyMiddleware(...middleware))
 )
