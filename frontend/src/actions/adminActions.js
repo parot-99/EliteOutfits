@@ -4,7 +4,7 @@ import * as actions from './../constants/adminConstants'
 
 const userListAction = () => async (dispatch, getState) => {
     try {
-        dispatch({type: actions.USER_LIST_REQUEST})
+        dispatch({type: actions.USER_LIST_REQUEST_ADMIN})
 
         const {userLogin: {user}} = getState()
         
@@ -17,11 +17,11 @@ const userListAction = () => async (dispatch, getState) => {
 
         const {data} = await axios.get('/api/admin/users', config)
 
-        dispatch({type:actions.USER_LIST_SUCCESS, payload: data })
+        dispatch({type:actions.USER_LIST_SUCCESS_ADMIN, payload: data })
         
     } catch (error) {
         dispatch({
-            type: actions.USER_LIST_FAIL, 
+            type: actions.USER_LIST_FAIL_ADMIN, 
             payload: error.response === undefined 
                         ? error.message 
                         : error.response.data.message
@@ -32,7 +32,7 @@ const userListAction = () => async (dispatch, getState) => {
 
 const userDeleteAction = (id) => async (dispatch, getState) => {
     try {
-        dispatch({type: actions.USER_DELETE_REQUEST})
+        dispatch({type: actions.USER_DELETE_REQUEST_ADMIN})
 
         const {userLogin: {user}} = getState()
         
@@ -45,11 +45,11 @@ const userDeleteAction = (id) => async (dispatch, getState) => {
 
         await axios.delete(`/api/admin/users/${id}`, config)
 
-        dispatch({type:actions.USER_DELETE_SUCCESS})
+        dispatch({type:actions.USER_DELETE_SUCCESS_ADMIN})
 
     } catch (error) {
         dispatch({
-            type: actions.USER_DELETE_FAIL, 
+            type: actions.USER_DELETE_FAIL_ADMIN, 
             payload: error.response === undefined 
                         ? error.message 
                         : error.response.data.message
@@ -58,4 +58,66 @@ const userDeleteAction = (id) => async (dispatch, getState) => {
 }
 
 
-export {userListAction, userDeleteAction}
+const userDetailAction = (id) => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.USER_DETAIL_REQUEST_ADMIN})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.get(
+            `/api/admin/users/${id}`,
+            config
+        )
+
+        dispatch({type: actions.USER_DETAIL_SUCCESS_ADMIN, payload: data})
+    } catch (error) {
+        dispatch({
+            type: actions.USER_DETAIL_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
+const userUpdateAction = (userInfo) => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.USER_UPDATE_REQUEST_ADMIN})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.put(
+            `/api/admin/users/${userInfo._id}`,
+            userInfo,
+            config
+        )
+
+        dispatch({type: actions.USER_UPDATE_SUCCESS_ADMIN, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.USER_UPDATE_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
+export {userListAction, userDeleteAction, userDetailAction, userUpdateAction}

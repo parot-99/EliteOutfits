@@ -96,43 +96,43 @@ const userDetailAction = () => async(dispatch, getState) => {
 }
 
 const userUpdateAction = (userInfo) => async(dispatch, getState) => {
-        try {
-            dispatch({type: actions.USER_UPDATE_REQUEST})
+    try {
+        dispatch({type: actions.USER_UPDATE_REQUEST})
 
-            const {userLogin: {user}} = getState()
-            
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${user.token}`
-                }
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
             }
-
-            const {data} = await axios.put(
-                '/api/users/update',
-                userInfo,
-                config
-            )
-
-            dispatch({type: actions.USER_UPDATE_SUCCESS, payload: data})
-            dispatch({
-                type: actions.USER_LOGIN_SUCCESS,
-                payload: {...data, token: user.token}
-            })
-
-            localStorage.setItem(
-                'user',
-                JSON.stringify({...data, token: user.token})
-            )
-        } catch (error) {
-            dispatch({
-                type: actions.USER_UPDATE_FAIL, 
-                payload: error.response === undefined 
-                            ? error.message 
-                            : error.response.data.message
-            })
         }
+
+        const {data} = await axios.put(
+            '/api/users/update',
+            userInfo,
+            config
+        )
+
+        dispatch({type: actions.USER_UPDATE_SUCCESS, payload: data})
+        dispatch({
+            type: actions.USER_LOGIN_SUCCESS,
+            payload: {...data, token: user.token}
+        })
+
+        localStorage.setItem(
+            'user',
+            JSON.stringify({...data, token: user.token})
+        )
+    } catch (error) {
+        dispatch({
+            type: actions.USER_UPDATE_FAIL, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
     }
+}
 
 export {
     userLoginAction,

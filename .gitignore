@@ -6,6 +6,7 @@ images
 /backend/data
 seeder.js
 tokens.txt
+notes.txt
 
 # dependencies
 node_modules

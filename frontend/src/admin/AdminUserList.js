@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
 import {userListAction, userDeleteAction} from './../actions/adminActions'
 
-const UserList = () => {
+const AdminUserList = () => {
   const admin = useSelector(state => state.admin)
   const {loading, error, usersList, success} = admin
   const dispatch = useDispatch()
@@ -71,4 +71,4 @@ const UserList = () => {
   )
 }
 
-export default UserList
+export default AdminUserList

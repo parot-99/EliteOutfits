@@ -1,4 +1,5 @@
-import UserList from './UserList'
+import AdminUserList from './AdminUserList'
+import AdminUserUpdate from './AdminUserUpdate'
 
 
-export {UserList}
+export {AdminUserList, AdminUserUpdate}
