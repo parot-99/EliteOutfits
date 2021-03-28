@@ -84,7 +84,7 @@ const OrderDetail = () => {
                         <Col md={4}>
                           <h6>
                             {item.quanity} x {item.price} SP = {' '}
-                            {(item.quanity * item.price).toFixed(2)} SP
+                            {(item.quanity * item.price)} SP
                           </h6>
                         </Col>
                       </Row>

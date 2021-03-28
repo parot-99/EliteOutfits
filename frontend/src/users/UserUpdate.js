@@ -20,6 +20,8 @@ const UserUpdate = () => {
     if (!userInfo || success) {
       dispatch({type: USER_UPDATE_RESET})
       dispatch(userDetailAction())
+      setPassword('')
+      setPassword2('')
     } else {
       setName(userInfo.name)
       setEmail(userInfo.email)

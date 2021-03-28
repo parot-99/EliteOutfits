@@ -1,7 +1,7 @@
 import * as actions from './../constants/adminConstants'
 
 
-const adminReducer = (state={}, action) => {
+const adminReducer = (state={usersList: []}, action) => {
     switch (action.type) {
         case actions.USER_LIST_REQUEST:
             return {loading: true}

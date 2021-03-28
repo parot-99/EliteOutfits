@@ -10,12 +10,13 @@ const createOrder = asyncHandler(async (req, res) => {
         throw new Error('No ordered items')
 
     } else {
+        const newPrice = Math.round(price)
+
         const order = new Order({
             user: req.user._id,
             orderItems,
             shippingAddress,
-            price
-
+            price: newPrice
         })
 
         const createdOrder = await order.save()

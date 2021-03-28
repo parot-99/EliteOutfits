@@ -1,5 +1,5 @@
 import {Fragment} from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {Navbar, Nav, NavDropdown, Container} from 'react-bootstrap'
 import {useSelector} from 'react-redux'
 import {UserLogout} from './../users'
@@ -29,6 +29,15 @@ const Header = () => {
                   </Nav.Link> 
                   <NavDropdown title={user.name} id='username'>        
                     <UserLogout />
+                  </NavDropdown>
+                </Fragment>
+              }
+              {user && user.isAdmin && 
+                <Fragment>
+                  <NavDropdown title='Admin' id='admin'>        
+                    <NavDropdown.Item as={Link} to='/admin/users'>
+                      Users
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </Fragment>
               }

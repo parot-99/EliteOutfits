@@ -1,5 +1,5 @@
-import {Fragment} from 'react'
-import {NavLink} from 'react-router-dom'
+import {Fragment, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {Table, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
@@ -8,12 +8,53 @@ import {userListAction} from './../actions/adminActions'
 const UserList = () => {
   const admin = useSelector(state => state.admin)
   const {loading, error, usersList} = admin
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    dispatch(userListAction())
+  }, [dispatch])
 
   return (
     <Fragment>
-      
+      <h1>Users</h1>
+      {loading && <Loader />}
+      {error && <Message variant='danger'>{error}</Message>}
+      {!loading && !error && usersList.length !== 0 &&
+        <Table striped bordered hover responsive className='table-sm'>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>ADMIN</th>
+              <th>EDIT</th>
+              <th>DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usersList.map(user => (
+              <tr key={user._id}>
+                <td>{user._id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.isAdmin 
+                  ? <i className='fas fa-check' style={{color: 'green'}} />
+                  : <i className='fas fa-times' style={{color: 'red'}} />
+                  }
+                </td>
+                <td>
+                  <Link to={`/admin/users/${user._id}`}>
+                    <Button variant='info'>Details</Button>
+                  </Link>  
+                </td>
+                <td>
+                  <Button variant='danger'>Delete</Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      }
     </Fragment>
   )
 }

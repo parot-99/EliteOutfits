@@ -2,11 +2,20 @@ import axios from 'axios'
 import * as actions from './../constants/adminConstants'
 
 
-const userListAction = () => async (dispatch) => {
+const userListAction = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_LIST_REQUEST})
 
-        const {data} = await axios.get('/api/admin/users')
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.get('/api/admin/users', config)
 
         dispatch({type:actions.USER_LIST_SUCCESS, payload: data })
     } catch (error) {
