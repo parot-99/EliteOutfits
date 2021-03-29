@@ -41,7 +41,7 @@ const getOrder = asyncHandler (async (req, res) => {
     )
     
     if (order) {
-        if (order.user._id != req.user.id) {
+        if ((order.user._id != req.user.id) && !req.user.isAdmin) {
             res.status(403)
             throw new Error('Unauthorized')
         }

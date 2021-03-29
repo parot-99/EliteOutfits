@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
 import {userListAction, userDeleteAction} from './../actions/adminActions'
 
+
 const AdminUserList = () => {
   const admin = useSelector(state => state.admin)
   const {loading, error, usersList, success} = admin
@@ -23,7 +24,7 @@ const AdminUserList = () => {
 
   return (
     <Fragment>
-      <h1>Users</h1>
+      <h1>USERS</h1>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
       {!loading && !error && usersList.length !== 0 &&
@@ -70,5 +71,6 @@ const AdminUserList = () => {
     </Fragment>
   )
 }
+
 
 export default AdminUserList

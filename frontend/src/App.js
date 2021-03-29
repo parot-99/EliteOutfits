@@ -6,7 +6,7 @@ import {ProductList, ProductDetail} from './products'
 import {Cart} from './cart'
 import {UserLogin, UserRegister, Profile} from './users'
 import {Shipping, PlaceOrder, OrderDetail} from './orders'
-import {AdminUserList, AdminUserUpdate} from './admin'
+import * as Admin from './admin'
 import {PrivateRoute, AdminRoute} from './handlers'
 
 const App = () => {
@@ -45,10 +45,16 @@ const App = () => {
                 <OrderDetail />
               </PrivateRoute>
               <AdminRoute exact path='/admin/users'>
-                <AdminUserList />
+                <Admin.AdminUserList />
               </AdminRoute>
               <AdminRoute exact path='/admin/users/:id'>
-                <AdminUserUpdate />
+                <Admin.AdminUserUpdate />
+              </AdminRoute>
+              <AdminRoute exact path='/admin/products'>
+                <Admin.AdminProductList />
+              </AdminRoute>
+              <AdminRoute exact path='/admin/orders'>
+                <Admin.AdminOrderList />
               </AdminRoute>
               <Route>
                 <h1>404 NOT FOUND</h1>

@@ -35,5 +35,11 @@ router.route('/users/:id').put(
     adminUserController.updateUser
 )
 
+router.route('/orders').get(
+    privateRoute,
+    adminRoute,
+    adminUserController.getOrders
+)
+
 
 export default router

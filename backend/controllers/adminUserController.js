@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import User from './../models/userModel.js'
+import Order from './../models/orderModel.js'
 
 
 const getUsers = asyncHandler(async (req, res) => {
@@ -74,4 +75,17 @@ const updatePriceConstant = asyncHandler(async (req, res) => {
 })
 
 
-export {getUsers, getUser, deleteUser, updateUser, updatePriceConstant}
+const getOrders = asyncHandler(async (req, res) => {
+    const orders = await Order.find({}).populate('user', 'id name')
+
+    res.json(orders)
+})
+
+export {
+    getUsers,
+    getUser,
+    deleteUser, 
+    updateUser,
+    updatePriceConstant,
+    getOrders
+}
