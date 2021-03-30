@@ -52,12 +52,13 @@ const AdminUserList = () => {
                 </td>
                 <td>
                   <Link to={`/admin/users/${user._id}`}>
-                    <Button variant='info'>Details</Button>
+                    <Button className='btn-block' variant='info'>Edit</Button>
                   </Link>  
                 </td>
                 <td>
                   <Button 
-                    variant='danger' 
+                    variant='danger'
+                    className='btn-block'
                     onClick={() => removeUser(user._id)}
                   >
                     Delete

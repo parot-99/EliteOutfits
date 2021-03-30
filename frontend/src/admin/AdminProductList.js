@@ -50,7 +50,7 @@ const AdminProductList = () => {
               <th>NAME</th>
               <th>PRICE</th>
               <th>CATEGORY</th>
-              <th>DETAILS</th>
+              <th>EDIT</th>
               <th>DELETE</th>
             </tr>
           </thead>
@@ -62,13 +62,14 @@ const AdminProductList = () => {
                 <td>{item.price}</td>
                 <td>{item.category}</td>
                 <td>
-                  <Link to={`/product/${item._id}`}>
-                    <Button variant='info'>Details</Button>
+                  <Link to={`/admin/product/${item._id}`}>
+                    <Button className='btn-block' variant='info'>Edit</Button>
                   </Link>  
                 </td>
                 <td>
                   <Button 
-                    variant='danger' 
+                    variant='danger'
+                    className='btn-block'
                     onClick={() => removeProduct(item._id)}
                   > 
                     Delete

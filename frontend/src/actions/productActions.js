@@ -35,4 +35,5 @@ const productDetailAction = (id) => async (dispatch) => {
     }
 }
 
+
 export {productListAction, productDetailAction}

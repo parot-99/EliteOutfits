@@ -7,15 +7,15 @@ import {productCreateAction} from './../actions/adminActions'
 
 const AdminProductCreate = () => {
   const admin = useSelector(state => state.admin)
-  const {createSuccess, productDetail} = admin
+  const {createSuccess, productCreate} = admin
   const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (createSuccess) {
-      history.push(`/admin/product/${productDetail._id}`)
+      history.push(`/admin/product/${productCreate._id}`)
     }
-  }, [createSuccess, history, productDetail])
+  }, [createSuccess, history, productCreate])
 
   const createProduct = () => {
     dispatch(productCreateAction())  

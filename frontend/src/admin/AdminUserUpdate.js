@@ -53,7 +53,7 @@ const AdminUserUpdate = () => {
         Go Back
       </Link>
       <FormContainer>
-        <h1>Edit User</h1>
+        <h1>EDIT USER</h1>
         {error && <Message variant='danger'>{error}</Message>}
         {loading && <Loader />}
         <Form onSubmit={handleUpdate}>

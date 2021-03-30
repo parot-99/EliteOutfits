@@ -211,7 +211,7 @@ const productCreateAction = () => async(dispatch, getState) => {
 }
 
 
-const productUpdateAction = (id) => async(dispatch, getState) => {
+const productUpdateAction = (product) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_UPDATE_REQUEST_ADMIN})
 
@@ -224,12 +224,13 @@ const productUpdateAction = (id) => async(dispatch, getState) => {
             }
         }
 
-        const {data} = await axios.put(
-            `/api/admin/products/${id}`,
+        await axios.put(
+            `/api/admin/products/${product._id}`,
+            product,
             config
         )
 
-        dispatch({type: actions.PRODUCT_UPDATE_SUCCESS_ADMIN, payload: data})
+        dispatch({type: actions.PRODUCT_UPDATE_SUCCESS_ADMIN})
 
     } catch (error) {
         dispatch({
