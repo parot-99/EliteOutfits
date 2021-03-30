@@ -3,13 +3,14 @@ import {Link} from 'react-router-dom'
 import {Table, Button, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
-import {} from './../actions/adminActions'
+import {productDeleteAction} from './../actions/adminActions'
 import {productListAction} from './../actions/productActions'
+import {AdminProductCreate} from '.'
 
 
 const AdminProductList = () => {
   const admin = useSelector(state => state.admin)
-  const {loading, error} = admin
+  const {loading, error , success} = admin
   const product = useSelector(state => state.product)
   const {loading: productLoading, error: productError, productsList} = product
   const dispatch = useDispatch()
@@ -17,16 +18,12 @@ const AdminProductList = () => {
   useEffect(() => {
     dispatch(productListAction())
 
-  }, [dispatch])
+  }, [success, dispatch])
 
   const removeProduct = (id) => {
     if (window.confirm('Are you sure?')) {
-      // dispatch()
+      dispatch(productDeleteAction(id))
     }
-  }
-
-  const createProduct = () => {
-
   }
 
   return (
@@ -36,9 +33,7 @@ const AdminProductList = () => {
           <h1>PRODUCTS</h1>
         </Col>
         <Col className='text-right'>
-          <Button className='my-3 btn-dark' onClick={createProduct}>
-            <i className='fas fa-plus' /> Create Product
-          </Button>
+          <AdminProductCreate />
         </Col>
       </Row>
       {(productLoading || loading) && <Loader />}

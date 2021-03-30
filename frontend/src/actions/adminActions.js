@@ -147,10 +147,108 @@ const orderListAction = () => async (dispatch, getState) => {
     }
 }
 
+
+const productDeleteAction = (id) => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.PRODUCT_DELETE_REQUEST_ADMIN})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.delete(
+            `/api/admin/products/${id}`,
+            config
+        )
+
+        dispatch({type: actions.PRODUCT_DELETE_SUCCESS_ADMIN, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.PRODUCT_DELETE_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
+const productCreateAction = () => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.PRODUCT_CREATE_REQUEST_ADMIN})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.post(
+            '/api/admin/products',
+            {},
+            config
+        )
+
+        dispatch({type: actions.PRODUCT_CREATE_SUCCESS_ADMIN, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.PRODUCT_CREATE_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
+const productUpdateAction = (id) => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.PRODUCT_UPDATE_REQUEST_ADMIN})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.put(
+            `/api/admin/products/${id}`,
+            config
+        )
+
+        dispatch({type: actions.PRODUCT_UPDATE_SUCCESS_ADMIN, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.PRODUCT_UPDATE_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
 export {
     userListAction,
     userDeleteAction,
     userDetailAction,
     userUpdateAction,
-    orderListAction
+    orderListAction,
+    productDeleteAction,
+    productCreateAction,
+    productUpdateAction
 }

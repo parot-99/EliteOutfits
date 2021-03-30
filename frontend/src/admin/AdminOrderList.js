@@ -39,7 +39,7 @@ const AdminOrderList = () => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user.name}</td>
-                <td>{order.date}</td>
+                <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.price}</td>
                 <td>{order.isPaid 
                   ? <i className='fas fa-check' style={{color: 'green'}} />

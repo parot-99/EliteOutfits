@@ -41,5 +41,23 @@ router.route('/orders').get(
     adminUserController.getOrders
 )
 
+router.route('/products/:id').delete(
+    privateRoute,
+    adminRoute,
+    adminUserController.deleteProduct
+)
+
+router.route('/products').post(
+    privateRoute,
+    adminRoute,
+    adminUserController.createProduct
+)
+
+router.route('/products/:id').put(
+    privateRoute,
+    adminRoute,
+    adminUserController.updateProduct
+)
+
 
 export default router

@@ -4,7 +4,7 @@ import * as actions from './../constants/userConstants'
 const userLoginReducer = (state={user: {}}, action) => {
     switch (action.type) {
         case actions.USER_LOGIN_REQUEST:
-            return {loading: true}
+            return {loading: true, error: null}
 
         case actions.USER_LOGIN_SUCCESS:
             return {loading: false, user: action.payload}
@@ -23,7 +23,7 @@ const userLoginReducer = (state={user: {}}, action) => {
 const userRegisterReducer = (state={user: null}, action) => {
     switch (action.type) {
         case actions.USER_REGISTER_REQUEST:
-            return {loading: true}
+            return {loading: true, error: null}
 
         case actions.USER_REGISTER_SUCCESS:
             return {loading: false, user: action.payload}
@@ -39,7 +39,7 @@ const userRegisterReducer = (state={user: null}, action) => {
 const userDetailReducer = (state={user: {}}, action) => {
     switch (action.type) {
         case actions.USER_DETAIL_REQUEST:
-            return {loading: true}
+            return {loading: true, error: null}
 
         case actions.USER_DETAIL_SUCCESS:
             return {loading: false, userInfo: action.payload}
@@ -55,7 +55,7 @@ const userDetailReducer = (state={user: {}}, action) => {
 const userUpdateReducer = (state={userInfo: {}}, action) => {
     switch (action.type) {
         case actions.USER_UPDATE_REQUEST:
-            return {loading: true}
+            return {loading: true, error: null}
 
         case actions.USER_UPDATE_SUCCESS:
             return {loading: false, success: true, userInfo: action.payload}

@@ -3,7 +3,7 @@ import * as actions from './../constants/cartConstants'
 const cartReducer = (state={cartItems: []}, action) => {
     switch(action.type) {
         case actions.CART_ADD_REQUEST:
-            return {loading: true, cartItems: state.cartItems}
+            return {loading: true, error: null, cartItems: state.cartItems}
 
         case actions.CART_ADD_SUCCESS:
             const item = action.payload

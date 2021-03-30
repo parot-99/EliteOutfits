@@ -9,6 +9,7 @@ import {Shipping, PlaceOrder, OrderDetail} from './orders'
 import * as Admin from './admin'
 import {PrivateRoute, AdminRoute} from './handlers'
 
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -56,6 +57,9 @@ const App = () => {
               <AdminRoute exact path='/admin/orders'>
                 <Admin.AdminOrderList />
               </AdminRoute>
+              <AdminRoute exact path='/admin/product/:id'>
+                <Admin.AdminProductUpdate />
+              </AdminRoute>
               <Route>
                 <h1>404 NOT FOUND</h1>
               </Route>
@@ -67,5 +71,6 @@ const App = () => {
     </BrowserRouter>
   )
 }
+
 
 export default App

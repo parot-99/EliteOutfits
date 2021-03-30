@@ -3,7 +3,7 @@ import * as actions from './../constants/orderConstants'
 const orderReducer = (state={}, action) => {
     switch (action.type) {
         case actions.SAVE_SHIPPING_ADDRESS:
-            return {...state, shippingAddress: action.payload}
+            return {...state, error: null, shippingAddress: action.payload}
 
         // order create
     
@@ -27,7 +27,7 @@ const orderReducer = (state={}, action) => {
         // order detail
 
         case actions.ORDER_DETAIL_REQUEST:
-            return {...state, loading: true, orderDetails: {}}
+            return {...state, loading: true, error: null, orderDetails: {}}
 
         case actions.ORDER_DETAIL_SUCCESS:
             return {...state, loading: false, orderDetails: action.payload}
@@ -38,7 +38,7 @@ const orderReducer = (state={}, action) => {
         // user order list
 
         case actions.USER_ORDER_LIST_REQUEST:
-            return {...state, loading: true, myOrders: []}
+            return {...state, loading: true, error: null, myOrders: []}
 
         case actions.USER_ORDER_LIST_SUCCESS:
             return {...state, loading: false, myOrders: action.payload}
