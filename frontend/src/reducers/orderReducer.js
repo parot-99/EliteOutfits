@@ -1,4 +1,5 @@
 import * as actions from './../constants/orderConstants'
+import * as adminActions from './../constants/adminConstants'
 
 const orderReducer = (state={}, action) => {
     switch (action.type) {
@@ -44,6 +45,28 @@ const orderReducer = (state={}, action) => {
             return {...state, loading: false, myOrders: action.payload}
 
         case actions.USER_ORDER_LIST_FAIL:
+            return {...state, loading: false, error: action.payload}
+
+        // order pay admin
+
+        case adminActions.ORDER_PAY_REQUEST_ADMIN:
+            return {...state, loading: true, error: null, orderDetails: {}}
+
+        case adminActions.ORDER_PAY_SUCCESS_ADMIN:
+            return {...state, loading: false, orderDetails: action.payload}
+
+        case adminActions.ORDER_PAY_FAIL_ADMIN:
+            return {...state, loading: false, error: action.payload}
+
+        // order deliver admin
+
+        case adminActions.ORDER_DELIVER_REQUEST_ADMIN:
+            return {...state, loading: true, error: null, orderDetails: {}}
+
+        case adminActions.ORDER_DELIVER_SUCCESS_ADMIN:
+            return {...state, loading: false, orderDetails: action.payload}
+
+        case adminActions.ORDER_DELIVER_FAIL_ADMIN:
             return {...state, loading: false, error: action.payload}
 
         default:

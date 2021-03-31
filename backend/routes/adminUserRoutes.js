@@ -59,5 +59,17 @@ router.route('/products/:id').put(
     adminUserController.updateProduct
 )
 
+router.route('/orders/:id/pay').put(
+    privateRoute,
+    adminRoute,
+    adminUserController.updateOrderToPaid
+)
+
+router.route('/orders/:id/deliver').put(
+    privateRoute,
+    adminRoute,
+    adminUserController.updateOrderToDelivered
+)
+
 
 export default router

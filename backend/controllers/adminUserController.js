@@ -135,6 +135,42 @@ const updateProduct = asyncHandler(async (req, res) => {
 })
 
 
+const updateOrderToDelivered = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+
+    if (order) {
+        order.isDelivered = true
+
+        const updatedOrder = await order.save()
+
+        res.status(200)
+        res.json(updatedOrder)
+
+    } else {
+        res.status(400)
+        throw new Error('Order not found') 
+    }
+})
+
+
+const updateOrderToPaid = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+
+    if (order) {
+        order.isPaid = true
+
+        const updatedOrder = await order.save()
+
+        res.status(200)
+        res.json(updatedOrder)
+
+    } else {
+        res.status(400)
+        throw new Error('Order not found') 
+    }
+})
+
+
 const updatePriceConstant = asyncHandler(async (req, res) => {
     const {newPriceConstant} = req.body
 
@@ -152,5 +188,7 @@ export {
     deleteProduct,
     createProduct,
     updateProduct,
+    updateOrderToDelivered,
+    updateOrderToPaid,
     updatePriceConstant
 }

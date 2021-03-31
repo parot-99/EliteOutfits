@@ -243,6 +243,70 @@ const productUpdateAction = (product) => async(dispatch, getState) => {
 }
 
 
+const payOrderAction = (id) => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.ORDER_PAY_REQUEST_ADMIN})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.put(
+            `/api/admin/orders/${id}/pay`,
+            {},
+            config
+        )
+
+        dispatch({type: actions.ORDER_PAY_SUCCESS_ADMIN, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.ORDER_PAY_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
+const deliverOrderAction = (id) => async(dispatch, getState) => {
+    try {
+        dispatch({type: actions.ORDER_PAY_REQUEST_ADMIN})
+
+        const {userLogin: {user}} = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.put(
+            `/api/admin/orders/${id}/deliver`,
+            {},
+            config
+        )
+
+        dispatch({type: actions.ORDER_PAY_SUCCESS_ADMIN, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.ORDER_PAY_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
 export {
     userListAction,
     userDeleteAction,
@@ -251,5 +315,7 @@ export {
     orderListAction,
     productDeleteAction,
     productCreateAction,
-    productUpdateAction
+    productUpdateAction,
+    payOrderAction,
+    deliverOrderAction
 }

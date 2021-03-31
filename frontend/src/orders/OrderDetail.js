@@ -1,12 +1,15 @@
 import {Fragment, useEffect} from 'react'
 import {useParams, Link} from 'react-router-dom'
-import {Row, Col, ListGroup, Image} from 'react-bootstrap' 
+import {Row, Col, ListGroup, Image, Button} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
 import {Message, Loader} from './../handlers'
 import {getOrder} from './../actions/orderActions'
+import {payOrderAction, deliverOrderAction} from './../actions/adminActions'
 
 
 const OrderDetail = () => {
+  const userLogin = useSelector(state => state.userLogin)
+  const {user} = userLogin
   const order = useSelector(state => state.order)
   const {loading, error, orderDetails} = order
   const {id} = useParams()
@@ -23,6 +26,14 @@ const OrderDetail = () => {
       (acc, item) => acc + item.quanity,
       0
     )
+  }
+
+  const handlePaid = () => {
+    dispatch(payOrderAction(id))
+  }
+
+  const handleDelivered = () => {
+    dispatch(deliverOrderAction(id))
   }
   
   return (
@@ -118,7 +129,24 @@ const OrderDetail = () => {
                 {!orderDetails.isPaid &&
                   <Message variant='danger' className='mb-0'>Not Paid</Message>
                 }          
-              </ListGroup.Item>           
+              </ListGroup.Item> 
+              {user.isAdmin && !orderDetails.isDelivered &&
+                <ListGroup.Item>
+                  <Button 
+                    className='btn-dark btn-block'
+                    onClick={handleDelivered}
+                  >
+                    MARK AS DELIVERED  
+                  </Button>    
+                </ListGroup.Item>           
+              }
+              {user.isAdmin && !orderDetails.isPaid &&
+                <ListGroup.Item>
+                  <Button className='btn-dark btn-block' onClick={handlePaid}>
+                    MARK AS PAID  
+                  </Button> 
+                </ListGroup.Item>           
+              }         
             </ListGroup>
           </Col>
         </Row>
