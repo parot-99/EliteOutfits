@@ -7,6 +7,7 @@ import {Loader, Message} from './../handlers'
 import {FormContainer} from './../base'
 import {productDetailAction} from './../actions/productActions'
 import {productUpdateAction} from './../actions/adminActions'
+import axios from 'axios'
 
 
 const AdminProductUpdate = () => {
@@ -17,6 +18,7 @@ const AdminProductUpdate = () => {
   const [image, setImage] = useState('')
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
+  const [uploading, setUploading] = useState(false)
   const product = useSelector(state => state.product)
   const {loading, error, productDetail} = product
   const dispatch = useDispatch()
@@ -49,6 +51,30 @@ const AdminProductUpdate = () => {
     }))
     
     history.push('/admin/products')
+  }
+
+  const uploadFile = async (event) => {
+    const file = event.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+
+      const {data} = await axios.post('/api/upload', formData, config)
+
+      setImage(data)
+      setUploading(false)
+      
+    } catch (error) {
+      console.log(error)
+      setUploading(true)
+    }
   }
 
   return (
@@ -93,6 +119,13 @@ const AdminProductUpdate = () => {
               value={image}
               onChange={(e) => setImage(e.target.value)}
             ></Form.Control>
+            <Form.File 
+              id='image-file'
+              label='Choose File'
+              custom
+              onChange={uploadFile}
+            ></Form.File>
+            {uploading && <Loader />}
           </Form.Group>
           <Form.Group controlId='category'>
             <Form.Label>Category</Form.Label>

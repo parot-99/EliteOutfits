@@ -7,6 +7,9 @@ images
 seeder.js
 tokens.txt
 notes.txt
+/uploads/*.jpg
+/uploads/*.jpeg
+/uploads/*.png
 
 # dependencies
 node_modules
