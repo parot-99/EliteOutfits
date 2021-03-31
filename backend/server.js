@@ -2,10 +2,11 @@ import express from 'express'
 import path from 'path'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import morgan from 'morgan'
 import connectDB from './config/database.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-import OrderRoutes from './routes/orderRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 import adminUserRoutes from './routes/adminUserRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
@@ -17,6 +18,10 @@ connectDB()
 const app = express()
 const __dirname = path.resolve()
 
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
+
 app.locals.PRICE_CONSTANT = 0.5
 
 app.get('/', (req, res) => {
@@ -27,7 +32,7 @@ app.get('/', (req, res) => {
 app.use(express.json())
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
-app.use('/api/orders', OrderRoutes)
+app.use('/api/orders', orderRoutes)
 app.use('/api/admin', adminUserRoutes)
 app.use('/api/upload', uploadRoutes)
 
