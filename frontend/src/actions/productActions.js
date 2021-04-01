@@ -1,11 +1,13 @@
 import axios from 'axios'
 import * as actions from './../constants/productConstants'
 
-const productListAction = () => async (dispatch) => {
+const productListAction = (pageNumber = '') => async (dispatch) => {
     try {
         dispatch({type: actions.PRODUCT_LIST_REQUEST})
 
-        const {data} = await axios.get('/api/products')
+        const {data} = await axios.get(
+            `/api/products?pageNumber=${pageNumber}`
+        )
 
         dispatch({type:actions.PRODUCT_LIST_SUCCESS, payload: data })
 

@@ -45,7 +45,7 @@ const OrderDetail = () => {
         <Row>
           <Col md={8}>
             <ListGroup variant='flush'>
-              <ListGroup.Item>
+              <ListGroup.Item variant='light'>
                 <h2>Shipping</h2>
                 <h6 className='inline'>Name: </h6>
                 <p className='inline'>
@@ -74,11 +74,11 @@ const OrderDetail = () => {
                   </Message>
                 }
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item variant='light'>
                 <h2>Order Items</h2>    
                 <ListGroup variant='flush'>
                   {orderDetails.orderItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item key={index} variant='light'>
                       <Row>
                         <Col md={1}>
                           <Image 
@@ -108,22 +108,22 @@ const OrderDetail = () => {
           </Col>
           <Col md={4}>
             <ListGroup>
-              <ListGroup.Item>
+              <ListGroup.Item variant='light'>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item variant='light'>
                 <Row>
                   <Col><h6>Items</h6></Col>
                   <Col><h6>{orderDetails.itemsCount}</h6></Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item variant='light'>
                 <Row>
                   <Col><h6>Price</h6></Col>
                   <Col><h6>{orderDetails.price} SP</h6></Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item variant='light'>
                 {orderDetails.isPaid &&
                   <Message variant='success' className='mb-0'>Paid</Message>
                 }          
@@ -132,7 +132,7 @@ const OrderDetail = () => {
                 }          
               </ListGroup.Item> 
               {user.isAdmin && !orderDetails.isDelivered &&
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <Button 
                     className='btn-dark btn-block'
                     onClick={handleDelivered}
@@ -142,7 +142,7 @@ const OrderDetail = () => {
                 </ListGroup.Item>           
               }
               {user.isAdmin && !orderDetails.isPaid &&
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <Button className='btn-dark btn-block' onClick={handlePaid}>
                     MARK AS PAID  
                   </Button> 

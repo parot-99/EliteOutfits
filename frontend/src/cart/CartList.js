@@ -12,7 +12,7 @@ const CartList = ({cartItems, dispatch}) => {
           ? <Message>Your cart is empty <Link to='/'>Go Back</Link></Message>
           : <ListGroup variant='flush'>
             {cartItems.map(item => (
-              <ListGroup.Item key={item.product}>
+              <ListGroup.Item key={item.product} variant='light'>
                 <CartItem item={item} dispatch={dispatch} />
               </ListGroup.Item>
             ))}

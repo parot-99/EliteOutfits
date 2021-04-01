@@ -54,7 +54,7 @@ const PlaceOrder = () => {
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
-            <ListGroup.Item>
+            <ListGroup.Item variant='light'>
               <h2>Shipping</h2>
               <h6 className='inline'>Address: </h6>
               <p className='inline'>
@@ -63,13 +63,13 @@ const PlaceOrder = () => {
                 {order.shippingAddress.country}
               </p>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item variant='light'>
               <h2>Order Items</h2>
               {cartItems.length === 0 && <Message>Your Cart Is Empty</Message>}
               {cartItems.length > 0 && 
                 <ListGroup variant='flush'>
                   {cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item key={index} variant='light'>
                       <Row>
                         <Col md={1}>
                           <Image 
@@ -100,16 +100,16 @@ const PlaceOrder = () => {
         </Col>
         <Col md={4}>
           <ListGroup variant='flush'>
-            <ListGroup.Item>
+            <ListGroup.Item variant='light'>
               <h2>Order Summary</h2>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item variant='light'>
               <Row>
                 <Col><h6>Items</h6></Col>
                 <Col><h6>{cart.itemsCount}</h6></Col>
               </Row>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item variant='light'>
               <Row>
                 <Col><h6>Price</h6></Col>
                 <Col><h6>{cart.price} SP</h6></Col>
@@ -120,7 +120,7 @@ const PlaceOrder = () => {
                   <Message variant='danger'>{order.error}</Message>
                 </ListGroup.Item>
               }
-            <ListGroup.Item>
+            <ListGroup.Item variant='light'>
               <Button 
                 type='button'
                 className='btn-block btn-dark'

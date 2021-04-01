@@ -11,7 +11,7 @@ const CartInfo = ({cartItems}) => {
   return (
     <Card>
       <ListGroup variant='flush'>
-        <ListGroup.Item>
+        <ListGroup.Item variant='light'>
           <h3 className='text-dark'>
             SUBTOTAL 
             ({cartItems.reduce((acc, item) => acc + item.quanity, 0)})
@@ -23,7 +23,7 @@ const CartInfo = ({cartItems}) => {
             } SP
           </h6>
         </ListGroup.Item>
-        <ListGroup.Item>
+        <ListGroup.Item variant='light'>
           <Button 
             type='button'
             className='btn-block'

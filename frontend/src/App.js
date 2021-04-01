@@ -21,6 +21,9 @@ const App = () => {
               <Route exact path='/'>
                 <ProductList />
               </Route>
+              <Route exact path='/page/:pageNumber'>
+                <ProductList />
+              </Route>
               <Route exact path='/product/:id'>
                 <ProductDetail />
               </Route>
@@ -52,6 +55,9 @@ const App = () => {
                 <Admin.AdminUserUpdate />
               </AdminRoute>
               <AdminRoute exact path='/admin/products'>
+                <Admin.AdminProductList />
+              </AdminRoute>
+              <AdminRoute exact path='/admin/products/page/:pageNumber'>
                 <Admin.AdminProductList />
               </AdminRoute>
               <AdminRoute exact path='/admin/orders'>

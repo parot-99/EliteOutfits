@@ -12,7 +12,13 @@ const productReducer = (
             return {...state, loading: true, error: null}
 
         case actions.PRODUCT_LIST_SUCCESS:
-            return {...state, loading: false, productsList: action.payload}
+            return {
+                ...state,
+                loading: false,
+                productsList: action.payload.products,
+                page: action.payload.page,
+                pages: action.payload.pages
+            }
 
         case actions.PRODUCT_LIST_FAIL:
             return {...state, loading: false, error: action.payload}

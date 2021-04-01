@@ -61,10 +61,10 @@ const ProductDetail = () => {
             </Col>
             <Col md={6}>
               <ListGroup variant='flush'>
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <h3>{productDetail.name}</h3>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <Rating 
                     rating={productDetail.rating} 
                   ></Rating>
@@ -72,10 +72,10 @@ const ProductDetail = () => {
                     {' '}{productDetail.numReviews} reviews
                   </p> 
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <h4>Price: {productDetail.price} SP</h4>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <h4>
                     Status: {
                       productDetail.countInStock
@@ -85,7 +85,7 @@ const ProductDetail = () => {
                   </h4>
                 </ListGroup.Item>
                 {productDetail.countInStock > 0 && (
-                  <ListGroup.Item>
+                  <ListGroup.Item variant='light'>
                     <Row>
                       <Col><h4>Quanity</h4></Col>
                       <Col>
@@ -105,7 +105,7 @@ const ProductDetail = () => {
                     </Row>
                   </ListGroup.Item>
                 )}
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <CartButton 
                     countInStock={productDetail.countInStock} 
                     id={id} 
@@ -126,14 +126,14 @@ const ProductDetail = () => {
               }
               <ListGroup variant='flush'>
                 {productDetail.reviews.map(review => (
-                  <ListGroup.Item key={review._id}>
+                  <ListGroup.Item key={review._id} variant='light'>
                     <h5>{review.name}</h5>
                     <Rating rating={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
-                <ListGroup.Item>
+                <ListGroup.Item variant='light'>
                   <h2>Write a Customer Review</h2>
                   {user &&
                     <Form onSubmit={handleCreateReview}>
