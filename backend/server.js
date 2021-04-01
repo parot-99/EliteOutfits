@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
     res.send('API is running...')
 })
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use(express.json())
 app.use('/api/products', productRoutes)
@@ -37,7 +38,6 @@ app.use('/api/admin', adminUserRoutes)
 app.use('/api/upload', uploadRoutes)
 
 
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 app.use(notFound)
 app.use(errorHandler)
 

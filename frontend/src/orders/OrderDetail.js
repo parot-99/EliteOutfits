@@ -26,6 +26,7 @@ const OrderDetail = () => {
       (acc, item) => acc + item.quanity,
       0
     )
+    console.log(orderDetails.orderItems[2].image);
   }
 
   const handlePaid = () => {

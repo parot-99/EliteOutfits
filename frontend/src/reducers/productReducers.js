@@ -27,6 +27,20 @@ const productReducer = (
 
         case actions.PRODUCT_DETAIL_FAIL:
             return {...state, loading: false, error: action.payload}
+
+        // review create
+
+        case actions.REVIEW_CREATE_REQUEST:
+            return {...state, reviewLoading: true, reviewError: null}
+
+        case actions.REVIEW_CREATE_SUCCESS:
+            return {...state, reviewLoading: false, success: true}
+
+        case actions.REVIEW_CREATE_FAIL:
+            return {...state, reviewLoading: false, reviewError: action.payload}
+
+        case actions.REVIEW_CREATE_RESET:
+            return {...state, success: false}
             
         default:
             return state

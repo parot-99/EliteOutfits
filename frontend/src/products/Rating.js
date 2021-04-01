@@ -1,6 +1,6 @@
-const Rating = ({rating, numReviews}) => {
+const Rating = ({rating}) => {
   return (
-    <div className='rating'>
+    <div className='rating d-inline'>
       <span>
         <i 
           style={{ color: '#f8e825'}}
@@ -61,9 +61,6 @@ const Rating = ({rating, numReviews}) => {
           }
         ></i>
       </span>
-      <span className='rating-text'> 
-        {' '}{numReviews && numReviews} reviews
-      </span>  
     </div>
   )
 }
