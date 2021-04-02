@@ -9,7 +9,7 @@ const adminReducer = (
         // users list
 
         case actions.USER_LIST_REQUEST_ADMIN:
-            return {...state, loading: true, error: null}
+            return {...state, loading: true, error: null, usersList: []}
 
         case actions.USER_LIST_SUCCESS_ADMIN:
             return {...state, loading: false, usersList: action.payload}
@@ -31,7 +31,7 @@ const adminReducer = (
         // user detail
 
         case actions.USER_DETAIL_REQUEST_ADMIN:
-            return {...state, loading: true, error: null}
+            return {...state, loading: true, error: null, userDetail: {}}
 
         case actions.USER_DETAIL_SUCCESS_ADMIN:
             return {...state, loading: false, userDetail: action.payload}
@@ -56,7 +56,7 @@ const adminReducer = (
         // order list
 
         case actions.ORDER_LIST_REQUEST_ADMIN:
-            return {...state, loading: true, error: null}
+            return {...state, loading: true, error: null, orderList: []}
 
         case actions.ORDER_LIST_SUCCESS_ADMIN:
             return {...state, loading: false, orderList: action.payload}
@@ -78,7 +78,7 @@ const adminReducer = (
         // product create
 
         case actions.PRODUCT_CREATE_REQUEST_ADMIN:
-            return {...state, loading: true, error: null}
+            return {...state, loading: true, error: null, productCreate: {}}
 
         case actions.PRODUCT_CREATE_SUCCESS_ADMIN:
             return {

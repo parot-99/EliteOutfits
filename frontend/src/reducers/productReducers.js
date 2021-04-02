@@ -2,14 +2,14 @@ import * as actions from './../constants/productConstants'
 
 
 const productReducer = (
-    state={productsList: [], productDetail: {}},
+    state={productsList: [], productDetail: {}, topProducts: []},
     action
 ) => {
     switch (action.type) {
         // product list
 
         case actions.PRODUCT_LIST_REQUEST:
-            return {...state, loading: true, error: null}
+            return {...state, loading: true, error: null, productDetail: {}}
 
         case actions.PRODUCT_LIST_SUCCESS:
             return {
@@ -26,7 +26,7 @@ const productReducer = (
         // product detail
 
         case actions.PRODUCT_DETAIL_REQUEST:
-            return {...state, loading: true, error: null}
+            return {...state, loading: true, error: null, productsList: []}
 
         case actions.PRODUCT_DETAIL_SUCCESS:
             return {...state, loading: false, productDetail: action.payload}
@@ -47,6 +47,17 @@ const productReducer = (
 
         case actions.REVIEW_CREATE_RESET:
             return {...state, success: false}
+
+        // product top
+
+        case actions.PRODUCT_TOP_REQUEST:
+            return {...state, carouselLoading: true, carouselError: null, topProducts: []}
+
+        case actions.PRODUCT_TOP_SUCCESS:
+            return {...state, carouselLoading: false, topProducts: action.payload,}
+
+        case actions.PRODUCT_TOP_FAIL:
+            return {...state, carouselLoading: false, carouselError: action.payload}
             
         default:
             return state

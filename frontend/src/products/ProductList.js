@@ -2,7 +2,7 @@ import {Fragment, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col} from 'react-bootstrap'
-import Product from './Product'
+import {Product, ProductCarousel} from '.'
 import {Paginate} from './../base'
 import {Loader, Message} from './../handlers'
 import {productListAction} from './../actions/productActions'
@@ -20,6 +20,7 @@ const ProductList = () => {
 
   return (
     <Fragment>
+      <ProductCarousel />
       <h1>LATEST PRODUCTS</h1>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}

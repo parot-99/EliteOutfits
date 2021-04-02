@@ -31,7 +31,6 @@ const addressFromStorage = localStorage.getItem('shippingAddress')
     : null
 
 const initialState = {
-    product: {productsList: [], productDetail: {}},
     cart: {cartItems: cartItemsFromStorage},
     userLogin: {user: userFromStorage},
     order: {
