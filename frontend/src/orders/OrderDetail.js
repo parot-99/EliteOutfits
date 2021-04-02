@@ -3,6 +3,7 @@ import {useParams, Link} from 'react-router-dom'
 import {Row, Col, ListGroup, Image, Button} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
 import {Message, Loader} from './../handlers'
+import {Meta} from './../base'
 import {getOrder} from './../actions/orderActions'
 import {payOrderAction, deliverOrderAction} from './../actions/adminActions'
 
@@ -39,6 +40,7 @@ const OrderDetail = () => {
   
   return (
     <Fragment>
+      <Meta title='Order' />
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
       {!loading && !error && Object.keys(orderDetails).length !== 0 &&

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {Table, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
+import {Meta} from './../base'
 import {orderListAction} from './../actions/adminActions'
 
 
@@ -18,6 +19,7 @@ const AdminOrderList = () => {
 
   return (
     <Fragment>
+      <Meta title='Admin | Orders' />
       <h1>ORDERS</h1>
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}

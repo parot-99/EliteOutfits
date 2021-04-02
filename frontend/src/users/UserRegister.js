@@ -3,6 +3,7 @@ import {useLocation, useHistory, Link} from 'react-router-dom'
 import {Form, Button, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
+import {Meta} from './../base'
 import {FormContainer} from './../base'
 import {userRegisterAction} from './../actions/userActions'
 
@@ -35,6 +36,7 @@ const UserRegister = () => {
 
   return (
     <FormContainer>
+      <Meta title='Register' />
       <h1>Register</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}

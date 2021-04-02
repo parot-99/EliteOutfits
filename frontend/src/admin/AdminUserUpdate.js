@@ -25,7 +25,7 @@ const AdminUserUpdate = () => {
       history.push('/profile')
     }
 
-    if (!userDetail.name || userDetail._id !== id) {
+    if (!userDetail) {
       dispatch(userDetailAction(id))
 
     } else {

@@ -77,6 +77,7 @@ const userDetailAction = (id) => async(dispatch, getState) => {
         )
 
         dispatch({type: actions.USER_DETAIL_SUCCESS_ADMIN, payload: data})
+
     } catch (error) {
         dispatch({
             type: actions.USER_DETAIL_FAIL_ADMIN, 

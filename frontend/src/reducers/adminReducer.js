@@ -2,7 +2,7 @@ import * as actions from './../constants/adminConstants'
 
 
 const adminReducer = (
-    state={usersList: [], userDetail: {}, orderList: [], productCreate: {}},
+    state={usersList: [], userDetail: null, orderList: [], productCreate: {}},
     action
 ) => {
     switch (action.type) {
@@ -31,7 +31,7 @@ const adminReducer = (
         // user detail
 
         case actions.USER_DETAIL_REQUEST_ADMIN:
-            return {...state, loading: true, error: null, userDetail: {}}
+            return {...state, loading: true, error: null, userDetail: null}
 
         case actions.USER_DETAIL_SUCCESS_ADMIN:
             return {...state, loading: false, userDetail: action.payload}

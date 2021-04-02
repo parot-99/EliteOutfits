@@ -3,6 +3,7 @@ import {useLocation, useHistory, Link} from 'react-router-dom'
 import {Form, Button, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
+import {Meta} from './../base'
 import {FormContainer} from './../base'
 import {userLoginAction} from './../actions/userActions'
 
@@ -31,6 +32,7 @@ const UserLogin = () => {
 
   return ( 
     <FormContainer>
+      <Meta title='Sign In' />
       <h1>SIGN IN</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}

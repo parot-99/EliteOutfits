@@ -3,7 +3,7 @@ import {Link, useParams} from 'react-router-dom'
 import {Table, Button, Row, Col} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
-import {Paginate} from './../base'
+import {Meta, Paginate} from './../base'
 import {productDeleteAction} from './../actions/adminActions'
 import {productListAction} from './../actions/productActions'
 import {AdminProductCreate} from '.'
@@ -36,6 +36,7 @@ const AdminProductList = () => {
 
   return (
     <Fragment>
+      <Meta title='Admin | Products' />
       <Row className='align-items-center'>
         <Col>
           <h1>PRODUCTS</h1>

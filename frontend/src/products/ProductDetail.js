@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link, useParams} from 'react-router-dom'
 import {Row, Col, Image, ListGroup, Form, Button} from 'react-bootstrap'
 import {Rating, CartButton} from '.'
+import {Meta} from './../base'
 import {Loader, Message} from './../handlers'
 import {
   productDetailAction,
@@ -44,6 +45,7 @@ const ProductDetail = () => {
 
   return (
     <Fragment>
+      <Meta />
       <Link className='btn btn-dark my-3' to='/'>
         Go Back
       </Link>
@@ -51,6 +53,7 @@ const ProductDetail = () => {
       {error && <Message variant='danger'>{error}</Message>}
       {!loading && !error && Object.keys(productDetail).length !== 0 &&
         <Fragment>
+          <Meta title={productDetail.name} />
           <Row>
             <Col md={6}>
               <Image 

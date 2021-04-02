@@ -4,6 +4,7 @@ import {Form, Button} from 'react-bootstrap'
 import {useSelector, useDispatch} from 'react-redux'
 import {PRODUCT_CREATE_RESET_ADMIN} from './../constants/adminConstants'
 import {Loader, Message} from './../handlers'
+import {Meta} from './../base'
 import {FormContainer} from './../base'
 import {productDetailAction} from './../actions/productActions'
 import {productUpdateAction} from './../actions/adminActions'
@@ -79,6 +80,7 @@ const AdminProductUpdate = () => {
 
   return (
     <Fragment>
+      <Meta title='Admin | Product' />
       <Link to='/admin/products' className='btn btn-dark my-3'>
         Go Back
       </Link>

@@ -2,6 +2,7 @@ import {Fragment, useEffect} from 'react'
 import {useParams, useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
+import {Meta} from './../base'
 import {addToCart} from './../actions/cartActions'
 import {CartList} from '.'
 
@@ -20,6 +21,7 @@ const Cart = () => {
 
   return (
     <Fragment>
+      <Meta title='Cart' />
       {loading && <Loader />}
       {error && <Message variant='danger'>{error}</Message>}
       {!loading && !error && 

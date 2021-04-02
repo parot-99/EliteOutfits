@@ -2,6 +2,7 @@ import {useState, useEffect,Fragment} from 'react'
 import {Form, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
+import {Meta} from './../base'
 import {userDetailAction, userUpdateAction} from './../actions/userActions'
 import {USER_UPDATE_RESET} from './../constants/userConstants'
 
@@ -22,6 +23,7 @@ const UserUpdate = () => {
       dispatch(userDetailAction())
       setPassword('')
       setPassword2('')
+      
     } else {
       setName(userInfo.name)
       setEmail(userInfo.email)
@@ -47,6 +49,7 @@ const UserUpdate = () => {
       {success && <Message variant='success'>Profile Updated</Message>}
       {userLoading && <Loader />}
       {updateLoading && <Loader />}
+      <Meta title='Profile' />
       <Form onSubmit={handleUpdate}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>

@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col} from 'react-bootstrap'
 import {Product, ProductCarousel} from '.'
-import {Paginate} from './../base'
+import {Meta, Paginate} from './../base'
 import {Loader, Message} from './../handlers'
 import {productListAction} from './../actions/productActions'
 
@@ -20,6 +20,7 @@ const ProductList = () => {
 
   return (
     <Fragment>
+      <Meta title='Home' />
       <ProductCarousel />
       <h1>LATEST PRODUCTS</h1>
       {loading && <Loader />}

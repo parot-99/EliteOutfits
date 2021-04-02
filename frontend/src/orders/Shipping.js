@@ -4,6 +4,7 @@ import {Form, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {CheckoutNav} from '.'
 import {FormContainer} from './../base'
+import {Meta} from './../base'
 import {saveShippingAddress} from './../actions/orderActions'
 import {ORDER_CREATE_RESET} from './../constants/orderConstants'
 
@@ -27,6 +28,7 @@ const Shipping = () => {
 
   return (
     <FormContainer>
+      <Meta title='Shipping' />
       <CheckoutNav step1 />
       <h1>ADDRESS</h1>
       <Form onSubmit={handleSubmit}>

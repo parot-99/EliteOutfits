@@ -5,6 +5,7 @@ import {Button, Row, Col, ListGroup, Image} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {CheckoutNav} from '.'
 import {Message} from './../handlers'
+import {Meta} from './../base'
 import {createOrder} from './../actions/orderActions'
 
 
@@ -50,6 +51,7 @@ const PlaceOrder = () => {
   
   return (
     <Fragment>
+      <Meta title='Place Order' />
       <CheckoutNav step1 step2 />
       <Row>
         <Col md={8}>
