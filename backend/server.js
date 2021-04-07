@@ -24,8 +24,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.locals.PRICE_CONSTANT = 0.5
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
-
 app.use(express.json())
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
