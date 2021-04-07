@@ -4,6 +4,7 @@ import ProductDetail from './ProductDetail'
 import Rating from './Rating'
 import CartButton from './CartButton'
 import ProductCarousel from './ProductCarousel'
+import ProductReviews from './ProductReviews'
 
 
 export {
@@ -12,5 +13,6 @@ export {
     Rating,
     CartButton,
     ProductCarousel,
-    Product
+    Product,
+    ProductReviews
 }

@@ -63,18 +63,24 @@ const AdminProductUpdate = () => {
     try {
       const config = {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': file.type
         }
       }
 
-      const {data} = await axios.post('/api/upload', formData, config)
+      // const {data} = await axios.post('/api/upload', formData, config)
+      const {data} = await axios.get(
+        `/api/upload/sign-s3?file-name=${file.name}&file-type=${file.type}`
+      )
+      console.log(data);
 
-      setImage(data)
+      const uploaded = await axios.put(data.signedRequest, file, config)
+
+      setImage(data.url)
       setUploading(false)
       
     } catch (error) {
       console.log(error)
-      setUploading(true)
+      setUploading(false)
     }
   }
 

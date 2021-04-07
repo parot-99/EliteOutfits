@@ -11,7 +11,8 @@ const UserLogout = () => {
 
   return (
     <NavDropdown.Item onClick={handleLogout}>
-      Logout
+      <i className="fas fa-sign-out-alt"></i>
+      {' '}Logout
     </NavDropdown.Item>
   )
 }

@@ -23,11 +23,12 @@ const Header = () => {
                 <i className='fas fa-shopping-cart'></i> Cart
               </Nav.Link>         
               {user && 
-                <Fragment>
-                  <Nav.Link as={NavLink} to='/profile'>
-                    <i className='far fa-user-circle'></i> Profile
-                  </Nav.Link> 
-                  <NavDropdown title={user.name} id='username'>        
+                <Fragment> 
+                  <NavDropdown title={user.name} id='username'>
+                    <NavDropdown.Item as={Link} to='/profile'>
+                        <i className='far fa-user-circle'></i>
+                        {' '}Profile
+                    </NavDropdown.Item>   
                     <UserLogout />
                   </NavDropdown>
                 </Fragment>

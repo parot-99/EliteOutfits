@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Product  from './../models/productModel.js'
+import useS3 from './../config/useS3.js'
 
 
 const getProducts = asyncHandler (async (req, res) => {
@@ -19,8 +20,27 @@ const getProducts = asyncHandler (async (req, res) => {
         product.price = Math.round(product.price)
     ))
 
+    products.forEach((product, i) => {
+        const s3 = useS3()
+        const s3Params = {
+            Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
+            Key: product.image,
+            Expires: 60,
+        }
+    
+        s3.getSignedUrl('getObject', s3Params, (error, data) => {
+            if (error) {
+                throw new Error('Failed to get image')
+                
+            } else {
+                product.image = data
 
-    res.json({products, page, pages: Math.ceil(count / pageSize)})
+                if (i === products.length - 1) {
+                    res.json({products, page, pages: Math.ceil(count / pageSize)})
+                }
+            }
+        })    
+    })
 })
 
 
@@ -30,8 +50,24 @@ const getProduct = asyncHandler (async (req, res) => {
     if(product) {
         product.price *= req.app.locals.PRICE_CONSTANT
         product.price = Math.round(product.price)
-        res.json(product)
-        
+
+        const s3 = useS3()
+        const s3Params = {
+            Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
+            Key: product.image,
+            Expires: 60,
+        }
+    
+        s3.getSignedUrl('getObject', s3Params, (error, data) => {
+            if (error) {
+                throw new Error('Failed to get image')
+                
+            } else {
+                product.image = data
+
+                res.json(product)
+            }
+        })    
     } else {
         res.status(404)
         throw new Error('Product Not Found')
@@ -83,8 +119,27 @@ const createProductReview = asyncHandler (async (req, res) => {
 const getTopProducts = asyncHandler (async (req, res) => {
     const products = await Product.find({}).sort({rating: -1}).limit(3)
 
+    products.forEach((product, i) => {
+        const s3 = useS3()
+        const s3Params = {
+            Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
+            Key: product.image,
+            Expires: 60,
+        }
+    
+        s3.getSignedUrl('getObject', s3Params, (error, data) => {
+            if (error) {
+                throw new Error('Failed to get image')
+                
+            } else {
+                product.image = data
 
-    res.json(products)
+                if (i === products.length - 1) {
+                    res.json(products)
+                }
+            }
+        })    
+    })
 })
 
 
