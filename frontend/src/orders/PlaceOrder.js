@@ -58,8 +58,8 @@ const PlaceOrder = () => {
           <ListGroup variant='flush'>
             <ListGroup.Item variant='light'>
               <h2>Shipping</h2>
-              <h6 className='inline'>Address: </h6>
-              <p className='inline'>
+              <h6 className='d-inline'>Address: </h6>
+              <p className='d-inline'>
                 {order.shippingAddress.address}, {' '}
                 {order.shippingAddress.city}, {' '}
                 {order.shippingAddress.country}
@@ -73,14 +73,14 @@ const PlaceOrder = () => {
                   {cartItems.map((item, index) => (
                     <ListGroup.Item key={index} variant='light'>
                       <Row>
-                        <Col md={1}>
+                        {/* <Col md={1}>
                           <Image 
                             src={item.image}
                             alt={item.name}
                             fluid
                             rounded
                           />
-                        </Col>
+                        </Col> */}
                         <Col>
                           <Link to={`/product/${item.product}`}>
                             <h6>{item.name}</h6>

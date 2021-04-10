@@ -1,6 +1,10 @@
 import * as actions from './../constants/userConstants'
 
 
+const initialState = {
+    userInfo: null
+}
+
 const userLoginReducer = (state={user: {}}, action) => {
     switch (action.type) {
         case actions.USER_LOGIN_REQUEST:
@@ -20,60 +24,63 @@ const userLoginReducer = (state={user: {}}, action) => {
     }
 }
 
-const userRegisterReducer = (state={user: null}, action) => {
+
+const userReducer = (state=initialState, action) => {
     switch (action.type) {
-        case actions.USER_REGISTER_REQUEST:
-            return {loading: true, error: null}
 
-        case actions.USER_REGISTER_SUCCESS:
-            return {loading: false, user: action.payload}
+        // user detail
 
-        case actions.USER_REGISTER_FAIL:
-            return {loading: false, error: action.payload}
-
-        default:
-            return state
-    }
-}
-
-const userDetailReducer = (state={user: {}}, action) => {
-    switch (action.type) {
         case actions.USER_DETAIL_REQUEST:
-            return {loading: true, error: null}
+            return {...state, loading: true, error: null}
 
         case actions.USER_DETAIL_SUCCESS:
-            return {loading: false, userInfo: action.payload}
+            return {...state, loading: false, userInfo: action.payload}
 
         case actions.USER_DETAIL_FAIL:
-            return {loading: false, error: action.payload}
+            return {...state, loading: false, error: action.payload}
 
-        default:
-            return state
-    }
-}
+        // user update
 
-const userUpdateReducer = (state={userInfo: {}}, action) => {
-    switch (action.type) {
         case actions.USER_UPDATE_REQUEST:
-            return {loading: true, error: null}
+            return {...state, updateLoading: true, updateError: null}
 
         case actions.USER_UPDATE_SUCCESS:
-            return {loading: false, success: true, userInfo: action.payload}
+            return {
+                ...state,
+                updateLoading: false,
+                success: true,
+                userInfo: action.payload
+            }
 
         case actions.USER_UPDATE_FAIL:
-            return {loading: false, error: action.payload}
+            return {
+                ...state,
+                updateLoading: false,
+                updateError: action.payload
+            }
 
         case actions.USER_UPDATE_RESET:
-            return {}
+            return {...state, success: false}
+
+        // user register
+
+        case actions.USER_REGISTER_REQUEST:
+            return {...state, loading: true, error: null}
+
+        case actions.USER_REGISTER_SUCCESS:
+            return {...state, loading: false}
+
+        case actions.USER_REGISTER_FAIL:
+            return {...state, loading: false, error: action.payload}
 
         default:
             return state
     }
 }
+
+
 
 export {
     userLoginReducer,
-    userRegisterReducer,
-    userDetailReducer,
-    userUpdateReducer
+    userReducer
 }

@@ -1,12 +1,16 @@
 import * as actions from './../constants/productConstants'
 
 
-const productReducer = (
-    state={productsList: [], productDetail: {}, topProducts: []},
-    action
-) => {
+const initialState = {
+    productsList: [],
+    productDetail: {},
+    topProducts: []
+}
+
+const productReducer = (state=initialState, action) => {
     switch (action.type) {
-        // product list
+
+        // product detail
 
         case actions.PRODUCT_LIST_REQUEST:
             return {...state, loading: true, error: null, productDetail: {}}
@@ -23,7 +27,7 @@ const productReducer = (
         case actions.PRODUCT_LIST_FAIL:
             return {...state, loading: false, error: action.payload}
 
-        // product detail
+        // product list
 
         case actions.PRODUCT_DETAIL_REQUEST:
             return {...state, loading: true, error: null, productsList: []}
@@ -43,7 +47,11 @@ const productReducer = (
             return {...state, reviewLoading: false, success: true}
 
         case actions.REVIEW_CREATE_FAIL:
-            return {...state, reviewLoading: false, reviewError: action.payload}
+            return {
+                ...state,
+                reviewLoading: false,
+                reviewError: action.payload
+            }
 
         case actions.REVIEW_CREATE_RESET:
             return {...state, success: false}
@@ -51,13 +59,26 @@ const productReducer = (
         // product top
 
         case actions.PRODUCT_TOP_REQUEST:
-            return {...state, carouselLoading: true, carouselError: null, topProducts: []}
+            return {
+                ...state,
+                carouselLoading: true,
+                carouselError: null,
+                topProducts: []
+            }
 
         case actions.PRODUCT_TOP_SUCCESS:
-            return {...state, carouselLoading: false, topProducts: action.payload,}
+            return {
+                ...state,
+                carouselLoading: false,
+                topProducts: action.payload
+            }
 
         case actions.PRODUCT_TOP_FAIL:
-            return {...state, carouselLoading: false, carouselError: action.payload}
+            return {
+                ...state,
+                carouselLoading: false,
+                carouselError: action.payload
+        }
             
         default:
             return state
@@ -65,4 +86,4 @@ const productReducer = (
 }
 
 
-export {productReducer}
+export default productReducer

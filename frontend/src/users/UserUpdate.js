@@ -6,11 +6,10 @@ import {Meta} from './../base'
 import {userDetailAction, userUpdateAction} from './../actions/userActions'
 import {USER_UPDATE_RESET} from './../constants/userConstants'
 
+
 const UserUpdate = () => {
-  const userDetail = useSelector(state => state.userDetail)
-  const {userInfo, error: userError, loading: userLoading} = userDetail
-  const userUpdate = useSelector(state => state.userUpdate)
-  const {success, error: updateError, loading: updateLoading} = userUpdate
+  const user = useSelector(state => state.user)
+  const {userInfo, error, loading, updateError, updateLoading} = user
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,8 +17,11 @@ const UserUpdate = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {     
-    if (!userInfo || success) {
+    if (user.success) {
       dispatch({type: USER_UPDATE_RESET})
+    }
+
+    if (!userInfo) {
       dispatch(userDetailAction())
       setPassword('')
       setPassword2('')
@@ -29,7 +31,7 @@ const UserUpdate = () => {
       setEmail(userInfo.email)
     }
    
-  }, [userInfo, success, dispatch])
+  }, [userInfo, user.success, dispatch])
 
   const handleUpdate = (event) => {
     event.preventDefault()
@@ -44,10 +46,12 @@ const UserUpdate = () => {
 
   return (
     <Fragment>
-      {userError && <Message variant='danger'>{userError}</Message>}
+      {error && <Message variant='danger'>{error}</Message>}
       {updateError && <Message variant='danger'>{updateError}</Message>}
-      {success && <Message variant='success'>Profile Updated</Message>}
-      {userLoading && <Loader />}
+      {user.success && 
+        <Message variant='success'>Profile Updated</Message>
+      }
+      {loading && <Loader />}
       {updateLoading && <Loader />}
       <Meta title='Profile' />
       <Form onSubmit={handleUpdate}>

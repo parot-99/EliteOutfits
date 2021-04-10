@@ -1,6 +1,7 @@
 import * as actions from './../constants/orderConstants'
 import * as adminActions from './../constants/adminConstants'
 
+
 const orderReducer = (state={}, action) => {
     switch (action.type) {
         case actions.SAVE_SHIPPING_ADDRESS:
@@ -73,5 +74,6 @@ const orderReducer = (state={}, action) => {
             return state
     }
 }
+
 
 export default orderReducer

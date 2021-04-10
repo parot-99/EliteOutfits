@@ -33,7 +33,6 @@ const AdminProductUpdate = () => {
     } else {
       setName(productDetail.name)
       setPrice(productDetail.price)
-      setImage(productDetail.image)
       setCategory(productDetail.category)
       setCountInStock(productDetail.countInStock)
     }

@@ -36,7 +36,9 @@ const getProducts = asyncHandler (async (req, res) => {
                 product.image = data
 
                 if (i === products.length - 1) {
-                    res.json({products, page, pages: Math.ceil(count / pageSize)})
+                    res.json({
+                        products, page, pages: Math.ceil(count / pageSize)
+                    })
                 }
             }
         })    

@@ -1,11 +1,16 @@
 import * as actions from './../constants/adminConstants'
 
 
-const adminReducer = (
-    state={usersList: [], userDetail: null, orderList: [], productCreate: {}},
-    action
-) => {
+const initialState = {
+    usersList: [],
+    userDetail: null,
+    orderList: [],
+    productCreate: {}
+}
+
+const adminReducer = (state=initialState, action) => {
     switch (action.type) {
+
         // users list
 
         case actions.USER_LIST_REQUEST_ADMIN:

@@ -1,5 +1,6 @@
 import * as actions from './../constants/cartConstants'
 
+
 const cartReducer = (state={cartItems: []}, action) => {
     switch(action.type) {
         case actions.CART_ADD_REQUEST:
@@ -40,4 +41,5 @@ const cartReducer = (state={cartItems: []}, action) => {
     }
 }
 
-export {cartReducer}
+
+export default cartReducer

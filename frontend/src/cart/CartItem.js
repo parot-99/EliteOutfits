@@ -5,9 +5,6 @@ import {addToCart, removeFromCart} from './../actions/cartActions'
 const CartItem = ({item, dispatch}) => {
   return (
     <Row>
-      <Col md={2}>
-        <Image src={item.image} alt={item.name} fluid rounded />
-      </Col>
       <Col md={3}>
         <Link className='text-dark' to={`/product/${item.product}`}>
           <h6>{item.name}</h6>

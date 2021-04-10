@@ -14,19 +14,19 @@ const UserRegister = () => {
   const [password2, setPassword2] = useState('')
   const location = useLocation()
   const history = useHistory()
-  const userRegister = useSelector(state => state.userRegister)
-  const {loading, error} = userRegister
+  const user = useSelector(state => state.userDetail)
+  const {loading, error} = user
   const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
+  const {user: userAuth} = userLogin
   const dispatch = useDispatch()
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
-    if (user) {
+    if (userAuth) {
       history.push(redirect)
     } 
 
-  }, [history, user, redirect])
+  }, [history, userAuth, redirect])
 
   const handleLogin = (event) => {
     event.preventDefault()

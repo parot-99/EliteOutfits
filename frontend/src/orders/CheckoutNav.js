@@ -11,6 +11,7 @@ const CheckoutNav = ({step1, step2}) => {
           to='/shipping'
           disabled={!step1}
           className='checkout-nav'
+          activeClassName='checkout-active'
         >
           Shipping
         </Nav.Link>
@@ -21,6 +22,7 @@ const CheckoutNav = ({step1, step2}) => {
           to='/placeorder'
           disabled={!step2}
           className='checkout-nav'
+          activeClassName='checkout-active'
         >
           Place Order
         </Nav.Link>
