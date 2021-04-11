@@ -1,7 +1,7 @@
 import {Fragment} from 'react'
 import {useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
-import {Button, Row, Col, ListGroup, Image} from 'react-bootstrap' 
+import {Button, Row, Col, ListGroup} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
 import {CheckoutNav} from '.'
 import {Message} from './../handlers'
