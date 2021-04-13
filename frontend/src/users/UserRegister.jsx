@@ -16,8 +16,8 @@ const UserRegister = () => {
   const history = useHistory()
   const user = useSelector(state => state.userDetail)
   const {loading, error} = user
-  const userLogin = useSelector(state => state.userLogin)
-  const {user: userAuth} = userLogin
+  const authentication = useSelector(state => state.authentication)
+  const {user: userAuth} = authentication
   const dispatch = useDispatch()
   const redirect = location.search ? location.search.split('=')[1] : '/'
 

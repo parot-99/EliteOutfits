@@ -10,8 +10,8 @@ import {userLoginAction} from './../actions/userActions'
 const UserLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const userLogin = useSelector(state => state.userLogin)
-  const {loading, error, user} = userLogin
+  const authentication = useSelector(state => state.authentication)
+  const {loading, error, user} = authentication
   const location = useLocation()
   const history = useHistory()
   const redirect = location.search ? location.search.split('=')[1] : '/'

@@ -46,7 +46,7 @@ const reviewCreateAction = (id, review) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.REVIEW_CREATE_REQUEST})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {

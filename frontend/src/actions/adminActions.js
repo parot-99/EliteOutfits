@@ -6,7 +6,7 @@ const userListAction = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_LIST_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -34,7 +34,7 @@ const userDeleteAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_DELETE_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -62,7 +62,7 @@ const userDetailAction = (id) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.USER_DETAIL_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -93,7 +93,7 @@ const userUpdateAction = (userInfo) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.USER_UPDATE_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -125,7 +125,7 @@ const orderListAction = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_LIST_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -153,7 +153,7 @@ const productDeleteAction = (id) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_DELETE_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -184,7 +184,7 @@ const productCreateAction = () => async(dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_CREATE_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -216,7 +216,7 @@ const productUpdateAction = (product) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_UPDATE_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -248,7 +248,7 @@ const payOrderAction = (id) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_PAY_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -280,7 +280,7 @@ const deliverOrderAction = (id) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_PAY_REQUEST_ADMIN})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {

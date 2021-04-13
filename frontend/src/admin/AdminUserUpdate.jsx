@@ -14,8 +14,8 @@ const AdminUserUpdate = () => {
   const [isAdmin, setIsAdmin] = useState(false)
   const admin = useSelector(state => state.admin)
   const {loading, error, userDetail} = admin
-  const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
+  const authentication = useSelector(state => state.authentication)
+  const {user} = authentication
   const history = useHistory()
   const dispatch = useDispatch()
 

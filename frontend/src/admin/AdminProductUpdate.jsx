@@ -3,12 +3,11 @@ import {Link, useParams, useHistory} from 'react-router-dom'
 import {Form, Button} from 'react-bootstrap'
 import {useSelector, useDispatch} from 'react-redux'
 import {PRODUCT_CREATE_RESET_ADMIN} from './../constants/adminConstants'
+import {ImageUpdateField} from '.'
 import {Loader, Message} from './../handlers'
-import {Meta} from './../base'
-import {FormContainer} from './../base'
+import {Meta, FormContainer} from './../base'
 import {productDetailAction} from './../actions/productActions'
 import {productUpdateAction} from './../actions/adminActions'
-import axios from 'axios'
 
 
 const AdminProductUpdate = () => {
@@ -19,7 +18,6 @@ const AdminProductUpdate = () => {
   const [image, setImage] = useState('')
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
-  const [uploading, setUploading] = useState(false)
   const product = useSelector(state => state.product)
   const {loading, error, productDetail} = product
   const dispatch = useDispatch()
@@ -39,6 +37,10 @@ const AdminProductUpdate = () => {
 
   }, [id, productDetail, dispatch])
 
+  const getImage = (newImage) => {
+    setImage(newImage)
+  }
+
   const handleUpdate = (event) => {
     event.preventDefault()
     dispatch(productUpdateAction({
@@ -51,34 +53,6 @@ const AdminProductUpdate = () => {
     }))
     
     history.push('/admin/products')
-  }
-
-  const uploadFile = async (event) => {
-    const file = event.target.files[0]
-    const formData = new FormData()
-    formData.append('image', file)
-    setUploading(true)
-
-    try {
-      const config = {
-        headers: {
-          'Content-Type': file.type
-        }
-      }
-
-      const {data} = await axios.get(
-        `/api/upload/sign-s3?file-name=${file.name}&file-type=${file.type}`
-      )
-
-      await axios.put(data.signedRequest, file, config)
-
-      setImage(data.url)
-      setUploading(false)
-      
-    } catch (error) {
-      console.log(error)
-      setUploading(false)
-    }
   }
 
   return (
@@ -114,24 +88,7 @@ const AdminProductUpdate = () => {
               onChange={(e) => setPrice(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <Form.Group controlId='image'>
-            <Form.Label>Image</Form.Label>
-            <Form.Control 
-              type='text'
-              placeholder='Enter image path'
-              autoComplete='off'
-              required={true}
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            ></Form.Control>
-            <Form.File 
-              id='image-file'
-              label='Choose File'
-              custom
-              onChange={uploadFile}
-            ></Form.File>
-            {uploading && <Loader />}
-          </Form.Group>
+          <ImageUpdateField getImage={getImage} />
           <Form.Group controlId='category'>
             <Form.Label>Category</Form.Label>
             <Form.Control 

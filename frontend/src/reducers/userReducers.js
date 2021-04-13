@@ -5,7 +5,7 @@ const initialState = {
     userInfo: null
 }
 
-const userLoginReducer = (state={user: {}}, action) => {
+const authenticationReducer = (state={user: {}}, action) => {
     switch (action.type) {
         case actions.USER_LOGIN_REQUEST:
             return {loading: true, error: null}
@@ -81,6 +81,6 @@ const userReducer = (state=initialState, action) => {
 
 
 export {
-    userLoginReducer,
+    authenticationReducer,
     userReducer
 }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as actions from './../constants/userConstants'
 
+
 const userLoginAction = (email, password) => async (dispatch) => {
     try {
         dispatch({type: actions.USER_LOGIN_REQUEST})
@@ -29,11 +30,13 @@ const userLoginAction = (email, password) => async (dispatch) => {
     }
 }
 
+
 const userLogoutAction = () => (dispatch) => {
     localStorage.removeItem('user')
 
     dispatch({type: actions.USER_LOGOUT})
 }
+
 
 const userRegisterAction = (name, email, password, password2) => 
     async (dispatch) => {
@@ -66,11 +69,12 @@ const userRegisterAction = (name, email, password, password2) =>
         }
     }
 
+    
 const userDetailAction = () => async(dispatch, getState) => {
     try {
         dispatch({type: actions.USER_DETAIL_REQUEST})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -95,11 +99,12 @@ const userDetailAction = () => async(dispatch, getState) => {
     }
 }
 
+
 const userUpdateAction = (userInfo) => async(dispatch, getState) => {
     try {
         dispatch({type: actions.USER_UPDATE_REQUEST})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
         
         const config = {
             headers: {
@@ -133,6 +138,7 @@ const userUpdateAction = (userInfo) => async(dispatch, getState) => {
         })
     }
 }
+
 
 export {
     userLoginAction,

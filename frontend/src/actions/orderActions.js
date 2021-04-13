@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as actions from './../constants/orderConstants'
 
+
 const saveShippingAddress = (data) => (dispatch) => {
     dispatch({
         type: actions.SAVE_SHIPPING_ADDRESS,
@@ -10,11 +11,12 @@ const saveShippingAddress = (data) => (dispatch) => {
     localStorage.setItem('shippingAddress', JSON.stringify(data))
 }
 
+
 const createOrder = (order) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_CREATE_REQUEST})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
 
         const config = {
             headers: {
@@ -41,11 +43,12 @@ const createOrder = (order) => async (dispatch, getState) => {
     }
 }
 
+
 const getOrders = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_ORDER_LIST_REQUEST})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
             
         const config = {
             headers: {
@@ -76,7 +79,7 @@ const getOrder = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_DETAIL_REQUEST})
 
-        const {userLogin: {user}} = getState()
+        const {authentication: {user}} = getState()
             
         const config = {
             headers: {
@@ -101,5 +104,6 @@ const getOrder = (id) => async (dispatch, getState) => {
         })
     }
 }
+
 
 export {saveShippingAddress, createOrder, getOrder, getOrders}

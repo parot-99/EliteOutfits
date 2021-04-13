@@ -2,21 +2,20 @@ import {Route, Redirect} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 
 
-const AdminRoute = ({children, ...rest}) => {
-  const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
-
+const PrivateRoute = ({children, ...rest}) => {
+  const authentication = useSelector(state => state.authentication)
+  const {user} = authentication
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-      user && user.isAdmin ? (
+      user ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: '/',
+              pathname: '/login',
               state: { from: location }
             }}
           />
@@ -26,4 +25,4 @@ const AdminRoute = ({children, ...rest}) => {
   )
 }
 
-export default AdminRoute
+export default PrivateRoute

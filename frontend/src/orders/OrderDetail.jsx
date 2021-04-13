@@ -1,6 +1,6 @@
 import {Fragment, useEffect} from 'react'
 import {useParams, Link} from 'react-router-dom'
-import {Row, Col, ListGroup, Image, Button} from 'react-bootstrap' 
+import {Row, Col, ListGroup, Button} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
 import {Message, Loader} from './../handlers'
 import {Meta} from './../base'
@@ -9,8 +9,8 @@ import {payOrderAction, deliverOrderAction} from './../actions/adminActions'
 
 
 const OrderDetail = () => {
-  const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
+  const authentication = useSelector(state => state.authentication)
+  const {user} = authentication
   const order = useSelector(state => state.order)
   const {loading, error, orderDetails} = order
   const {id} = useParams()
@@ -81,14 +81,14 @@ const OrderDetail = () => {
                   {orderDetails.orderItems.map((item, index) => (
                     <ListGroup.Item key={index} variant='light'>
                       <Row>
-                        <Col md={1}>
+                        {/* <Col md={1}>
                           <Image 
                             src={item.image}
                             alt={item.name}
                             fluid
                             rounded
                           />
-                        </Col>
+                        </Col> */}
                         <Col>
                           <Link to={`/product/${item.product}`}>
                             <h6>{item.name}</h6>

@@ -4,6 +4,7 @@ import AdminProductList from './AdminProductList'
 import AdminOrderList from './AdminOrderList'
 import AdminProductCreate from './AdminProductCreate'
 import AdminProductUpdate from './AdminProductUpdate'
+import ImageUpdateField from './ImageUpdateField'
 
 
 export {
@@ -12,5 +13,6 @@ export {
     AdminProductList,
     AdminOrderList,
     AdminProductCreate,
-    AdminProductUpdate
+    AdminProductUpdate,
+    ImageUpdateField
 }

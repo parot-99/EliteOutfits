@@ -11,8 +11,8 @@ import {REVIEW_CREATE_RESET} from './../constants/productConstants'
 const ProductReviews = ({productDetail, success, reviewError, id}) => {
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
-  const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
+  const authentication = useSelector(state => state.authentication)
+  const {user} = authentication
   const dispatch = useDispatch()
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as actions from './../constants/cartConstants'
 
+
 const addToCart = (id, quanity) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.CART_ADD_REQUEST})
@@ -32,6 +33,7 @@ const addToCart = (id, quanity) => async (dispatch, getState) => {
     }
 }
 
+
 const removeFromCart = (id) => async (dispatch, getState) => {
     dispatch({
         type: actions.CART_REMOVE,
@@ -42,5 +44,6 @@ const removeFromCart = (id) => async (dispatch, getState) => {
         'cartItems', JSON.stringify(getState().cart.cartItems)
     )
 }
+
 
 export {addToCart, removeFromCart}

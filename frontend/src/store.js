@@ -3,17 +3,17 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension' 
 import productReducer from './reducers/productReducers'
 import cartReducer from './reducers/cartReducers'
-import {userReducer, userLoginReducer} from './reducers/userReducers'
+import {userReducer, authenticationReducer} from './reducers/userReducers'
 import orderReducer from './reducers/orderReducer'
 import adminReducer from './reducers/adminReducer'
 
 const reducer = combineReducers({
+    authentication: authenticationReducer,
     product: productReducer,
     cart: cartReducer,
     user: userReducer,
     order: orderReducer,
-    admin: adminReducer,
-    userLogin: userLoginReducer
+    admin: adminReducer
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -30,7 +30,7 @@ const addressFromStorage = localStorage.getItem('shippingAddress')
 
 const initialState = {
     cart: {cartItems: cartItemsFromStorage},
-    userLogin: {user: userFromStorage},
+    authentication: {user: userFromStorage},
     order: {
         shippingAddress: addressFromStorage,
         orderDetails: {},

@@ -5,8 +5,8 @@ import {useSelector} from 'react-redux'
 import {UserLogout} from './../users'
 
 const Header = () => {
-  const userLogin = useSelector(state => state.userLogin)
-  const {user} = userLogin
+  const authentication = useSelector(state => state.authentication)
+  const {user} = authentication
 
   return (
     <header>

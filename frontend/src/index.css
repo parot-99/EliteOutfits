@@ -7,6 +7,15 @@ h1, h2, h3, h4, h5, h6, p, .text-prim {
   color: #343a40;
 }
 
+.inline {
+  display: inline;
+}
+
+.list-group-item-light {
+  background-color: var(--light);
+}
+
+/* rating */
 
 .rating span {
   margin: 0.01rem;
@@ -17,9 +26,7 @@ h1, h2, h3, h4, h5, h6, p, .text-prim {
   font-weight: 300;
 }
 
-.inline {
-  display: inline;
-}
+/* links */
 
 .page-link {
   background-color: var(--light);
@@ -32,9 +39,6 @@ h1, h2, h3, h4, h5, h6, p, .text-prim {
   color: var(--light);
 }
 
-.list-group-item-light {
-  background-color: var(--light);
-}
 
 .checkout-active {
   font-weight: 500;
@@ -65,4 +69,30 @@ h1, h2, h3, h4, h5, h6, p, .text-prim {
   padding: 30px;
   margin: 40px;
   border-radius: 50%;
+}
+
+/* 404 not found */
+
+.page-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.page-center a {
+  text-decoration: none;
+  text-transform: uppercase;
+  background: #18e06f;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.page-center a:hover {
+  color: #000000;
 }

@@ -7,7 +7,7 @@ import {Cart} from './cart'
 import {UserLogin, UserRegister, Profile} from './users'
 import {Shipping, PlaceOrder, OrderDetail} from './orders'
 import * as Admin from './admin'
-import {PrivateRoute, AdminRoute} from './handlers'
+import {PrivateRoute, AdminRoute, NotFound} from './routing'
 
 
 const App = () => {
@@ -67,7 +67,7 @@ const App = () => {
                 <Admin.AdminProductUpdate />
               </AdminRoute>
               <Route>
-                <h1>404 NOT FOUND</h1>
+                <NotFound />
               </Route>
             </Switch>
           </Container>
