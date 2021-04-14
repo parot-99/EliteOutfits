@@ -45,7 +45,6 @@ const ImageUpdateField = ({getImage}) => {
         type='text'
         placeholder='Enter image path'
         autoComplete='off'
-        required={true}
         value={image}
         onChange={(e) => setImage(e.target.value)}
       ></Form.Control>

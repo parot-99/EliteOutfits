@@ -92,13 +92,15 @@ const AdminProductUpdate = () => {
           <Form.Group controlId='category'>
             <Form.Label>Category</Form.Label>
             <Form.Control 
-              type='text'
-              placeholder='Enter category'
-              autoComplete='off'
-              required={true}
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            ></Form.Control>
+              as='select'
+              value={category} 
+              onChange={(e) => {setCategory(e.target.value) 
+                console.log(category)}}
+            >
+              <option value='Men'>Men</option>
+              <option value='Women'>Women</option>
+              <option value='Kids'>Kids</option>
+            </Form.Control>
           </Form.Group>
           <Form.Group controlId='countInStock'>
             <Form.Label>Count In Stock</Form.Label>
