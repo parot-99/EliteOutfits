@@ -1,22 +1,19 @@
 import {Fragment, useEffect} from 'react'
 import {useParams, Link} from 'react-router-dom'
-import {Row, Col, ListGroup, Button} from 'react-bootstrap' 
+import {Row, Col, ListGroup} from 'react-bootstrap' 
 import {useDispatch, useSelector} from 'react-redux'
+import {AdminButtons} from '.'
 import {Message, Loader} from './../handlers'
 import {Meta} from './../base'
 import {getOrder} from './../actions/orderActions'
-import {payOrderAction, deliverOrderAction} from './../actions/adminActions'
 
 
 const OrderDetail = () => {
-  const authentication = useSelector(state => state.authentication)
-  const {user} = authentication
   const order = useSelector(state => state.order)
   const {loading, error, orderDetails} = order
   const {id} = useParams()
   const dispatch = useDispatch()
 
-  
   useEffect(() => {
     dispatch(getOrder(id))
 
@@ -29,14 +26,6 @@ const OrderDetail = () => {
     )
   }
 
-  const handlePaid = () => {
-    dispatch(payOrderAction(id))
-  }
-
-  const handleDelivered = () => {
-    dispatch(deliverOrderAction(id))
-  }
-  
   return (
     <Fragment>
       <Meta title='Order' />
@@ -131,24 +120,8 @@ const OrderDetail = () => {
                 {!orderDetails.isPaid &&
                   <Message variant='danger' className='mb-0'>Not Paid</Message>
                 }          
-              </ListGroup.Item> 
-              {user.isAdmin && !orderDetails.isDelivered &&
-                <ListGroup.Item variant='light'>
-                  <Button 
-                    className='btn-dark btn-block'
-                    onClick={handleDelivered}
-                  >
-                    MARK AS DELIVERED  
-                  </Button>    
-                </ListGroup.Item>           
-              }
-              {user.isAdmin && !orderDetails.isPaid &&
-                <ListGroup.Item variant='light'>
-                  <Button className='btn-dark btn-block' onClick={handlePaid}>
-                    MARK AS PAID  
-                  </Button> 
-                </ListGroup.Item>           
-              }         
+              </ListGroup.Item>
+              <AdminButtons orderDetails={orderDetails} id={id} /> 
             </ListGroup>
           </Col>
         </Row>
