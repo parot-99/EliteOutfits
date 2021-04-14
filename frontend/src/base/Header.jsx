@@ -11,8 +11,10 @@ const Header = () => {
   return (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
-        <Container>     
-          <Navbar.Brand>EliteOutfits</Navbar.Brand>       
+        <Container> 
+          <Link to='/'>
+            <Navbar.Brand>EliteOutfits</Navbar.Brand>       
+          </Link>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>         
