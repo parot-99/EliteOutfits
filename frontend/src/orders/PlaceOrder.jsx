@@ -1,12 +1,11 @@
 import {Fragment} from 'react'
 import {useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
-import {Button, Row, Col, ListGroup} from 'react-bootstrap' 
-import {useDispatch, useSelector} from 'react-redux'
-import {CheckoutNav} from '.'
+import {Row, Col, ListGroup} from 'react-bootstrap' 
+import {useSelector} from 'react-redux'
+import {CheckoutNav, OrderSummary} from '.'
 import {Message} from './../handlers'
 import {Meta} from './../base'
-import {createOrder} from './../actions/orderActions'
 
 
 const PlaceOrder = () => {
@@ -14,7 +13,6 @@ const PlaceOrder = () => {
   const cart = useSelector(state => state.cart)
   const {cartItems} = cart
   const history = useHistory()
-  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!order.shippingAddress) {
@@ -27,28 +25,7 @@ const PlaceOrder = () => {
 
   }, [history, order])
   
-  const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2)
-  }
 
-  cart.price = addDecimals(cartItems.reduce(
-    (acc, item) => acc + item.price * item.quanity,
-    0
-  ))
-
-  cart.itemsCount = cartItems.reduce(
-    (acc, item) => acc + item.quanity,
-    0
-  )
-
-  const placeOrder = () => {
-    dispatch(createOrder({
-      orderItems: cartItems,
-      shippingAddress: order.shippingAddress,
-      price: cart.price
-    }))
-  }
-  
   return (
     <Fragment>
       <Meta title='Place Order' />
@@ -101,38 +78,7 @@ const PlaceOrder = () => {
           </ListGroup>
         </Col>
         <Col md={4}>
-          <ListGroup variant='flush'>
-            <ListGroup.Item variant='light'>
-              <h2>Order Summary</h2>
-            </ListGroup.Item>
-            <ListGroup.Item variant='light'>
-              <Row>
-                <Col><h6>Items</h6></Col>
-                <Col><h6>{cart.itemsCount}</h6></Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item variant='light'>
-              <Row>
-                <Col><h6>Price</h6></Col>
-                <Col><h6>{cart.price} SP</h6></Col>
-              </Row>
-            </ListGroup.Item>
-              {order.error && 
-                <ListGroup.Item>
-                  <Message variant='danger'>{order.error}</Message>
-                </ListGroup.Item>
-              }
-            <ListGroup.Item variant='light'>
-              <Button 
-                type='button'
-                className='btn-block btn-dark'
-                disabled={cartItems.length === 0}
-                onClick={placeOrder}
-              >
-                Place Order
-              </Button>
-            </ListGroup.Item>
-          </ListGroup>
+          <OrderSummary cart={cart} />
         </Col>
       </Row>  
     </Fragment>
