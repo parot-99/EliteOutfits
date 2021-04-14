@@ -6,11 +6,20 @@ import useS3 from './../config/useS3.js'
 const getProducts = asyncHandler (async (req, res) => {
     const pageSize = 9
     const page = Number(req.query.pageNumber) || 1
+    const category = req.query.category || 'All'
     const count = await Product.countDocuments({})
+    let products
+
+    if (category === 'All') {
+        products = await Product.find({})
+            .limit(pageSize)
+            .skip(pageSize * (page - 1))
+    } else {
+        products = await Product.find({category})
+            .limit(pageSize)
+            .skip(pageSize * (page - 1))
+    }
    
-    const products = await Product.find({})
-        .limit(pageSize)
-        .skip(pageSize * (page - 1))
 
     products.map((product) => (
         product.price *= req.app.locals.PRICE_CONSTANT

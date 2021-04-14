@@ -24,7 +24,7 @@ const AdminProductList = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(productListAction(pageNumber))
+    dispatch(productListAction(pageNumber, 'All'))
 
   }, [pageNumber, success, dispatch])
 
