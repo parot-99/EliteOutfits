@@ -57,28 +57,34 @@ const getProducts = asyncHandler (async (req, res) => {
 
 const getProduct = asyncHandler (async (req, res) => {
     const product = await Product.findById(req.params.id)
+    const isAdmin = req.query.isAdmin
 
     if(product) {
-        product.price *= req.app.locals.PRICE_CONSTANT
-        product.price = Math.round(product.price)
+        if (isAdmin) {
+            res.status(200)
+            res.json(product)
+        } else {
+            product.price *= req.app.locals.PRICE_CONSTANT
+            product.price = Math.round(product.price)
 
-        const s3 = useS3()
-        const s3Params = {
-            Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
-            Key: product.image,
-            Expires: 60,
-        }
-    
-        s3.getSignedUrl('getObject', s3Params, (error, data) => {
-            if (error) {
-                throw new Error('Failed to get image')
-                
-            } else {
-                product.image = data
-
-                res.json(product)
+            const s3 = useS3()
+            const s3Params = {
+                Bucket: process.env.AWS_STORAGE_BUCKET_NAME,
+                Key: product.image,
+                Expires: 60,
             }
-        })    
+        
+            s3.getSignedUrl('getObject', s3Params, (error, data) => {
+                if (error) {
+                    throw new Error('Failed to get image')
+                    
+                } else {
+                    product.image = data
+
+                    res.json(product)
+                }
+            })
+        }  
     } else {
         res.status(404)
         throw new Error('Product Not Found')

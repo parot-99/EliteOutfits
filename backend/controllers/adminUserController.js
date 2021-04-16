@@ -115,7 +115,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         category,
         countInStock
     } = req.body
-
+    console.log(product.price);
     if (product) {
         product.name = name || product.name
         product.price = price || product.price

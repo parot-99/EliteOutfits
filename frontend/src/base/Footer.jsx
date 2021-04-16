@@ -8,7 +8,12 @@ const Footer = () => {
           <Col className='text-center py-3'>
             Copyright &copy; EliteOutfits
             {' '}
-            <a href='https://www.instagram.com/' className='text-prim'>
+            <a 
+              href='https://www.instagram.com'
+              className='text-prim' 
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <i className='fab fa-instagram fa-lg' />
             </a>
           </Col>

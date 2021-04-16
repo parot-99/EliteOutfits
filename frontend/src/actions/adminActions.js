@@ -6,15 +6,13 @@ const userListAction = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_LIST_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()       
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.get('/api/admin/users', config)
 
         dispatch({type:actions.USER_LIST_SUCCESS_ADMIN, payload: data })
@@ -34,8 +32,7 @@ const userDeleteAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_DELETE_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()       
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -58,19 +55,17 @@ const userDeleteAction = (id) => async (dispatch, getState) => {
 }
 
 
-const userDetailAction = (id) => async(dispatch, getState) => {
+const userDetailAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_DETAIL_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()     
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.get(
             `/api/admin/users/${id}`,
             config
@@ -89,19 +84,17 @@ const userDetailAction = (id) => async(dispatch, getState) => {
 }
 
 
-const userUpdateAction = (userInfo) => async(dispatch, getState) => {
+const userUpdateAction = (userInfo) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_UPDATE_REQUEST_ADMIN})
 
         const {authentication: {user}} = getState()
-        
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.put(
             `/api/admin/users/${userInfo._id}`,
             userInfo,
@@ -125,15 +118,13 @@ const orderListAction = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_LIST_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()       
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.get('/api/admin/orders', config)
 
         dispatch({type:actions.ORDER_LIST_SUCCESS_ADMIN, payload: data })
@@ -149,19 +140,17 @@ const orderListAction = () => async (dispatch, getState) => {
 }
 
 
-const productDeleteAction = (id) => async(dispatch, getState) => {
+const productDeleteAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_DELETE_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()    
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.delete(
             `/api/admin/products/${id}`,
             config
@@ -180,19 +169,17 @@ const productDeleteAction = (id) => async(dispatch, getState) => {
 }
 
 
-const productCreateAction = () => async(dispatch, getState) => {
+const productCreateAction = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_CREATE_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()      
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.post(
             '/api/admin/products',
             {},
@@ -212,12 +199,11 @@ const productCreateAction = () => async(dispatch, getState) => {
 }
 
 
-const productUpdateAction = (product) => async(dispatch, getState) => {
+const productUpdateAction = (product) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_UPDATE_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()     
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -244,19 +230,17 @@ const productUpdateAction = (product) => async(dispatch, getState) => {
 }
 
 
-const payOrderAction = (id) => async(dispatch, getState) => {
+const payOrderAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_PAY_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()       
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.put(
             `/api/admin/orders/${id}/pay`,
             {},
@@ -276,19 +260,17 @@ const payOrderAction = (id) => async(dispatch, getState) => {
 }
 
 
-const deliverOrderAction = (id) => async(dispatch, getState) => {
+const deliverOrderAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_PAY_REQUEST_ADMIN})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()      
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.put(
             `/api/admin/orders/${id}/deliver`,
             {},

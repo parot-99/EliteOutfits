@@ -48,7 +48,6 @@ const userRegisterAction = (name, email, password, password2) =>
                     'Content-Type': 'application/json'
                 }
             }
-
             const {data} = await axios.post(
                 '/api/users/register',
                 {name, email, password, password2},
@@ -70,19 +69,17 @@ const userRegisterAction = (name, email, password, password2) =>
     }
 
     
-const userDetailAction = () => async(dispatch, getState) => {
+const userDetailAction = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_DETAIL_REQUEST})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()     
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.get(
             '/api/users/profile',
             config
@@ -100,19 +97,17 @@ const userDetailAction = () => async(dispatch, getState) => {
 }
 
 
-const userUpdateAction = (userInfo) => async(dispatch, getState) => {
+const userUpdateAction = (userInfo) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_UPDATE_REQUEST})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()     
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.put(
             '/api/users/update',
             userInfo,

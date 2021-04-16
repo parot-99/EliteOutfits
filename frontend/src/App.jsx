@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {Container} from 'react-bootstrap'
 import {Header, Footer} from './base'
 import {ProductList, ProductDetail} from './products'
-import {Cart} from './cart'
+import {CartList} from './cart'
 import {UserLogin, UserRegister, Profile} from './users'
 import {Shipping, PlaceOrder, OrderDetail} from './orders'
 import * as Admin from './admin'
@@ -28,7 +28,7 @@ const App = () => {
                 <ProductDetail />
               </Route>
               <Route exact path='/cart/:id?'>
-                <Cart />
+                <CartList />
               </Route>
               <Route exact path='/login'>
                 <UserLogin />

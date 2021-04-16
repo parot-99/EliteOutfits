@@ -33,7 +33,6 @@ const ImageUpdateField = ({getImage}) => {
       setUploading(false)
       
     } catch (error) {
-      console.log(error)
       setUploading(false)
     }
   }

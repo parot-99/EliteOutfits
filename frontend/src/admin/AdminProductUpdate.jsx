@@ -26,7 +26,7 @@ const AdminProductUpdate = () => {
     dispatch({type: PRODUCT_CREATE_RESET_ADMIN})
 
     if (!productDetail.name || productDetail._id !== id) {
-      dispatch(productDetailAction(id))
+      dispatch(productDetailAction(id, true))
 
     } else {
       setName(productDetail.name)

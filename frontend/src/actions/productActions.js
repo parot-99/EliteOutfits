@@ -23,11 +23,13 @@ const productListAction = (pageNumber = '', category) => async (dispatch) => {
 }
 
 
-const productDetailAction = (id) => async (dispatch) => {
+const productDetailAction = (id, isAdmin=false) => async (dispatch) => {
     try {
         dispatch({type: actions.PRODUCT_DETAIL_REQUEST})
 
-        const {data} = await axios.get(`/api/products/${id}`)
+        const {data} = await axios.get(
+            `/api/products/${id}?isAdmin=${isAdmin}`
+        )
 
         dispatch({type: actions.PRODUCT_DETAIL_SUCCESS, payload: data})
 
@@ -46,8 +48,7 @@ const reviewCreateAction = (id, review) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.REVIEW_CREATE_REQUEST})
 
-        const {authentication: {user}} = getState()
-        
+        const {authentication: {user}} = getState()        
         const config = {
             headers: {
                 'Content-Type': 'application/json',

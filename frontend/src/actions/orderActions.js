@@ -17,14 +17,12 @@ const createOrder = (order) => async (dispatch, getState) => {
         dispatch({type: actions.ORDER_CREATE_REQUEST})
 
         const {authentication: {user}} = getState()
-
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-
         const {data} = await axios.post(
             '/api/orders/checkout',
             order,
@@ -48,15 +46,13 @@ const getOrders = () => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_ORDER_LIST_REQUEST})
 
-        const {authentication: {user}} = getState()
-            
+        const {authentication: {user}} = getState()           
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
         }
-    
         const {data} = await axios.get(
             '/api/orders',
             config
@@ -79,15 +75,13 @@ const getOrder = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_DETAIL_REQUEST})
 
-        const {authentication: {user}} = getState()
-            
+        const {authentication: {user}} = getState()        
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             }
-        }
-    
+        } 
         const {data} = await axios.get(
             `/api/orders/${id}`,
             config
