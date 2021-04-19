@@ -57,10 +57,9 @@ const getProducts = asyncHandler (async (req, res) => {
 
 const getProduct = asyncHandler (async (req, res) => {
     const product = await Product.findById(req.params.id)
-    const isAdmin = req.query.isAdmin
 
     if(product) {
-        if (isAdmin) {
+        if ('isAdmin' in req.query) {
             res.status(200)
             res.json(product)
         } else {

@@ -27,9 +27,12 @@ const productDetailAction = (id, isAdmin=false) => async (dispatch) => {
     try {
         dispatch({type: actions.PRODUCT_DETAIL_REQUEST})
 
-        const {data} = await axios.get(
-            `/api/products/${id}?isAdmin=${isAdmin}`
-        )
+        const route = 
+            isAdmin
+            ?`/api/products/${id}?isAdmin`
+            :`/api/products/${id}`
+
+        const {data} = await axios.get(route)
 
         dispatch({type: actions.PRODUCT_DETAIL_SUCCESS, payload: data})
 
