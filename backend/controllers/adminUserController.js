@@ -4,6 +4,8 @@ import Order from './../models/orderModel.js'
 import Product from './../models/productModel.js'
 
 
+// user
+
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({})
 
@@ -68,12 +70,7 @@ const updateUser = asyncHandler(async (req, res) => {
 })
 
 
-const getOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find({}).populate('user', 'id name')
-
-    res.json(orders)
-})
-
+// product
 
 const deleteProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id)
@@ -135,6 +132,29 @@ const updateProduct = asyncHandler(async (req, res) => {
 })
 
 
+// order
+
+const getOrders = asyncHandler(async (req, res) => {
+    const orders = await Order.find({}).populate('user', 'id name')
+
+    res.json(orders)
+})
+
+
+const deleteOrder = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+
+    if (order) {
+        await order.remove()
+        res.json({message: 'Order cancelled'})
+
+    } else {
+        res.status(404)
+        throw new Error('Order not found')
+    }
+})
+
+
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id)
 
@@ -171,6 +191,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 })
 
 
+// price factor
+
 const updatePriceConstant = asyncHandler(async (req, res) => {
     const {newPriceConstant} = req.body
 
@@ -179,15 +201,18 @@ const updatePriceConstant = asyncHandler(async (req, res) => {
 })
 
 
+
+
 export {
     getUsers,
     getUser,
     deleteUser, 
     updateUser,
-    getOrders,
     deleteProduct,
     createProduct,
     updateProduct,
+    getOrders,
+    deleteOrder,
     updateOrderToDelivered,
     updateOrderToPaid,
     updatePriceConstant

@@ -53,10 +53,17 @@ router.route('/products').post(
     adminUserController.createProduct
 )
 
+
 router.route('/products/:id').put(
     privateRoute,
     adminRoute,
     adminUserController.updateProduct
+)
+
+router.route('/orders/:id').delete(
+    privateRoute,
+    adminRoute,
+    adminUserController.deleteOrder
 )
 
 router.route('/orders/:id/pay').put(

@@ -69,6 +69,16 @@ const adminReducer = (state=initialState, action) => {
         case actions.ORDER_LIST_FAIL_ADMIN:
             return {...state, loading: false, error: action.payload}
 
+
+        case actions.ORDER_DELETE_REQUEST_ADMIN:
+            return {...state, loading: true, error: null, success: false}
+
+        case actions.ORDER_DELETE_SUCCESS_ADMIN:
+            return {...state, loading: false, success: true}
+
+        case actions.ORDER_DELETE_FAIL_ADMIN:
+            return {...state, loading: false, error: action.payload}
+
         // product delete
 
         case actions.PRODUCT_DELETE_REQUEST_ADMIN:

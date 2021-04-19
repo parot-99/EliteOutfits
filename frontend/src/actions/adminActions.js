@@ -114,32 +114,6 @@ const userUpdateAction = (userInfo) => async (dispatch, getState) => {
 }
 
 
-const orderListAction = () => async (dispatch, getState) => {
-    try {
-        dispatch({type: actions.ORDER_LIST_REQUEST_ADMIN})
-
-        const {authentication: {user}} = getState()       
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`
-            }
-        }
-        const {data} = await axios.get('/api/admin/orders', config)
-
-        dispatch({type:actions.ORDER_LIST_SUCCESS_ADMIN, payload: data })
-        
-    } catch (error) {
-        dispatch({
-            type: actions.ORDER_LIST_FAIL_ADMIN, 
-            payload: error.response === undefined 
-                        ? error.message 
-                        : error.response.data.message
-        })
-    }
-}
-
-
 const productDeleteAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.PRODUCT_DELETE_REQUEST_ADMIN})
@@ -230,6 +204,61 @@ const productUpdateAction = (product) => async (dispatch, getState) => {
 }
 
 
+const orderListAction = () => async (dispatch, getState) => {
+    try {
+        dispatch({type: actions.ORDER_LIST_REQUEST_ADMIN})
+
+        const {authentication: {user}} = getState()       
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+        const {data} = await axios.get('/api/admin/orders', config)
+
+        dispatch({type:actions.ORDER_LIST_SUCCESS_ADMIN, payload: data })
+        
+    } catch (error) {
+        dispatch({
+            type: actions.ORDER_LIST_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
+const orderDeleteAction = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({type: actions.ORDER_DELETE_REQUEST_ADMIN})
+
+        const {authentication: {user}} = getState()    
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+        const {data} = await axios.delete(
+            `/api/admin/orders/${id}`,
+            config
+        )
+
+        dispatch({type: actions.ORDER_DELETE_SUCCESS_ADMIN, payload: data})
+
+    } catch (error) {
+        dispatch({
+            type: actions.ORDER_DELETE_FAIL_ADMIN, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
 const payOrderAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.ORDER_PAY_REQUEST_ADMIN})
@@ -295,10 +324,11 @@ export {
     userDeleteAction,
     userDetailAction,
     userUpdateAction,
-    orderListAction,
     productDeleteAction,
     productCreateAction,
     productUpdateAction,
+    orderListAction,
+    orderDeleteAction,
     payOrderAction,
     deliverOrderAction
 }

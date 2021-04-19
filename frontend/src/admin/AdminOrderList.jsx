@@ -4,18 +4,24 @@ import {Table, Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import {Loader, Message} from './../handlers'
 import {Meta} from './../base'
-import {orderListAction} from './../actions/adminActions'
+import {orderListAction, orderDeleteAction} from './../actions/adminActions'
 
 
 const AdminOrderList = () => {
   const admin = useSelector(state => state.admin)
-  const {loading, error, orderList} = admin
+  const {loading, error, orderList, success} = admin
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(orderListAction())
 
-  }, [dispatch])
+  }, [success, dispatch])
+
+  const cancelOrder = (id) => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(orderDeleteAction(id))
+    }
+  }
 
   return (
     <Fragment>
@@ -34,6 +40,7 @@ const AdminOrderList = () => {
               <th>PAID</th>
               <th>DELIVERED</th>
               <th>DETAILS</th>
+              <th>CANCEL</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +64,15 @@ const AdminOrderList = () => {
                   <Link to={`/order/${order._id}`}>
                     <Button variant='info'>Details</Button>
                   </Link>  
+                </td>
+                <td>
+                  <Button 
+                    variant='danger'
+                    className='btn-block'
+                    onClick={() => cancelOrder(order._id)}
+                  > 
+                    Delete
+                  </Button>
                 </td>
               </tr>
             ))}
