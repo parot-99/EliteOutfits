@@ -1,8 +1,8 @@
-import {Fragment} from 'react'
-import {Link, NavLink} from 'react-router-dom'
-import {Navbar, Nav, NavDropdown, Container} from 'react-bootstrap'
-import {useSelector} from 'react-redux'
-import {UserLogout} from './../users'
+import { Fragment } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import { UserLogout } from './../users'
 
 const Header = () => {
   const authentication = useSelector(state => state.authentication)

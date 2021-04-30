@@ -1,6 +1,6 @@
-import {useState} from 'react'
-import {Form} from 'react-bootstrap'
-import {Loader} from './../handlers'
+import { useState } from 'react'
+import { Form } from 'react-bootstrap'
+import { Loader } from './../handlers'
 import axios from 'axios'
 
 

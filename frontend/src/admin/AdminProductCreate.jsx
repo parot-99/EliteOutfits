@@ -1,8 +1,8 @@
-import {useEffect} from 'react'
-import {useHistory} from 'react-router-dom'
-import {Button} from 'react-bootstrap'
-import {useDispatch, useSelector} from 'react-redux'
-import {productCreateAction} from './../actions/adminActions'
+import { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { productCreateAction } from './../actions/adminActions'
 
 
 const AdminProductCreate = () => {

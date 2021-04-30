@@ -1,12 +1,12 @@
-import {Fragment, useState, useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {Link, useParams} from 'react-router-dom'
-import {Row, Col, Image, ListGroup, Form} from 'react-bootstrap'
-import {Rating, CartButton} from '.'
-import {Meta} from './../base'
-import {Loader, Message} from './../handlers'
-import {productDetailAction} from './../actions/productActions'
-import {ProductReviews} from '.'
+import { Fragment, useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+import { Row, Col, Image, ListGroup, Form } from 'react-bootstrap'
+import { Rating, CartButton } from '.'
+import { Meta } from './../base'
+import { Loader, Message } from './../handlers'
+import { productDetailAction } from './../actions/productActions'
+import { ProductReviews } from '.'
 
 
 const ProductDetail = () => {
@@ -64,6 +64,11 @@ const ProductDetail = () => {
                       ? 'In Stock'
                       : 'Not In Stock'
                     }
+                  </h4>
+                </ListGroup.Item>
+                <ListGroup.Item variant='light'>
+                  <h4 className='d-inline'>
+                    Sizes: {productDetail.sizes}
                   </h4>
                 </ListGroup.Item>
                 {productDetail.countInStock > 0 && (

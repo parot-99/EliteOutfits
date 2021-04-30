@@ -1,13 +1,13 @@
-import {Fragment, useEffect, useState} from 'react'
-import {Link, useParams, useHistory} from 'react-router-dom'
-import {Form, Button} from 'react-bootstrap'
-import {useSelector, useDispatch} from 'react-redux'
-import {PRODUCT_CREATE_RESET_ADMIN} from './../constants/adminConstants'
-import {ImageUpdateField} from '.'
-import {Loader, Message} from './../handlers'
-import {Meta, FormContainer} from './../base'
-import {productDetailAction} from './../actions/productActions'
-import {productUpdateAction} from './../actions/adminActions'
+import { Fragment, useEffect, useState } from 'react'
+import { Link, useParams, useHistory } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
+import { PRODUCT_CREATE_RESET_ADMIN } from './../constants/adminConstants'
+import { ImageUpdateField } from '.'
+import { Loader, Message } from './../handlers'
+import { Meta, FormContainer } from './../base'
+import { productDetailAction } from './../actions/productActions'
+import { productUpdateAction } from './../actions/adminActions'
 
 
 const AdminProductUpdate = () => {
@@ -17,6 +17,7 @@ const AdminProductUpdate = () => {
   const [price, setPrice] = useState(0)
   const [image, setImage] = useState('')
   const [category, setCategory] = useState('')
+  const [sizes, setSizes] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const product = useSelector(state => state.product)
   const {loading, error, productDetail} = product
@@ -32,6 +33,7 @@ const AdminProductUpdate = () => {
       setName(productDetail.name)
       setPrice(productDetail.price)
       setCategory(productDetail.category)
+      setSizes(productDetail.sizes)
       setCountInStock(productDetail.countInStock)
     }
 
@@ -49,6 +51,7 @@ const AdminProductUpdate = () => {
       price,
       image,
       category,
+      sizes,
       countInStock
     }))
     
@@ -101,6 +104,17 @@ const AdminProductUpdate = () => {
               <option value='Women'>Women</option>
               <option value='Kids'>Kids</option>
             </Form.Control>
+          </Form.Group>        
+          <Form.Group controlId='size'>
+            <Form.Label>Sizes</Form.Label>
+            <Form.Control 
+              type='text'
+              placeholder='Enter sizes'
+              autoComplete='off'
+              required={true}
+              value={sizes}
+              onChange={(e) => setSizes(e.target.value)}
+            ></Form.Control>
           </Form.Group>
           <Form.Group controlId='countInStock'>
             <Form.Label>Count In Stock</Form.Label>

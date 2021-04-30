@@ -1,11 +1,11 @@
-import {Fragment, useEffect} from 'react'
-import {Link, useParams, useLocation} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
-import {Row, Col, ListGroup} from 'react-bootstrap'
-import {CartItem, CartInfo} from '.'
-import {Loader, Message} from './../handlers'
-import {Meta} from './../base'
-import {addToCart} from './../actions/cartActions'
+import { Fragment, useEffect } from 'react'
+import { Link, useParams, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, ListGroup } from 'react-bootstrap'
+import { CartItem, CartInfo } from '.'
+import { Loader, Message } from './../handlers'
+import { Meta } from './../base'
+import { addToCart } from './../actions/cartActions'
 
 
 const CartList = () => {

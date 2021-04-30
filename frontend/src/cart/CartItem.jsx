@@ -1,6 +1,6 @@
-import {Link} from 'react-router-dom'
-import {Row, Col, Form, Button} from 'react-bootstrap'
-import {addToCart, removeFromCart} from './../actions/cartActions'
+import { Link } from 'react-router-dom'
+import { Row, Col, Form, Button } from 'react-bootstrap'
+import { addToCart, removeFromCart } from './../actions/cartActions'
 
 const CartItem = ({item, dispatch}) => {
   return (

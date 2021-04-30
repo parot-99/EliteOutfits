@@ -1,5 +1,5 @@
-import {useHistory} from 'react-router-dom'
-import {ListGroup, Button, Card} from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { ListGroup, Button, Card } from 'react-bootstrap'
 
 const CartInfo = ({cartItems}) => {
   const history = useHistory()

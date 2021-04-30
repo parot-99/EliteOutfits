@@ -51,7 +51,7 @@ const ProductReviews = ({productDetail, success, reviewError, id}) => {
           </ListGroup.Item>
         ))}
         <ListGroup.Item variant='light'>
-          <h2>Write a Customer Review</h2>
+          <h3>Write a Customer Review</h3>
           {user &&
             <Form onSubmit={handleCreateReview}>
               <Form.Group controlId='rating'>

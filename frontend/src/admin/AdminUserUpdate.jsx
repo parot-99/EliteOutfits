@@ -1,10 +1,10 @@
-import {Fragment, useEffect, useState} from 'react'
-import {Form, Button} from 'react-bootstrap'
-import {Link, useParams, useHistory} from 'react-router-dom'
-import {useSelector, useDispatch} from 'react-redux'
-import {Loader, Message} from './../handlers'
-import {FormContainer} from './../base'
-import {userDetailAction, userUpdateAction} from './../actions/adminActions'
+import { Fragment, useEffect, useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { Link, useParams, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { Loader, Message } from './../handlers'
+import { FormContainer } from './../base'
+import { userDetailAction, userUpdateAction } from './../actions/adminActions'
 
 
 const AdminUserUpdate = () => {

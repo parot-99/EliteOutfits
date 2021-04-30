@@ -1,12 +1,12 @@
-import {Fragment, useEffect} from 'react'
-import {Link, useParams} from 'react-router-dom'
-import {Table, Button, Row, Col} from 'react-bootstrap'
-import {useDispatch, useSelector} from 'react-redux'
-import {Loader, Message} from './../handlers'
-import {Meta, Paginate} from './../base'
-import {productDeleteAction} from './../actions/adminActions'
-import {productListAction} from './../actions/productActions'
-import {AdminProductCreate} from '.'
+import { Fragment, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { Table, Button, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Loader, Message } from './../handlers'
+import { Meta, Paginate } from './../base'
+import { productDeleteAction } from './../actions/adminActions'
+import { productListAction } from './../actions/productActions'
+import { AdminProductCreate } from '.'
 
 
 const AdminProductList = () => {

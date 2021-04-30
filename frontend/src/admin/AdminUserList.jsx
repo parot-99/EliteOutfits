@@ -1,10 +1,10 @@
-import {Fragment, useEffect} from 'react'
-import {Link} from 'react-router-dom'
-import {Table, Button} from 'react-bootstrap'
-import {useDispatch, useSelector} from 'react-redux'
-import {Loader, Message} from './../handlers'
-import {Meta} from './../base'
-import {userListAction, userDeleteAction} from './../actions/adminActions'
+import { Fragment, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Table, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Loader, Message } from './../handlers'
+import { Meta } from './../base'
+import { userListAction, userDeleteAction } from './../actions/adminActions'
 
 
 const AdminUserList = () => {
