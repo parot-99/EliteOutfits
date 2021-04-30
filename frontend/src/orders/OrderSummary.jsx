@@ -1,8 +1,8 @@
 import React from 'react'
-import {Button, ListGroup, Row, Col} from 'react-bootstrap'
-import {useSelector, useDispatch} from 'react-redux'
-import {Message} from './../handlers'
-import {createOrder} from './../actions/orderActions'
+import { Button, ListGroup, Row, Col } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
+import { Message } from './../handlers'
+import { createOrder } from './../actions/orderActions'
 
 
 const OrderSummary = ({cart}) => {

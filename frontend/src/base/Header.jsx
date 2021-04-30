@@ -47,6 +47,9 @@ const Header = () => {
                     <NavDropdown.Item as={Link} to='/admin/orders'>
                       Orders
                     </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/admin/pricefactor'>
+                      Price Factor
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </Fragment>
               }

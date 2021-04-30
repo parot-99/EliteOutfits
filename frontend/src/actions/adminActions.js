@@ -319,6 +319,69 @@ const deliverOrderAction = (id) => async (dispatch, getState) => {
 }
 
 
+const priceFactorGetAction = () => async (dispatch, getState) => {
+    try {
+        dispatch({type: actions.PRICE_FACTOR_DETAIL_REQUEST})
+
+        const {authentication: {user}} = getState()     
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.get('/api/admin/pricefactor', config)
+
+        dispatch({
+            type: actions.PRICE_FACTOR_DETAIL_SUCCESS,
+            payload: data.priceFactor
+        })
+
+    } catch (error) {
+        dispatch({
+            type: actions.PRICE_FACTOR_DETAIL_FAIL, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
+
+const priceFactorUpdateAction = (newPrice) => async (dispatch, getState) => {
+    try {
+        dispatch({type: actions.PRICE_FACTOR_UPDATE_REQUEST})
+
+        const {authentication: {user}} = getState()     
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            }
+        }
+
+        const {data} = await axios.put(
+            '/api/admin/pricefactor',
+            {newPriceFactor: newPrice},
+            config
+        )
+
+        dispatch({
+            type: actions.PRICE_FACTOR_UPDATE_SUCCESS,
+            payload: data.priceFactor
+        })
+
+    } catch (error) {
+        dispatch({
+            type: actions.PRICE_FACTOR_UPDATE_FAIL, 
+            payload: error.response === undefined 
+                        ? error.message 
+                        : error.response.data.message
+        })
+    }
+}
+
 export {
     userListAction,
     userDeleteAction,
@@ -330,5 +393,7 @@ export {
     orderListAction,
     orderDeleteAction,
     payOrderAction,
-    deliverOrderAction
+    deliverOrderAction,
+    priceFactorGetAction,
+    priceFactorUpdateAction
 }

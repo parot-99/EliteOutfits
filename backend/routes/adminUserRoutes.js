@@ -5,10 +5,16 @@ import {privateRoute, adminRoute} from './../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.route('/pconstant').post(
+router.route('/pricefactor').get(
     privateRoute,
     adminRoute,
-    adminUserController.updatePriceConstant
+    adminUserController.getPriceFactor
+)
+
+router.route('/pricefactor').put(
+    privateRoute,
+    adminRoute,
+    adminUserController.updatePriceFactor
 )
 
 router.route('/users').get(

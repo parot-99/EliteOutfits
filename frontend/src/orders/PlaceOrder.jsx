@@ -1,11 +1,10 @@
-import {Fragment} from 'react'
-import {useEffect} from 'react'
-import {useHistory, Link} from 'react-router-dom'
-import {Row, Col, ListGroup} from 'react-bootstrap' 
-import {useSelector} from 'react-redux'
-import {CheckoutNav, OrderSummary} from '.'
-import {Message} from './../handlers'
-import {Meta} from './../base'
+import { Fragment, useEffect} from 'react'
+import { useHistory, Link } from 'react-router-dom'
+import { Row, Col, ListGroup } from 'react-bootstrap' 
+import { useSelector } from 'react-redux'
+import { CheckoutNav, OrderSummary } from '.'
+import { Message } from './../handlers'
+import { Meta } from './../base'
 
 
 const PlaceOrder = () => {

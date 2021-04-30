@@ -5,7 +5,8 @@ const initialState = {
     usersList: [],
     userDetail: null,
     orderList: [],
-    productCreate: {}
+    productCreate: {},
+  
 }
 
 const adminReducer = (state=initialState, action) => {
@@ -123,6 +124,29 @@ const adminReducer = (state=initialState, action) => {
             return {...state, loading: false}
 
         case actions.PRODUCT_UPDATE_FAIL_ADMIN:
+            return {...state, loading: false, error: action.payload}
+
+        // price factor detail
+
+        case actions.PRICE_FACTOR_DETAIL_REQUEST:
+            return {...state, loading: true, error: null}
+
+        case actions.PRICE_FACTOR_DETAIL_SUCCESS:
+            return {...state, loading: false, priceFactor: action.payload}
+
+        case actions.PRICE_FACTOR_DETAIL_FAIL:
+            return {...state, loading: false, error: action.payload}
+
+
+        // price factor update
+
+        case actions.PRICE_FACTOR_UPDATE_REQUEST:
+            return {...state, loading: true, error: null}
+
+        case actions.PRICE_FACTOR_UPDATE_SUCCESS:
+            return {...state, loading: false}
+
+        case actions.PRICE_FACTOR_UPDATE_FAIL:
             return {...state, loading: false, error: action.payload}
 
         default:

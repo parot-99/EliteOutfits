@@ -1,11 +1,11 @@
-import {Fragment, useEffect} from 'react'
-import {useParams, Link} from 'react-router-dom'
-import {Row, Col, ListGroup} from 'react-bootstrap' 
-import {useDispatch, useSelector} from 'react-redux'
-import {AdminButtons} from '.'
-import {Message, Loader} from './../handlers'
-import {Meta} from './../base'
-import {getOrder} from './../actions/orderActions'
+import { Fragment, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
+import { Row, Col, ListGroup } from 'react-bootstrap' 
+import { useDispatch, useSelector } from 'react-redux'
+import { AdminButtons } from '.'
+import { Message, Loader } from './../handlers'
+import { Meta } from './../base'
+import { getOrder } from './../actions/orderActions'
 
 
 const OrderDetail = () => {

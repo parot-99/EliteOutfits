@@ -1,12 +1,11 @@
-import {useState} from 'react'
-import {useHistory} from 'react-router-dom'
-import {Form, Button} from 'react-bootstrap' 
-import {useDispatch, useSelector} from 'react-redux'
-import {CheckoutNav} from '.'
-import {FormContainer} from './../base'
-import {Meta} from './../base'
-import {saveShippingAddress} from './../actions/orderActions'
-import {ORDER_CREATE_RESET} from './../constants/orderConstants'
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap' 
+import { useDispatch, useSelector } from 'react-redux'
+import { CheckoutNav } from '.'
+import { FormContainer, Meta } from './../base'
+import { saveShippingAddress } from './../actions/orderActions'
+import { ORDER_CREATE_RESET } from './../constants/orderConstants'
 
 
 const Shipping = () => {

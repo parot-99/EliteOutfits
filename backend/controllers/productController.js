@@ -22,7 +22,7 @@ const getProducts = asyncHandler (async (req, res) => {
    
 
     products.map((product) => (
-        product.price *= req.app.locals.PRICE_CONSTANT
+        product.price *= req.app.locals.PRICE_FACTOR
     ))
 
     products.map((product) => (
@@ -63,7 +63,7 @@ const getProduct = asyncHandler (async (req, res) => {
             res.status(200)
             res.json(product)
         } else {
-            product.price *= req.app.locals.PRICE_CONSTANT
+            product.price *= req.app.locals.PRICE_FACTOR
             product.price = Math.round(product.price)
 
             const s3 = useS3()

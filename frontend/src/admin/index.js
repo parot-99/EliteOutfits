@@ -5,6 +5,7 @@ import AdminOrderList from './AdminOrderList'
 import AdminProductCreate from './AdminProductCreate'
 import AdminProductUpdate from './AdminProductUpdate'
 import ImageUpdateField from './ImageUpdateField'
+import AdminPriceFactor from './AdminPriceFactor'
 
 
 export {
@@ -14,5 +15,6 @@ export {
     AdminOrderList,
     AdminProductCreate,
     AdminProductUpdate,
-    ImageUpdateField
+    ImageUpdateField,
+    AdminPriceFactor
 }

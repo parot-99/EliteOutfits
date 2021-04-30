@@ -1,7 +1,7 @@
-import {Fragment} from 'react'
-import {Button, ListGroup} from 'react-bootstrap'
-import {useDispatch, useSelector} from 'react-redux'
-import {payOrderAction, deliverOrderAction} from './../actions/adminActions'
+import { Fragment } from 'react'
+import { Button, ListGroup } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { payOrderAction, deliverOrderAction } from './../actions/adminActions'
 
 
 const AdminButtons = ({orderDetails, id}) => {

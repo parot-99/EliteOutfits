@@ -66,6 +66,9 @@ const App = () => {
               <AdminRoute exact path='/admin/product/:id'>
                 <Admin.AdminProductUpdate />
               </AdminRoute>
+              <AdminRoute exact path='/admin/pricefactor'>
+                <Admin.AdminPriceFactor />
+              </AdminRoute>
               <Route>
                 <NotFound />
               </Route>

@@ -1,11 +1,11 @@
-import {Fragment, useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
-import {Container, Navbar, Nav, Row, Col} from 'react-bootstrap'
-import {Product, ProductCarousel} from '.'
-import {Meta, Paginate} from './../base'
-import {Loader, Message} from './../handlers'
-import {productListAction} from './../actions/productActions'
+import { Fragment, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Container, Navbar, Nav, Row, Col } from 'react-bootstrap'
+import { Product, ProductCarousel } from '.'
+import { Meta, Paginate } from './../base'
+import { Loader, Message } from './../handlers'
+import { productListAction } from './../actions/productActions'
 
 const ProductList = () => {
   const [category, setCategory] = useState('All')

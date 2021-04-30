@@ -6,14 +6,14 @@ import Product from './../models/productModel.js'
 
 // user
 
-const getUsers = asyncHandler(async (req, res) => {
+const getUsers = asyncHandler (async (req, res) => {
     const users = await User.find({})
 
     res.json(users)
 })
 
 
-const getUser = asyncHandler(async (req, res) => {
+const getUser = asyncHandler (async (req, res) => {
     const user = await User.findById(req.params.id).select('-password')
 
     if (user) {
@@ -25,7 +25,7 @@ const getUser = asyncHandler(async (req, res) => {
 })
 
 
-const deleteUser = asyncHandler(async (req, res) => {
+const deleteUser = asyncHandler (async (req, res) => {
     const user = await User.findById(req.params.id)
 
     if (user) {
@@ -39,7 +39,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 
-const updateUser = asyncHandler(async (req, res) => {
+const updateUser = asyncHandler (async (req, res) => {
     const user = await User.findById(req.params.id)
     
     if (user) {
@@ -72,7 +72,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
 // product
 
-const deleteProduct = asyncHandler(async (req, res) => {
+const deleteProduct = asyncHandler (async (req, res) => {
     const product = await Product.findById(req.params.id)
 
     if (product) {
@@ -86,7 +86,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 })
 
 
-const createProduct = asyncHandler(async (req, res) => {
+const createProduct = asyncHandler (async (req, res) => {
     const product = new Product({
         name: 'Sample name',
         price: 0,
@@ -102,7 +102,7 @@ const createProduct = asyncHandler(async (req, res) => {
 })
 
 
-const updateProduct = asyncHandler(async (req, res) => {
+const updateProduct = asyncHandler (async (req, res) => {
     const product = await Product.findById(req.params.id)
 
     const {
@@ -136,14 +136,14 @@ const updateProduct = asyncHandler(async (req, res) => {
 
 // order
 
-const getOrders = asyncHandler(async (req, res) => {
+const getOrders = asyncHandler (async (req, res) => {
     const orders = await Order.find({}).populate('user', 'id name')
 
     res.json(orders)
 })
 
 
-const deleteOrder = asyncHandler(async (req, res) => {
+const deleteOrder = asyncHandler (async (req, res) => {
     const order = await Order.findById(req.params.id)
 
     if (order) {
@@ -157,7 +157,7 @@ const deleteOrder = asyncHandler(async (req, res) => {
 })
 
 
-const updateOrderToDelivered = asyncHandler(async (req, res) => {
+const updateOrderToDelivered = asyncHandler (async (req, res) => {
     const order = await Order.findById(req.params.id)
 
     if (order) {
@@ -175,7 +175,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
 })
 
 
-const updateOrderToPaid = asyncHandler(async (req, res) => {
+const updateOrderToPaid = asyncHandler (async (req, res) => {
     const order = await Order.findById(req.params.id)
 
     if (order) {
@@ -195,11 +195,18 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 
 // price factor
 
-const updatePriceConstant = asyncHandler(async (req, res) => {
-    const {newPriceConstant} = req.body
+const getPriceFactor = asyncHandler (async (req, res) => {
+    res.status(200)
+    res.json({priceFactor: req.app.locals.PRICE_FACTOR})
+})
 
-    req.app.locals.PRICE_CONSTANT = newPriceConstant
-    res.status(204).json({newConstant: newPriceConstant})
+
+const updatePriceFactor = asyncHandler (async (req, res) => {
+    const {newPriceFactor} = req.body
+
+    req.app.locals.PRICE_FACTOR = newPriceFactor
+    res.status(200)
+    res.json({priceFactor: newPriceFactor})
 })
 
 
@@ -217,5 +224,6 @@ export {
     deleteOrder,
     updateOrderToDelivered,
     updateOrderToPaid,
-    updatePriceConstant
+    updatePriceFactor,
+    getPriceFactor
 }

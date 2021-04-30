@@ -1,5 +1,5 @@
-import {useHistory} from 'react-router-dom'
-import {Button} from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 const CartButton = ({countInStock, id, quanity}) => {
   const history = useHistory()
