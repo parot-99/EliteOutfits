@@ -17,7 +17,9 @@ const CartList = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(addToCart(id, Number(location.search.split('=')[1])))
+      const quanity = location.search.split('=')[1].split('&')[0]
+      const size = location.search.split('&')[1].split('=')[1]
+      dispatch(addToCart(id, Number(quanity), size))
     }
   }, [dispatch, id, location])
 

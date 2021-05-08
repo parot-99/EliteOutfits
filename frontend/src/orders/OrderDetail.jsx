@@ -70,20 +70,15 @@ const OrderDetail = () => {
                   {orderDetails.orderItems.map((item, index) => (
                     <ListGroup.Item key={index} variant='light'>
                       <Row>
-                        {/* <Col md={1}>
-                          <Image 
-                            src={item.image}
-                            alt={item.name}
-                            fluid
-                            rounded
-                          />
-                        </Col> */}
-                        <Col>
+                        <Col sm={12} md={4}>
                           <Link to={`/product/${item.product}`}>
                             <h6>{item.name}</h6>
                           </Link>
                         </Col>
-                        <Col md={4}>
+                        <Col sm={12} md={4} >
+                          <h6>Size: {item.size}</h6>
+                        </Col>
+                        <Col sm={12} md={4}>
                           <h6>
                             {item.quanity} x {item.price} SP = {' '}
                             {(item.quanity * item.price)} SP

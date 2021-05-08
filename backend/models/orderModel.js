@@ -20,6 +20,11 @@ const orderSchema = mongoose.Schema({
                 type: String,
                 required: true
             },
+            size: {
+                type: String,
+                required: true,
+                default: 'S'
+            },
             price: {
                 type: Number,
                 required: true

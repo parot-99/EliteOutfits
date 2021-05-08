@@ -1,6 +1,6 @@
-import {NavDropdown} from 'react-bootstrap'
-import {useDispatch} from 'react-redux'
-import {userLogoutAction} from './../actions/userActions'
+import { NavDropdown } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { userLogoutAction } from './../actions/userActions'
 
 const UserLogout = () => {
   const dispatch = useDispatch()

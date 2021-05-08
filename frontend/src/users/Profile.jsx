@@ -1,6 +1,6 @@
-import {Fragment} from 'react'
-import {Row, Col} from 'react-bootstrap'
-import {UserUpdate, UserOrders} from '.'
+import { Fragment } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import { UserUpdate, UserOrders } from '.'
 
 const Profile = () => {
   return (

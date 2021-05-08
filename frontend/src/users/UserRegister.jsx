@@ -1,11 +1,11 @@
-import {useState, useEffect} from 'react'
-import {useLocation, useHistory, Link} from 'react-router-dom'
-import {Form, Button, Row, Col} from 'react-bootstrap'
-import {useDispatch, useSelector} from 'react-redux'
-import {Loader, Message} from './../handlers'
-import {Meta} from './../base'
-import {FormContainer} from './../base'
-import {userRegisterAction} from './../actions/userActions'
+import { useState, useEffect } from 'react'
+import { useLocation, useHistory, Link } from 'react-router-dom'
+import { Form, Button, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Loader, Message } from './../handlers'
+import { Meta } from './../base'
+import { FormContainer } from './../base'
+import { userRegisterAction } from './../actions/userActions'
 
 const UserRegister = () => {
   const [name, setName] = useState('')
@@ -14,7 +14,7 @@ const UserRegister = () => {
   const [password2, setPassword2] = useState('')
   const location = useLocation()
   const history = useHistory()
-  const user = useSelector(state => state.userDetail)
+  const user = useSelector(state => state.user)
   const {loading, error} = user
   const authentication = useSelector(state => state.authentication)
   const {user: userAuth} = authentication

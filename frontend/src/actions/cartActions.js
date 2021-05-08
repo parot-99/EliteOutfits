@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as actions from './../constants/cartConstants'
 
 
-const addToCart = (id, quanity) => async (dispatch, getState) => {
+const addToCart = (id, quanity, size) => async (dispatch, getState) => {
     try {
         dispatch({type: actions.CART_ADD_REQUEST})
 
@@ -16,7 +16,8 @@ const addToCart = (id, quanity) => async (dispatch, getState) => {
                 image: data.image,
                 price: data.price,
                 countInStock: data.countInStock,
-                quanity
+                quanity,
+                size
             }
         })
 

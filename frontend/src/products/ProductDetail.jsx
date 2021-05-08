@@ -12,6 +12,7 @@ import { ProductReviews } from '.'
 const ProductDetail = () => {
   const {id} = useParams()
   const [quanity, setQuanity] = useState(1)
+  const [size, setSize] = useState('S')
   const product = useSelector(state => state.product)
   const {loading, error, reviewError, success, productDetail} = product
   
@@ -19,6 +20,10 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(productDetailAction(id))
+
+    if (productDetail.length > 0) {
+      setSize(productDetail.size[0])
+    }
 
   }, [dispatch, id, success])
 
@@ -67,9 +72,22 @@ const ProductDetail = () => {
                   </h4>
                 </ListGroup.Item>
                 <ListGroup.Item variant='light'>
-                  <h4 className='d-inline'>
-                    Sizes: {productDetail.sizes}
-                  </h4>
+                  <Row>
+                    <Col><h4>Size: </h4></Col>
+                    <Col>
+                      <Form.Control 
+                        as='select' 
+                        value={size} 
+                        onChange={(e) => setSize(e.target.value)}
+                      >
+                        {productDetail.sizes.split(' ').map((x, idx) => (
+                          <option key={idx + 1} value={x}>
+                            {x}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Col>
+                  </Row>
                 </ListGroup.Item>
                 {productDetail.countInStock > 0 && (
                   <ListGroup.Item variant='light'>
@@ -96,7 +114,8 @@ const ProductDetail = () => {
                   <CartButton 
                     countInStock={productDetail.countInStock} 
                     id={id} 
-                    quanity={quanity} 
+                    quanity={quanity}
+                    size={size}
                   />
                 </ListGroup.Item>
               </ListGroup>

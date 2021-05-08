@@ -1,9 +1,9 @@
 import {Fragment, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {Table, Button} from 'react-bootstrap' 
-import {useSelector, useDispatch} from 'react-redux'
-import {Message, Loader} from './../handlers'
-import {getOrders} from './../actions/orderActions'
+import { useSelector, useDispatch } from 'react-redux'
+import { Message, Loader } from './../handlers'
+import { getOrders } from './../actions/orderActions'
 
 
 const UserOrders = () => {

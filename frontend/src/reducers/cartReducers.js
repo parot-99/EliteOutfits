@@ -32,8 +32,8 @@ const cartReducer = (state={cartItems: []}, action) => {
         case actions.CART_REMOVE:
             return {
                 cartItems: state.cartItems.filter(x => (
-                    x.product !== action.payload)
-                ) 
+                    x.product !== action.payload
+                ))
             }
 
         default:

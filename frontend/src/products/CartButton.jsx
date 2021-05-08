@@ -1,11 +1,11 @@
 import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-const CartButton = ({countInStock, id, quanity}) => {
+const CartButton = ({countInStock, id, quanity, size}) => {
   const history = useHistory()
-
+ 
   const addToCart = () => {
-    history.push(`/cart/${id}?qty=${quanity}`)
+    history.push(`/cart/${id}?qty=${quanity}&size=${size}`)
   }
 
   return (

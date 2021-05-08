@@ -11,24 +11,8 @@ const CartItem = ({item, dispatch}) => {
         </Link>
       </Col>
       <Col md={2}><h6>{item.price} SP</h6></Col>
-      <Col md={2}>
-      <Form.Control 
-        as='select' 
-        value={item.quanity} 
-        onChange={
-          (e) => dispatch(addToCart(
-            item.product,
-            Number(e.target.value))
-          )
-        }
-      >
-        {[...Array(item.countInStock).keys()].map(x => (
-          <option key={x + 1} value={x + 1}>
-            {x + 1}
-          </option>
-        ))}
-      </Form.Control>
-      </Col>
+      <Col md={2}><h6>Size: {item.size}</h6></Col>
+      <Col md={2}><h6>Quanity: {item.quanity}</h6></Col>
       <Col md={2}>
         <Button 
           type='button' 

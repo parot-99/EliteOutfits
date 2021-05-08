@@ -1,11 +1,11 @@
-import {useState, useEffect} from 'react'
-import {useLocation, useHistory, Link} from 'react-router-dom'
-import {Form, Button, Row, Col} from 'react-bootstrap'
-import {useDispatch, useSelector} from 'react-redux'
-import {Loader, Message} from './../handlers'
-import {Meta} from './../base'
-import {FormContainer} from './../base'
-import {userLoginAction} from './../actions/userActions'
+import { useState, useEffect } from 'react'
+import { useLocation, useHistory, Link } from 'react-router-dom'
+import { Form, Button, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Loader, Message } from './../handlers'
+import { Meta} from './../base'
+import { FormContainer } from './../base'
+import { userLoginAction } from './../actions/userActions'
 
 const UserLogin = () => {
   const [email, setEmail] = useState('')

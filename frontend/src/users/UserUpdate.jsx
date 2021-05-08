@@ -1,10 +1,10 @@
-import {useState, useEffect,Fragment} from 'react'
-import {Form, Button} from 'react-bootstrap'
-import {useDispatch, useSelector} from 'react-redux'
-import {Loader, Message} from './../handlers'
-import {Meta} from './../base'
-import {userDetailAction, userUpdateAction} from './../actions/userActions'
-import {USER_UPDATE_RESET} from './../constants/userConstants'
+import { useState, useEffect,Fragment } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Loader, Message } from './../handlers'
+import { Meta } from './../base'
+import { userDetailAction, userUpdateAction } from './../actions/userActions'
+import { USER_UPDATE_RESET } from './../constants/userConstants'
 
 
 const UserUpdate = () => {
