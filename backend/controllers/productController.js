@@ -1,10 +1,10 @@
 import asyncHandler from 'express-async-handler'
 import Product  from './../models/productModel.js'
-import useS3 from './../config/useS3.js'
+import useS3 from './../utils/useS3.js'
 
 
 const getProducts = asyncHandler (async (req, res) => {
-    const pageSize = 9
+    const pageSize = 8
     const page = Number(req.query.pageNumber) || 1
     const category = req.query.category || 'All'
     const count = await Product.countDocuments({})

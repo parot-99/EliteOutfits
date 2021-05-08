@@ -2,48 +2,11 @@ import express from 'express'
 import multer from 'multer'
 import path from 'path'
 import dotenv from 'dotenv'
-import useS3 from './../config/useS3.js'
+import useS3 from './../utils/useS3.js'
 
 dotenv.config()
 
 const router = express.Router()
-
-
-const storage = multer.diskStorage({
-    destination(req, file, cb) {
-        cb(null, 'uploads/')
-    }, 
-    filename(req, file, cb) {
-        cb(
-            null,
-            `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-        )
-    }
-})
-
-
-function checkFileType(file, cb) {
-    const filetypes = /jpg|jpeg|png/
-    const extname = filetypes.test(
-        path.extname(file.originalname).toLowerCase()
-    )
-    const mimetype = filetypes.test(file.mimetype)
-
-    if (extname && mimetype) {
-        return cb(null, true)
-        
-    } else {
-        cb('Images only!')
-    }
-}
-
-const upload = multer({
-    storage: storage,
-    fileFilter: function(req, file, cb) {
-        checkFileType(file, cb)
-    }
-})
-
 
 const checkFileTypeS3 = (fileNmae) => {
     const filetypes = /jpg|jpeg|png/
@@ -59,11 +22,6 @@ const checkFileTypeS3 = (fileNmae) => {
         throw new Error('Wrong file type')
     }
 }
-
-
-router.post('/', upload.single('image'), (req, res) => {
-    res.send(`uploaded`)
-})
 
 
 const uploadToS3 = (req, res) => {
