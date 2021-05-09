@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Navbar, Nav, Row, Col } from 'react-bootstrap'
 import { Product, ProductCarousel } from '.'
@@ -8,6 +8,7 @@ import { Loader, Message } from './../handlers'
 import { productListAction } from './../actions/productActions'
 
 const ProductList = () => {
+  const history = useHistory()
   const [category, setCategory] = useState('All')
   const {pageNumber} = useParams() || 1
   const product = useSelector(state => state.product)
@@ -17,7 +18,7 @@ const ProductList = () => {
   useEffect(() => {
     dispatch(productListAction(pageNumber, category))
 
-  }, [category, pageNumber, dispatch])
+  }, [history, category, pageNumber, dispatch])
 
   return (
     <Fragment>
@@ -32,13 +33,17 @@ const ProductList = () => {
           <Container>       
             <Nav className='m-auto' as='ul' activeKey='all'>         
               <Nav.Link 
+                as={Link}
+                to='/'
                 active={category === 'All'}
                 className='px-1'
                 onClick={() => setCategory('All')}
               >
                 <i className='fas fa-home'></i> All
               </Nav.Link>                    
-              <Nav.Link 
+              <Nav.Link
+                as={Link}
+                to='/'
                 active={category === 'Men'}
                 className='px-1'
                 onClick={() => setCategory('Men')}
@@ -46,6 +51,8 @@ const ProductList = () => {
                 <i className="fas fa-male"></i> Men
               </Nav.Link>         
               <Nav.Link 
+                as={Link}
+                to='/'
                 active={category === 'Women'}
                 className='px-1'
                 onClick={() => setCategory('Women')}
@@ -53,6 +60,8 @@ const ProductList = () => {
                 <i className="fas fa-female"></i> Women
               </Nav.Link>                    
               <Nav.Link 
+                as={Link}
+                to='/'
                 active={category === 'Kids'}
                 className='px-1'
                 onClick={() => setCategory('Kids')}

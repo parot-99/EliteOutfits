@@ -25,7 +25,7 @@ const ProductDetail = () => {
       setSize(productDetail.size[0])
     }
 
-  }, [dispatch, id, success])
+  }, [dispatch, id, success, productDetail.size, productDetail.length])
 
   return (
     <Fragment>
@@ -71,25 +71,27 @@ const ProductDetail = () => {
                     }
                   </h4>
                 </ListGroup.Item>
-                <ListGroup.Item variant='light'>
-                  <Row>
-                    <Col><h4>Size: </h4></Col>
-                    <Col>
-                      <Form.Control 
-                        as='select' 
-                        value={size} 
-                        onChange={(e) => setSize(e.target.value)}
-                      >
-                        {productDetail.sizes.split(' ').map((x, idx) => (
-                          <option key={idx + 1} value={x}>
-                            {x}
-                          </option>
-                        ))}
-                      </Form.Control>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                {productDetail.countInStock > 0 && (
+                {productDetail.countInStock > 0 &&
+                  <ListGroup.Item variant='light'>
+                    <Row>
+                      <Col><h4>Size: </h4></Col>
+                      <Col>
+                        <Form.Control 
+                          as='select' 
+                          value={size} 
+                          onChange={(e) => setSize(e.target.value)}
+                        >
+                          {productDetail.sizes.split(' ').map((x, idx) => (
+                            <option key={idx + 1} value={x}>
+                              {x}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                }
+                {productDetail.countInStock > 0 && 
                   <ListGroup.Item variant='light'>
                     <Row>
                       <Col><h4>Quanity</h4></Col>
@@ -109,7 +111,7 @@ const ProductDetail = () => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
-                )}
+                }
                 <ListGroup.Item variant='light'>
                   <CartButton 
                     countInStock={productDetail.countInStock} 

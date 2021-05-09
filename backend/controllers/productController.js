@@ -7,26 +7,34 @@ const getProducts = asyncHandler (async (req, res) => {
     const pageSize = 8
     const page = Number(req.query.pageNumber) || 1
     const category = req.query.category || 'All'
-    const count = await Product.countDocuments({})
-    let products
+    let count, products
 
     if (category === 'All') {
+        count = await Product.countDocuments({})
+
+        if (page > Math.ceil(count / pageSize)) {
+            res.json({products: [], page, pages: Math.ceil(count / pageSize)})
+        }
+
         products = await Product.find({})
             .limit(pageSize)
             .skip(pageSize * (page - 1))
     } else {
+        count = await Product.countDocuments({category})
+        
+        if (page > Math.ceil(count / pageSize)) {
+            res.json({products: [], page, pages: Math.ceil(count / pageSize)})
+        }
+        
         products = await Product.find({category})
             .limit(pageSize)
             .skip(pageSize * (page - 1))
     }
    
-
     products.map((product) => (
-        product.price *= req.app.locals.PRICE_FACTOR
-    ))
-
-    products.map((product) => (
-        product.price = Math.round(product.price)
+        product.price =  Math.round(
+            product.price * req.app.locals.PRICE_FACTOR
+        )
     ))
 
     products.forEach((product, i) => {
