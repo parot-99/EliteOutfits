@@ -8,15 +8,15 @@ const cartReducer = (state={cartItems: []}, action) => {
 
         case actions.CART_ADD_SUCCESS:
             const item = action.payload
-            const existItem = state.cartItems.find(
-                x => x.product === item.product
-            )
+            const existItem = state.cartItems.find(x => (
+                x.product === item.product && x.size === item.size
+            ))
 
             if (existItem) {
                 return {
                     loading: false,
-                    cartItems: state.cartItems.map(
-                        x => x.product === existItem.product ? item : x
+                    cartItems: state.cartItems.map(x => 
+                        x.product === existItem.product && x.size === existItem.size ? item : x
                     )
                 }
             } else {
@@ -32,7 +32,7 @@ const cartReducer = (state={cartItems: []}, action) => {
         case actions.CART_REMOVE:
             return {
                 cartItems: state.cartItems.filter(x => (
-                    x.product !== action.payload
+                    x.product !== action.product || (x.product === action.product && x.size !== action.size)
                 ))
             }
 

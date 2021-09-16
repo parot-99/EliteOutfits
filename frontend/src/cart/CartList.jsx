@@ -40,7 +40,10 @@ const CartList = () => {
             {cartItems.length !== 0 &&
               <ListGroup variant='flush'>
                 {cartItems.map(item => (
-                  <ListGroup.Item key={item.product} variant='light'>
+                  <ListGroup.Item
+                    key={item.product + item.size} 
+                    variant='light'
+                  >
                     <CartItem item={item} dispatch={dispatch} />
                   </ListGroup.Item>
                 ))}

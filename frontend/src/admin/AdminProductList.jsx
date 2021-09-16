@@ -47,7 +47,8 @@ const AdminProductList = () => {
       </Row>
       {(productLoading || loading) && <Loader />}
       {(productError || error) && <Message variant='danger'>{error}</Message>}
-      {!loading && 
+      {
+        !loading && 
         !error && 
         !productLoading && 
         !productError && 
@@ -89,7 +90,7 @@ const AdminProductList = () => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={pages} page={page} isAdmin />
+          <Paginate pages={pages} page={page} adminPath='products' isAdmin />
         </Fragment>
       }
     </Fragment>

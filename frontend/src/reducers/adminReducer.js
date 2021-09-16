@@ -18,7 +18,13 @@ const adminReducer = (state=initialState, action) => {
             return {...state, loading: true, error: null, usersList: []}
 
         case actions.USER_LIST_SUCCESS_ADMIN:
-            return {...state, loading: false, usersList: action.payload}
+            return {
+                ...state,
+                loading: false,
+                usersList: action.payload.users,
+                page: action.payload.page,
+                pages: action.payload.pages
+            }
 
         case actions.USER_LIST_FAIL_ADMIN:
             return {...state, loading: false, error: action.payload}

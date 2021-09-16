@@ -1,72 +1,74 @@
-import {Fragment} from 'react'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import {Container} from 'react-bootstrap'
-import {Header, Footer} from './base'
-import {ProductList, ProductDetail} from './products'
-import {CartList} from './cart'
-import {UserLogin, UserRegister, Profile} from './users'
-import {Shipping, PlaceOrder, OrderDetail} from './orders'
+import { Fragment } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import { Header, Footer } from './base'
+import { ProductList, ProductDetail } from './products'
+import { CartList } from './cart'
+import { UserLogin, UserRegister, Profile } from './users'
+import { Shipping, PlaceOrder, OrderDetail } from './orders'
 import * as Admin from './admin'
-import {PrivateRoute, AdminRoute, NotFound} from './routing'
-
+import { PrivateRoute, AdminRoute, NotFound } from './routing'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Fragment>
         <Header />
-        <main className='py-3'>
+        <main className="py-3">
           <Container>
             <Switch>
-              <Route exact path='/'>
+              <Route exact path="/">
                 <ProductList />
               </Route>
-              <Route exact path='/page/:pageNumber'>
+              <Route exact path="/page/:pageNumber">
                 <ProductList />
               </Route>
-              <Route exact path='/product/:id'>
+              <Route exact path="/product/:id">
                 <ProductDetail />
               </Route>
-              <Route exact path='/cart/:id?'>
+              <Route exact path="/cart/:id?">
                 <CartList />
               </Route>
-              <Route exact path='/login'>
+              <Route exact path="/login">
                 <UserLogin />
               </Route>
-              <Route exact path='/register'>
+              <Route exact path="/register">
                 <UserRegister />
               </Route>
-              <PrivateRoute exact path='/profile'>
+              <PrivateRoute exact path="/profile">
                 <Profile />
               </PrivateRoute>
-              <PrivateRoute exact path='/shipping'>
+              <PrivateRoute exact path="/shipping">
                 <Shipping />
               </PrivateRoute>
-              <PrivateRoute exact path='/placeorder'>
+              <PrivateRoute exact path="/placeorder">
                 <PlaceOrder />
               </PrivateRoute>
-              <PrivateRoute exact path='/order/:id'>
+              <PrivateRoute exact path="/order/:id">
                 <OrderDetail />
               </PrivateRoute>
-              <AdminRoute exact path='/admin/users'>
+              <AdminRoute exact path="/admin/users">
                 <Admin.AdminUserList />
               </AdminRoute>
-              <AdminRoute exact path='/admin/users/:id'>
+              <AdminRoute exact path="/admin/users/page/:pageNumber">
+                <Admin.AdminUserList />
+              </AdminRoute>
+              <AdminRoute exact path="/admin/users/:id">
                 <Admin.AdminUserUpdate />
               </AdminRoute>
-              <AdminRoute exact path='/admin/products'>
+              <AdminRoute exact path="/admin/products">
                 <Admin.AdminProductList />
               </AdminRoute>
-              <AdminRoute exact path='/admin/products/page/:pageNumber'>
+              <AdminRoute exact path="/admin/products/page/:pageNumber">
                 <Admin.AdminProductList />
               </AdminRoute>
-              <AdminRoute exact path='/admin/orders'>
+              <AdminRoute exact path="/admin/orders">
                 <Admin.AdminOrderList />
               </AdminRoute>
-              <AdminRoute exact path='/admin/product/:id'>
+              <AdminRoute exact path="/admin/product/:id">
                 <Admin.AdminProductUpdate />
               </AdminRoute>
-              <AdminRoute exact path='/admin/pricefactor'>
+              <AdminRoute exact path="/admin/pricefactor">
                 <Admin.AdminPriceFactor />
               </AdminRoute>
               <Route>
@@ -80,6 +82,5 @@ const App = () => {
     </BrowserRouter>
   )
 }
-
 
 export default App

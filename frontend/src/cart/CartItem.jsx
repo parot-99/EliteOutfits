@@ -17,7 +17,7 @@ const CartItem = ({item, dispatch}) => {
         <Button 
           type='button' 
           variant='light' 
-          onClick={() => dispatch(removeFromCart(item.product))}
+          onClick={() => dispatch(removeFromCart(item.product, item.size))}
         >
           <i className='fas fa-trash' />
         </Button>

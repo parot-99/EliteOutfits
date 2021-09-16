@@ -35,10 +35,11 @@ const addToCart = (id, quanity, size) => async (dispatch, getState) => {
 }
 
 
-const removeFromCart = (id) => async (dispatch, getState) => {
+const removeFromCart = (product, size) => async (dispatch, getState) => {
     dispatch({
         type: actions.CART_REMOVE,
-        payload: id
+        product,
+        size
     })
 
     localStorage.setItem(

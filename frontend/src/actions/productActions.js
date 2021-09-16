@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as actions from './../constants/productConstants'
 
 
-const productListAction = (pageNumber = '', category) => async (dispatch) => {
+const productListAction = (pageNumber='', category) => async (dispatch) => {
     try {
         dispatch({type: actions.PRODUCT_LIST_REQUEST})
 

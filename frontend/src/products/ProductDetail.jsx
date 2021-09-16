@@ -12,20 +12,21 @@ import { ProductReviews } from '.'
 const ProductDetail = () => {
   const {id} = useParams()
   const [quanity, setQuanity] = useState(1)
-  const [size, setSize] = useState('S')
+  const [size, setSize] = useState('')
   const product = useSelector(state => state.product)
   const {loading, error, reviewError, success, productDetail} = product
   
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(productDetailAction(id))
+    if (!productDetail.name || productDetail._id !== id) {
+      dispatch(productDetailAction(id))    
 
-    if (productDetail.length > 0) {
-      setSize(productDetail.size[0])
+    } else {
+      setSize(productDetail.sizes[0])
     }
 
-  }, [dispatch, id, success, productDetail.size, productDetail.length])
+  }, [dispatch, id, success, productDetail])
 
   return (
     <Fragment>

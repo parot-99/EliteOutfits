@@ -3,8 +3,8 @@ import { Pagination } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 
-const Paginate = ({pages, page, isAdmin=false}) => {
-  const link = isAdmin ? '/admin/products/page/' : '/page/' 
+const Paginate = ({pages, page, adminPath, isAdmin=false}) => {
+  const link = isAdmin ? `/admin/${adminPath}/page/` : '/page/' 
 
   return ( 
     <Fragment>

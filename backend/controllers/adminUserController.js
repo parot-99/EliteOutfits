@@ -7,9 +7,19 @@ import Product from './../models/productModel.js'
 // user
 
 const getUsers = asyncHandler (async (req, res) => {
-    const users = await User.find({})
+    const pageSize = 2
+    const page = Number(req.query.pageNumber) || 1
+    const count = await User.countDocuments({}) 
 
-    res.json(users)
+    if (page > Math.ceil(count / pageSize)) {
+        res.json({users: [], page, pages: Math.ceil(count / pageSize)})
+    }
+
+    const users = await User.find({})
+        .limit(pageSize)
+        .skip(pageSize * (page - 1))
+
+    res.json({users, page, pages: Math.ceil(count / pageSize)})
 })
 
 

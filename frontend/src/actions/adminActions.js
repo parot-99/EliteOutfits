@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as actions from './../constants/adminConstants'
 
 
-const userListAction = () => async (dispatch, getState) => {
+const userListAction = (pageNumber='') => async (dispatch, getState) => {
     try {
         dispatch({type: actions.USER_LIST_REQUEST_ADMIN})
 
@@ -13,7 +13,10 @@ const userListAction = () => async (dispatch, getState) => {
                 Authorization: `Bearer ${user.token}`
             }
         }
-        const {data} = await axios.get('/api/admin/users', config)
+        const { data } = await axios.get(
+            `/api/admin/users?pageNumber=${pageNumber}`,
+            config
+        )
 
         dispatch({type:actions.USER_LIST_SUCCESS_ADMIN, payload: data })
         
